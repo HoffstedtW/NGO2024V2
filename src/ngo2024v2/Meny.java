@@ -12,12 +12,18 @@ import oru.inf.InfException;
  * @author hoffs
  */
 public class Meny extends javax.swing.JFrame {
-
+    
+    private InfDB idb;
+    private String InloggadAnvandare;
     /**
      * Creates new form Meny
      */
-    public Meny() {
+    public Meny(InfDB idb, String InloggadAnvandare) {
+        this.idb = idb;
+        this.InloggadAnvandare = InloggadAnvandare;
         initComponents();
+        lblInloggadAnvandare.setText(InloggadAnvandare);
+        lblValkommen.setText("Välkommen, " + InloggadAnvandare + "!");
     }
 
     /**
@@ -29,17 +35,35 @@ public class Meny extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblInloggadAnvandare = new javax.swing.JLabel();
+        lblValkommen = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblInloggadAnvandare.setText("jLabel1");
+
+        lblValkommen.setForeground(new java.awt.Color(51, 255, 51));
+        lblValkommen.setText("jlabel2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblValkommen, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblInloggadAnvandare, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblValkommen)
+                .addGap(41, 41, 41)
+                .addComponent(lblInloggadAnvandare)
+                .addContainerGap(221, Short.MAX_VALUE))
         );
 
         pack();
@@ -75,11 +99,13 @@ public class Meny extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Meny().setVisible(true);
+                //new Meny().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblInloggadAnvandare;
+    private javax.swing.JLabel lblValkommen;
     // End of variables declaration//GEN-END:variables
 }
