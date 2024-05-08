@@ -4,6 +4,7 @@
  */
 package ngo2024v2;
 
+import java.util.HashMap;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -118,10 +119,11 @@ public class Inloggning extends javax.swing.JFrame {
         String losen = pfLosenord.getText();
         
         try{
-            String sqlFraga = "SELECT losenord FROM anstalld WHERE epost = '" + ePost +"'";
+            String sqlFraga = "SELECT aid, losenord FROM anstalld WHERE epost = '" + ePost +"'";
             System.out.println(sqlFraga);
-            String dbLosen = idb.fetchSingle(sqlFraga);
-            if(losen.equals(dbLosen)){
+            HashMap<String, String> dbLosen = idb.fetchRow(sqlFraga);
+            
+            if(losen.equals(dbLosen.get("losenord"))){
                 new Meny(idb, ePost).setVisible(true);
                 this.setVisible(false);
             
