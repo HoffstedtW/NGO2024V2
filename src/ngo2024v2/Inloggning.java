@@ -112,21 +112,23 @@ public class Inloggning extends javax.swing.JFrame {
     private void tfEpostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEpostActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfEpostActionPerformed
-
+// Metod för att anställda ska kunna logga in
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
         
         String ePost = tfEpost.getText();
         String losen = pfLosenord.getText();
         
+        // Hämtar aid och lösenord från databasen som stämmer överens med epost
         try{
             String sqlFraga = "SELECT aid, losenord FROM anstalld WHERE epost = '" + ePost +"'";
             System.out.println(sqlFraga);
             HashMap<String, String> dbLosen = idb.fetchRow(sqlFraga);
             
+            // Om lösen stämmer så loggas anställd in och inloggningsmenyn stängs ner
             if(losen.equals(dbLosen.get("losenord"))){
                 new Meny(idb, ePost).setVisible(true);
                 this.setVisible(false);
-            
+            // Om lösen inte stämmer så visas ett felmeddelande
              }
             else{
             lblFelmeddelande.setVisible(true);
