@@ -14,7 +14,8 @@ import oru.inf.InfException;
  */
 public class Inloggning extends javax.swing.JFrame {
     
-    private InfDB idb;
+    private final InfDB idb;
+    private String ePost;
 
     /**
      * Creates new form Inloggning
@@ -119,26 +120,41 @@ public class Inloggning extends javax.swing.JFrame {
         String losen = pfLosenord.getText();
         
         // Hämtar aid och lösenord från databasen som stämmer överens med epost
-        try{
+        try {
             String sqlFraga = "SELECT aid, losenord FROM anstalld WHERE epost = '" + ePost +"'";
             System.out.println(sqlFraga);
-            HashMap<String, String> dbLosen = idb.fetchRow(sqlFraga);
+            HashMap<String, String> dbAnstalld = idb.fetchRow(sqlFraga);
             
-            // Om lösen stämmer så loggas anställd in och inloggningsmenyn stängs ner
-            if(losen.equals(dbLosen.get("losenord"))){
-                new Meny(idb, ePost).setVisible(true);
-                this.setVisible(false);
-            // Om lösen inte stämmer så visas ett felmeddelande
-             }
-            else{
-            lblFelmeddelande.setVisible(true);
-            }
-       
-        } catch (InfException ex){
-            System.out.println(ex.getMessage());
-        }
-    }//GEN-LAST:event_btnLoggaInActionPerformed
+           // Om lösen stämmer så loggas anställd in och inloggningsmenyn stängs ner
+        if(dbAnstalld != null && losen.equals(dbAnstalld.get("losenord"))){
+            // Hämta användarroll från en annan SQL-fråga
+            String rollQuery = "SELECT aid, 'handlaggare' AS roll FROM handlaggare WHERE aid = '" + dbAnstalld.get("aid") + "' UNION " +
+                               "SELECT aid, 'admin' AS roll FROM admin WHERE aid = '" + dbAnstalld.get("aid") + "'";
+            HashMap<String, String> dbRoll = idb.fetchRow(rollQuery);
+            
+            // Om användaren har en roll
+            if(dbRoll != null && dbRoll.containsKey("roll")){
+                String roll = dbRoll.get("roll");
+                
+                // Beroende på rollen, öppna rätt meny
+                if ("admin".equals(roll)){
+                    new AdminMeny(idb, ePost).setVisible(true);
+                } else if ("handläggare".equals(roll)) {
+                    new HandläggarMeny(idb, ePost).setVisible(true);
+            } else {
+                // Visa felmeddelande eller utför annan åtgärd
+                lblFelmeddelande.setText("Ogiltig roll: " + roll);
+                lblFelmeddelande.setVisible(true); }
 
+            this.setVisible(false); }
+            else {
+            lblFelmeddelande.setVisible(true);
+        }
+        }
+        }catch (InfException ex) {
+        System.out.println(ex.getMessage());
+    }//GEN-LAST:event_btnLoggaInActionPerformed
+        }
     private void pfLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pfLosenordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pfLosenordActionPerformed
