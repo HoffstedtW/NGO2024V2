@@ -25,9 +25,12 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblValkommen" min="-2" pref="297" max="-2" attributes="0"/>
-                  <Component id="lblInloggadAnvandare" min="-2" pref="300" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="btnVisaHållbarhetsMål" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblValkommen" min="-2" pref="297" max="-2" attributes="0"/>
+                      <Component id="lblInloggadAnvandare" min="-2" pref="300" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="45" max="32767" attributes="0"/>
           </Group>
@@ -40,7 +43,9 @@
               <Component id="lblValkommen" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Component id="lblInloggadAnvandare" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="221" max="32767" attributes="0"/>
+              <EmptySpace pref="136" max="32767" attributes="0"/>
+              <Component id="btnVisaHållbarhetsMål" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -57,6 +62,11 @@
           <Color blue="33" green="ff" red="33" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jlabel2"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnVisaH&#xe5;llbarhetsM&#xe5;l">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="H&#xe5;llbarhetsm&#xe5;l"/>
       </Properties>
     </Component>
   </SubComponents>

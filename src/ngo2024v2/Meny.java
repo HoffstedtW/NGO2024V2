@@ -25,6 +25,8 @@ public class Meny extends javax.swing.JFrame {
         lblInloggadAnvandare.setText(InloggadAnvandare);
         lblValkommen.setText("Välkommen, " + InloggadAnvandare + "!");
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,6 +39,7 @@ public class Meny extends javax.swing.JFrame {
 
         lblInloggadAnvandare = new javax.swing.JLabel();
         lblValkommen = new javax.swing.JLabel();
+        btnVisaHållbarhetsMål = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,15 +48,19 @@ public class Meny extends javax.swing.JFrame {
         lblValkommen.setForeground(new java.awt.Color(51, 255, 51));
         lblValkommen.setText("jlabel2");
 
+        btnVisaHållbarhetsMål.setText("Hållbarhetsmål");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblValkommen, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblInloggadAnvandare, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnVisaHållbarhetsMål)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblValkommen, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblInloggadAnvandare, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -63,7 +70,9 @@ public class Meny extends javax.swing.JFrame {
                 .addComponent(lblValkommen)
                 .addGap(41, 41, 41)
                 .addComponent(lblInloggadAnvandare)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                .addComponent(btnVisaHållbarhetsMål)
+                .addGap(62, 62, 62))
         );
 
         pack();
@@ -105,6 +114,7 @@ public class Meny extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnVisaHållbarhetsMål;
     private javax.swing.JLabel lblInloggadAnvandare;
     private javax.swing.JLabel lblValkommen;
     // End of variables declaration//GEN-END:variables

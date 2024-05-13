@@ -139,7 +139,7 @@ public class Inloggning extends javax.swing.JFrame {
                 // Beroende på rollen, öppna rätt meny
                 if (roll.equals("admin")){
                     new AdminMeny(idb, ePost).setVisible(true);
-                } else if (roll.equals("handläggare")) {
+                } else if (roll.equals("handlaggare")) {
                     new HandläggarMeny(idb, ePost).setVisible(true);
             } else {
                 // Visa felmeddelande eller utför annan åtgärd

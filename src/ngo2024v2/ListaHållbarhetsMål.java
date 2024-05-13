@@ -6,8 +6,7 @@ package ngo2024v2;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 /**
@@ -19,11 +18,29 @@ public class ListaHållbarhetsMål {
    
 public ListaHållbarhetsMål(InfDB idb){
     this.idb = idb;
+    
+    
         try {
-            ArrayList<HashMap<String,String>> listaHållbarhetsMål = idb.fetchRows("SELECT * FROM hallbarhetsmal");
+            String sqlFraga = "SELECT * FROM hallbarhetsmal";
+            ArrayList<HashMap<String, String>> ListaHållbarhetsMål = idb.fetchRows(sqlFraga);
+            
+                    // Skapa en modell för listan
+            DefaultListModel<String> model = new DefaultListModel<>();
+
+            // Loopa igenom resultaten och lägg till dem i listmodellen
+            for (HashMap<String, String> rad : ListaHållbarhetsMål) {
+                model.addElement(rad.get("mal"));
+            }
+
+            
         } catch (InfException ex) {
-            Logger.getLogger(ListaHållbarhetsMål.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
+        
 }
+
+    void setVisible(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
            
 }
