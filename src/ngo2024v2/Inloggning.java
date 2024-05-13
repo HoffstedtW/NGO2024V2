@@ -127,6 +127,9 @@ public class Inloggning extends javax.swing.JFrame {
             
            // Om lösen stämmer så loggas anställd in och inloggningsmenyn stängs ner
         if(dbAnstalld != null && losen.equals(dbAnstalld.get("losenord"))){
+            } else {
+               lblFelmeddelande.setText("Felaktig e-postadress eller lösenord.");
+               lblFelmeddelande.setVisible(true);
             // Hämta användarroll från en annan SQL-fråga
             String rollQuery = "SELECT aid, 'handlaggare' AS roll FROM handlaggare WHERE aid = '" + dbAnstalld.get("aid") + "' UNION " +
                                "SELECT aid, 'admin' AS roll FROM admin WHERE aid = '" + dbAnstalld.get("aid") + "'";

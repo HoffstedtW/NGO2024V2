@@ -37,12 +37,20 @@ public class AdminMeny extends javax.swing.JFrame {
 
         lblInloggadAdmin = new javax.swing.JLabel();
         lblValkommen = new javax.swing.JLabel();
+        btnÄndraUppgifter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblInloggadAdmin.setText("jLabel1");
 
         lblValkommen.setText("jLabel2");
+
+        btnÄndraUppgifter.setText("Ändra Uppgifter");
+        btnÄndraUppgifter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnÄndraUppgifterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -54,6 +62,10 @@ public class AdminMeny extends javax.swing.JFrame {
                     .addComponent(lblValkommen, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblInloggadAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(103, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnÄndraUppgifter)
+                .addGap(72, 72, 72))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -62,11 +74,17 @@ public class AdminMeny extends javax.swing.JFrame {
                 .addComponent(lblValkommen)
                 .addGap(35, 35, 35)
                 .addComponent(lblInloggadAdmin)
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addComponent(btnÄndraUppgifter)
+                .addGap(90, 90, 90))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnÄndraUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÄndraUppgifterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnÄndraUppgifterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -104,6 +122,7 @@ public class AdminMeny extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnÄndraUppgifter;
     private javax.swing.JLabel lblInloggadAdmin;
     private javax.swing.JLabel lblValkommen;
     // End of variables declaration//GEN-END:variables

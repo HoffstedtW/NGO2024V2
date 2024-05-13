@@ -38,6 +38,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
         lblInloggadHandlaggare = new javax.swing.JLabel();
         lblValkommen = new javax.swing.JLabel();
         btnVisaHållbarhetsMål = new javax.swing.JButton();
+        btnÄndraUppgifter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +53,13 @@ public class HandläggarMeny extends javax.swing.JFrame {
             }
         });
 
+        btnÄndraUppgifter.setText("Ändra uppgifter");
+        btnÄndraUppgifter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnÄndraUppgifterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -59,10 +67,12 @@ public class HandläggarMeny extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnVisaHållbarhetsMål)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(lblValkommen, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblInloggadHandlaggare, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblInloggadHandlaggare, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnÄndraUppgifter)
+                        .addComponent(btnVisaHållbarhetsMål)))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -72,7 +82,9 @@ public class HandläggarMeny extends javax.swing.JFrame {
                 .addComponent(lblValkommen)
                 .addGap(58, 58, 58)
                 .addComponent(lblInloggadHandlaggare)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addComponent(btnÄndraUppgifter)
+                .addGap(18, 18, 18)
                 .addComponent(btnVisaHållbarhetsMål)
                 .addGap(58, 58, 58))
         );
@@ -83,6 +95,10 @@ public class HandläggarMeny extends javax.swing.JFrame {
     private void btnVisaHållbarhetsMålActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaHållbarhetsMålActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVisaHållbarhetsMålActionPerformed
+
+    private void btnÄndraUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÄndraUppgifterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnÄndraUppgifterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,6 +137,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVisaHållbarhetsMål;
+    private javax.swing.JButton btnÄndraUppgifter;
     private javax.swing.JLabel lblInloggadHandlaggare;
     private javax.swing.JLabel lblValkommen;
     // End of variables declaration//GEN-END:variables
