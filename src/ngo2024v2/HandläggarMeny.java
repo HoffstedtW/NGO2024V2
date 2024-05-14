@@ -160,6 +160,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
       
     if (ePost.equals(projektchef)){
         new ProjektChefMeny(idb, ePost).setVisible(true);
+      
 }            
   } else {
           lblFelmeddelande.setText("Användaren saknar behörighet.");
