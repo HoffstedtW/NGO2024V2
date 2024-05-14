@@ -127,9 +127,6 @@ public class Inloggning extends javax.swing.JFrame {
             
            // Om lösen stämmer så loggas anställd in och inloggningsmenyn stängs ner
         if(dbAnstalld != null && losen.equals(dbAnstalld.get("losenord"))){
-            } else {
-               lblFelmeddelande.setText("Felaktig e-postadress eller lösenord.");
-               lblFelmeddelande.setVisible(true);
             // Hämta användarroll från en annan SQL-fråga
             String rollQuery = "SELECT aid, 'handlaggare' AS roll FROM handlaggare WHERE aid = '" + dbAnstalld.get("aid") + "' UNION " +
                                "SELECT aid, 'admin' AS roll FROM admin WHERE aid = '" + dbAnstalld.get("aid") + "'";
@@ -144,13 +141,18 @@ public class Inloggning extends javax.swing.JFrame {
                     new AdminMeny(idb, ePost).setVisible(true);
                 } else if (roll.equals("handlaggare")) {
                     new HandläggarMeny(idb, ePost).setVisible(true);
-            } else {
-                // Visa felmeddelande eller utför annan åtgärd
-                lblFelmeddelande.setText("Ogiltig roll: " + roll);
-                lblFelmeddelande.setVisible(true); }
+                    
+                    this.setVisible(false);
+            } else  {
+                // Visa felmeddelande om användaren inte har någon giltig roll
+                lblFelmeddelande.setText("Användaren har ingen giltig roll.");
+                lblFelmeddelande.setVisible(true); 
+                }
 
-            this.setVisible(false); }
-            else {
+             
+            } else {
+            // Visa felmeddelande om användaren inte finns i databasen eller lösenordet är felaktigt
+            lblFelmeddelande.setText("Felaktigt lösenord eller epost, vänligen försök igen.");
             lblFelmeddelande.setVisible(true);
         }
         }
