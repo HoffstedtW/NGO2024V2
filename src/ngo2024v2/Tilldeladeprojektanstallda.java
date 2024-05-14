@@ -20,7 +20,7 @@ public class Tilldeladeprojektanstallda extends javax.swing.JFrame {
     public Tilldeladeprojektanstallda() {
         initComponents();
         this.idb = idb;
-        lblFelmeddelande.setVisable(false);
+        lblFelmeddelande.setVisible(false);
     }
 
     /**

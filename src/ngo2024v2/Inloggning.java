@@ -119,6 +119,7 @@ public class Inloggning extends javax.swing.JFrame {
         String ePost = tfEpost.getText();
         String losen = pfLosenord.getText();
         
+        
         // Hämtar aid och lösenord från databasen som stämmer överens med epost
         try {
             String sqlFraga = "SELECT aid, losenord FROM anstalld WHERE epost = '" + ePost +"'";
