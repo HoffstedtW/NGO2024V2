@@ -4,6 +4,8 @@
  */
 package ngo2024v2;
 
+import oru.inf.InfDB;
+
 /**
  *
  * @author hoffs
@@ -13,8 +15,12 @@ public class ProjektChefMeny extends javax.swing.JFrame {
     /**
      * Creates new form ProjektChefMeny
      */
-    public ProjektChefMeny() {
+    public ProjektChefMeny(InfDB idb, String aid) {
         initComponents();
+    }
+
+    private ProjektChefMeny() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**

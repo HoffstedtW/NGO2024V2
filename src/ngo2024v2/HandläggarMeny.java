@@ -4,6 +4,7 @@
  */
 package ngo2024v2;
 
+import java.util.HashMap;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -45,11 +46,18 @@ public class HandläggarMeny extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        button1 = new java.awt.Button();
         lblInloggadHandlaggare = new javax.swing.JLabel();
         lblValkommen = new javax.swing.JLabel();
         btnVisaHållbarhetsMål = new javax.swing.JButton();
         btnÄndraUppgifter = new javax.swing.JButton();
         btnChefsMeny = new javax.swing.JButton();
+        lblFelmeddelande = new javax.swing.JLabel();
+
+        jButton1.setText("jButton1");
+
+        button1.setLabel("button1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +80,13 @@ public class HandläggarMeny extends javax.swing.JFrame {
         });
 
         btnChefsMeny.setText("Chefsmeny");
+        btnChefsMeny.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChefsMenyActionPerformed(evt);
+            }
+        });
+
+        lblFelmeddelande.setText("lblFelmeddelande");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,7 +97,8 @@ public class HandläggarMeny extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(lblValkommen, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblInloggadHandlaggare, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblInloggadHandlaggare, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblFelmeddelande))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(btnÄndraUppgifter)
                         .addComponent(btnVisaHållbarhetsMål)))
@@ -93,17 +109,22 @@ public class HandläggarMeny extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblValkommen)
-                    .addComponent(btnChefsMeny))
-                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblValkommen))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(btnChefsMeny)))
+                .addGap(40, 40, 40)
                 .addComponent(lblInloggadHandlaggare)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(btnÄndraUppgifter)
                 .addGap(18, 18, 18)
                 .addComponent(btnVisaHållbarhetsMål)
-                .addGap(58, 58, 58))
+                .addGap(12, 12, 12)
+                .addComponent(lblFelmeddelande)
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -125,6 +146,35 @@ public class HandläggarMeny extends javax.swing.JFrame {
         AnstalldInfoFönster.setVisible(true);
     }//GEN-LAST:event_btnÄndraUppgifterActionPerformed
 
+    private void btnChefsMenyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChefsMenyActionPerformed
+        // TODO add your handling code here:
+        try {
+      String sqlFraga = "SELECT projektchef from anstalld join projekt on aid = projektchef where '" + InloggadHandlaggare + "' = projektchef";
+      System.out.println(sqlFraga);
+      HashMap<String, String> InloggadHandlaggare = idb.fetchRow(sqlFraga);
+       
+       if (InloggadHandlaggare != null && !InloggadHandlaggare.isEmpty()) {
+      String ePost = InloggadHandlaggare.get("ePost");
+      String projektchef = InloggadHandlaggare.get("projektchef");  
+      
+    if (ePost.equals(projektchef)){
+        new ProjektChefMeny(idb, ePost).setVisible(true);
+} else {
+        lblFelmeddelande.setText("Användaren saknar behörighet.");
+                lblFelmeddelande.setVisible(true);
+    }
+  } else {
+          lblFelmeddelande.setText("Användaren saknar behörighet.");
+            lblFelmeddelande.setVisible(true);
+          }
+  } catch (InfException ex) {
+        ex.printStackTrace();
+        // Hantera eventuella undantag som kan uppstå vid databashanteringen
+          }
+    
+                                             
+    }//GEN-LAST:event_btnChefsMenyActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -164,6 +214,9 @@ public class HandläggarMeny extends javax.swing.JFrame {
     private javax.swing.JButton btnChefsMeny;
     private javax.swing.JButton btnVisaHållbarhetsMål;
     private javax.swing.JButton btnÄndraUppgifter;
+    private java.awt.Button button1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel lblFelmeddelande;
     private javax.swing.JLabel lblInloggadHandlaggare;
     private javax.swing.JLabel lblValkommen;
     // End of variables declaration//GEN-END:variables
