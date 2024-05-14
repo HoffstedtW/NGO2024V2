@@ -27,6 +27,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
         initComponents();
         lblInloggadHandlaggare.setText(InloggadHandlaggare);
         lblValkommen.setText("Välkommen Handläggare, " + InloggadHandlaggare + "!");
+        lblFelmeddelande.setVisible(false);
     }
 
     HandläggarMeny() {
@@ -159,10 +160,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
       
     if (ePost.equals(projektchef)){
         new ProjektChefMeny(idb, ePost).setVisible(true);
-} else {
-        lblFelmeddelande.setText("Användaren saknar behörighet.");
-                lblFelmeddelande.setVisible(true);
-    }
+}            
   } else {
           lblFelmeddelande.setText("Användaren saknar behörighet.");
             lblFelmeddelande.setVisible(true);
