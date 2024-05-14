@@ -77,7 +77,7 @@ public class Anstalldinfo extends javax.swing.JFrame {
         lblAvdelning = new javax.swing.JLabel();
         txtAvdelning = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnGåTillbaka = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,10 +144,10 @@ public class Anstalldinfo extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Gå tillbaka");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnGåTillbaka.setText("Gå tillbaka");
+        btnGåTillbaka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnGåTillbakaActionPerformed(evt);
             }
         });
 
@@ -192,7 +192,7 @@ public class Anstalldinfo extends javax.swing.JFrame {
                             .addComponent(lblLösenord)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
+                        .addComponent(btnGåTillbaka)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
@@ -233,7 +233,7 @@ public class Anstalldinfo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnGåTillbaka))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -264,9 +264,9 @@ public class Anstalldinfo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnGåTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGåTillbakaActionPerformed
+   
+    }//GEN-LAST:event_btnGåTillbakaActionPerformed
 
     private void txtLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLosenordActionPerformed
         // TODO add your handling code here:
@@ -302,14 +302,14 @@ public class Anstalldinfo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Anstalldinfo().setVisible(true);
+            
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGåTillbaka;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblAdress;
     private javax.swing.JLabel lblAid;
