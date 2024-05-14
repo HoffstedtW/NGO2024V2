@@ -4,6 +4,9 @@
  */
 package ngo2024v2;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.DefaultListModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -12,12 +15,31 @@ import oru.inf.InfException;
  * @author hoffs
  */
 public class HållbarhetsMål extends javax.swing.JFrame {
+    private InfDB idb;
 
     /**
      * Creates new form HållbarhetsMål
      */
-    public HållbarhetsMål() {
+    public HållbarhetsMål(InfDB idb) {
+        this.idb = idb;
         initComponents();
+        
+                try {
+            String sqlFraga = "SELECT * FROM hallbarhetsmal";
+            ArrayList<HashMap<String, String>> ListaHållbarhetsMål = idb.fetchRows(sqlFraga);
+            
+                    // Skapa en modell för listan
+            DefaultListModel<String> model = new DefaultListModel<>();
+
+            // Loopa igenom resultaten och lägg till dem i listmodellen
+            for (HashMap<String, String> rad : ListaHållbarhetsMål) {
+                model.addElement(rad.get("mal"));
+            }
+
+            
+        } catch (InfException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     /**
@@ -85,7 +107,7 @@ public class HållbarhetsMål extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HållbarhetsMål().setVisible(true);
+                //new HållbarhetsMål().setVisible(true);
             }
         });
     }

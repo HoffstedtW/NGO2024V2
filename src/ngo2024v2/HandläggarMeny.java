@@ -49,6 +49,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
         lblValkommen = new javax.swing.JLabel();
         btnVisaHållbarhetsMål = new javax.swing.JButton();
         btnÄndraUppgifter = new javax.swing.JButton();
+        btnChefsMeny = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +71,8 @@ public class HandläggarMeny extends javax.swing.JFrame {
             }
         });
 
+        btnChefsMeny.setText("Chefsmeny");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,16 +86,20 @@ public class HandläggarMeny extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(btnÄndraUppgifter)
                         .addComponent(btnVisaHållbarhetsMål)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnChefsMeny)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblValkommen)
-                .addGap(58, 58, 58)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblValkommen)
+                    .addComponent(btnChefsMeny))
+                .addGap(54, 54, 54)
                 .addComponent(lblInloggadHandlaggare)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addComponent(btnÄndraUppgifter)
                 .addGap(18, 18, 18)
                 .addComponent(btnVisaHållbarhetsMål)
@@ -104,7 +111,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
 
     private void btnVisaHållbarhetsMålActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaHållbarhetsMålActionPerformed
         // Skapa ett nytt objekt av HållbarhetsMål-klassen
-    HållbarhetsMål hållbarhetsMålFönster = new HållbarhetsMål();
+    HållbarhetsMål hållbarhetsMålFönster = new HållbarhetsMål(idb);
     
     // Gör det nya fönstret synligt
     hållbarhetsMålFönster.setVisible(true);
@@ -154,6 +161,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChefsMeny;
     private javax.swing.JButton btnVisaHållbarhetsMål;
     private javax.swing.JButton btnÄndraUppgifter;
     private javax.swing.JLabel lblInloggadHandlaggare;
