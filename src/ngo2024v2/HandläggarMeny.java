@@ -108,7 +108,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
 
     private void btnÄndraUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÄndraUppgifterActionPerformed
         // Skapa ett nytt objekt av Anstalldinfo-klassen
-        Anstalldinfo AnstalldInfoFönster = new Anstalldinfo();
+        Anstalldinfo AnstalldInfoFönster = new Anstalldinfo(InloggadHandlaggare, idb);
         
         // Gör det nya fönstret synligt
         AnstalldInfoFönster.setVisible(true);
