@@ -7,6 +7,8 @@ package ngo2024v2;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -33,8 +35,17 @@ public class HållbarhetsMål extends javax.swing.JFrame {
 
             // Loopa igenom resultaten och lägg till dem i listmodellen
             for (HashMap<String, String> rad : ListaHållbarhetsMål) {
-                model.addElement(rad.get("mal"));
+                model.addElement(rad.get("hallberhetsmal"));
             }
+                        // Skapa en JList med modellen
+            JList<String> hållbarhetsMålLista = new JList<>(model);
+
+            // Lägg till JList till en JScrollPane för att göra det möjligt att rulla
+            JScrollPane scrollPane = new JScrollPane(hållbarhetsMålLista);
+            scrollPane.setBounds(20, 40, 400, 200); // Ange position och storlek för JScrollPane
+            
+            // Lägg till JScrollPane till JFrame
+            getContentPane().add(scrollPane);
 
             
         } catch (InfException ex) {
