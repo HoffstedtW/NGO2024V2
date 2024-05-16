@@ -38,6 +38,7 @@ public class AdminMeny extends javax.swing.JFrame {
         lblInloggadAdmin = new javax.swing.JLabel();
         lblValkommen = new javax.swing.JLabel();
         btnÄndraUppgifter = new javax.swing.JButton();
+        btnTilldeladeProjekt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,6 +50,13 @@ public class AdminMeny extends javax.swing.JFrame {
         btnÄndraUppgifter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnÄndraUppgifterActionPerformed(evt);
+            }
+        });
+
+        btnTilldeladeProjekt.setText("Tilldelade Projekt");
+        btnTilldeladeProjekt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTilldeladeProjektActionPerformed(evt);
             }
         });
 
@@ -64,7 +72,9 @@ public class AdminMeny extends javax.swing.JFrame {
                 .addContainerGap(103, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnÄndraUppgifter)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnTilldeladeProjekt)
+                    .addComponent(btnÄndraUppgifter))
                 .addGap(72, 72, 72))
         );
         layout.setVerticalGroup(
@@ -76,7 +86,9 @@ public class AdminMeny extends javax.swing.JFrame {
                 .addComponent(lblInloggadAdmin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addComponent(btnÄndraUppgifter)
-                .addGap(90, 90, 90))
+                .addGap(18, 18, 18)
+                .addComponent(btnTilldeladeProjekt)
+                .addGap(49, 49, 49))
         );
 
         pack();
@@ -85,6 +97,14 @@ public class AdminMeny extends javax.swing.JFrame {
     private void btnÄndraUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÄndraUppgifterActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnÄndraUppgifterActionPerformed
+
+    private void btnTilldeladeProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilldeladeProjektActionPerformed
+        // Skapa ett nytt objekt av HållbarhetsMål-klassen
+    Tilldeladeprojektanstalld TilldeladeprojektFönster = new Tilldeladeprojektanstalld(idb);
+    
+    // Gör det nya fönstret synligt
+    TilldeladeprojektFönster.setVisible(true);
+    }//GEN-LAST:event_btnTilldeladeProjektActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,6 +142,7 @@ public class AdminMeny extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTilldeladeProjekt;
     private javax.swing.JButton btnÄndraUppgifter;
     private javax.swing.JLabel lblInloggadAdmin;
     private javax.swing.JLabel lblValkommen;

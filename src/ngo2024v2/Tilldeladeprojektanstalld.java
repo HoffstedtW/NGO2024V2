@@ -12,12 +12,17 @@ import java.util.HashMap;
  */
 public class Tilldeladeprojektanstalld extends javax.swing.JFrame {
 private InfDB idb;
+private String InloggadAdmin;
     /**
      * Creates new form Tilldeladeprojektanstalld
      */
-    public Tilldeladeprojektanstalld() {
+    public Tilldeladeprojektanstalld(InfDB idb) {
         initComponents();
         this.idb = idb;
+    }
+
+    Tilldeladeprojektanstalld() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
