@@ -22,7 +22,6 @@ public class ProjektChefMeny extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.InloggadHandlaggare = InloggadHandlaggare;
-        this.setVisible(rootPaneCheckingEnabled);
         
     }
 

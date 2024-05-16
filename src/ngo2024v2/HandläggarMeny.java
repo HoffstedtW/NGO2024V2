@@ -168,11 +168,10 @@ public class HandläggarMeny extends javax.swing.JFrame {
       String ePost = InloggadHandlaggare.get("epost");
       String projektchef = InloggadHandlaggare.get("projektchef");  
       
-    if (ePost.equals(projektchef)){
         ProjektChefMeny ProjektChefMeny = new ProjektChefMeny(idb, ePost);
                 ProjektChefMeny.setVisible(true);
       
-}            
+            
   } else {
           lblFelmeddelande.setText("Användaren saknar behörighet.");
             lblFelmeddelande.setVisible(true);
