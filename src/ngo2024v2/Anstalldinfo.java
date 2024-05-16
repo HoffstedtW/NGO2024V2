@@ -6,6 +6,7 @@ package ngo2024v2;
 
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import java.util.HashMap;
 /**
  *
  * @author hampusdaven
@@ -24,6 +25,23 @@ public class Anstalldinfo extends javax.swing.JFrame {
     this.idb = idb;
     this.InloggadHandlaggare = InloggadHandlaggare;
      this.setVisible(true);
+     
+     try { 
+         String sqlFraga = "SELECT * from anstalld WHERE epost = '" + InloggadHandlaggare + "'";
+         HashMap<String, String> personligaUppgifter = idb.fetchRow(sqlFraga);
+         
+            txtEmail.setText(personligaUppgifter.get("epost"));
+            txtFornamn.setText(personligaUppgifter.get("fornamn"));
+            txtEfternamn.setText(personligaUppgifter.get("efternamn"));
+            txtAdress.setText(personligaUppgifter.get("adress"));
+            txtLosenord.setText(personligaUppgifter.get("losenord"));
+            txtAID.setText(personligaUppgifter.get("aid"));
+            txtTelefonnummer.setText(personligaUppgifter.get("telefonnummer"));
+            txtAvdelning.setText(personligaUppgifter.get("avdelning"));
+            
+            } catch (InfException ex) {
+            System.out.println(ex.getMessage());
+     }
  
 
 }
