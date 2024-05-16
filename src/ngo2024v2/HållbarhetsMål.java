@@ -32,16 +32,18 @@ public class HållbarhetsMål extends javax.swing.JFrame {
             
                     // Skapa en modell för listan
             DefaultListModel<String> model = new DefaultListModel<>();
+            
+            System.out.println("Antal hållbarhetsmål: " + ListaHållbarhetsMål.size());
 
             // Loopa igenom resultaten och lägg till dem i listmodellen
             for (HashMap<String, String> rad : ListaHållbarhetsMål) {
-                model.addElement(rad.get("hallberhetsmal"));
+                model.addElement(rad.get("namn"));
             }
                         // Skapa en JList med modellen
             JList<String> hållbarhetsMålLista = new JList<>(model);
 
             // Lägg till JList till en JScrollPane för att göra det möjligt att rulla
-            JScrollPane scrollPane = new JScrollPane(hållbarhetsMålLista);
+           JScrollPane scrollPane = new JScrollPane(hållbarhetsMålLista);
             scrollPane.setBounds(20, 40, 400, 200); // Ange position och storlek för JScrollPane
             
             // Lägg till JScrollPane till JFrame
@@ -118,7 +120,7 @@ public class HållbarhetsMål extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new HållbarhetsMål().setVisible(true);
+                //new HållbarhetsMål(idb).setVisible(true);
             }
         });
     }
