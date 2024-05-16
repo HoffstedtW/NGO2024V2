@@ -22,7 +22,8 @@ public class ProjektChefMeny extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.InloggadHandlaggare = InloggadHandlaggare;
-        
+        Valkommen.setText("Välkommen Projektchef, " + InloggadHandlaggare + "!");
+        Valkommen.setVisible(true);
     }
 
     private ProjektChefMeny() {
@@ -43,32 +44,29 @@ public class ProjektChefMeny extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        VälkomnenProjektChef = new javax.swing.JLabel();
+        Valkommen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("jLabel1");
 
-        VälkomnenProjektChef.setText("jLabel2");
+        Valkommen.setText("jLabel2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(169, 169, 169)
-                .addComponent(VälkomnenProjektChef, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(194, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 329, Short.MAX_VALUE))
+                .addContainerGap(329, Short.MAX_VALUE))
+            .addComponent(Valkommen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(VälkomnenProjektChef)
+                .addComponent(Valkommen)
                 .addGap(56, 56, 56)
                 .addComponent(jLabel1)
                 .addContainerGap(206, Short.MAX_VALUE))
@@ -114,7 +112,7 @@ public static void main(String args[]) {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel VälkomnenProjektChef;
+    private javax.swing.JLabel Valkommen;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
