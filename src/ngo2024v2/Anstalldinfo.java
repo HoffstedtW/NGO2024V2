@@ -36,9 +36,10 @@ public class Anstalldinfo extends javax.swing.JFrame {
             txtAdress.setText(personligaUppgifter.get("adress"));
             txtLosenord.setText(personligaUppgifter.get("losenord"));
             txtAID.setText(personligaUppgifter.get("aid"));
-            txtTelefonnummer.setText(personligaUppgifter.get("telefonnummer"));
             txtAvdelning.setText(personligaUppgifter.get("avdelning"));
             
+            String telefonnummer = personligaUppgifter.get("telefon").replace("-","");
+            txtTelefonnummer.setText(telefonnummer);
             } catch (InfException ex) {
             System.out.println(ex.getMessage());
      }
@@ -70,7 +71,38 @@ public class Anstalldinfo extends javax.swing.JFrame {
         handläggarMeny.setVisible(false);
     }
     
+     
+    private void epostandring() {
+        String nyepost = txtEmail.getText();
+        
+        try {
+            String sqlUppdatering = "UPDATE anstalld SET epost = '" + nyepost + "' WHERE epost = '" + InloggadHandlaggare + "'";
+            idb.update(sqlUppdatering);
+        } catch (Exception ex) {
+    }
+}
+     
+    private void losenandring() {
+        char[] losenchar = txtLosenord.getPassword();
+        
+        String nyttlosen = new String(losenchar);
+        
+        try {
+            String sqlUppdatering = "UPDATE anstalld SET losenord = '" + nyttlosen + "' WHERE epost = '" + InloggadHandlaggare + "'";
+            idb.update(sqlUppdatering);
+        } catch (Exception ex) {
+    }
+}
     
+    private void telefonnummerandring() {
+        String nyttnummer = txtTelefonnummer.getText();
+        
+        try {
+            String sqlUppdatering = "UPDATE anstalld SET telefon = '" + nyttnummer + "' WHERE epost = '" + InloggadHandlaggare + "'";
+            idb.update(sqlUppdatering);
+        } catch (Exception ex) {
+    }
+}
     
     
     
@@ -280,6 +312,9 @@ public class Anstalldinfo extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             adressandring();
+            epostandring();
+            losenandring();
+            telefonnummerandring();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnGåTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGåTillbakaActionPerformed
