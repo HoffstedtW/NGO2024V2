@@ -52,7 +52,7 @@ public class ProjektChefMeny extends javax.swing.JFrame {
 
         VälkomnenProjektChef.setText("jLabel2");
 
-        btnVisaPartners.setText("Visa Partners");
+        btnVisaPartners.setText("Partners");
         btnVisaPartners.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVisaPartnersActionPerformed(evt);
@@ -67,12 +67,12 @@ public class ProjektChefMeny extends javax.swing.JFrame {
                 .addGap(169, 169, 169)
                 .addComponent(VälkomnenProjektChef, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(194, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnVisaPartners)
-                .addGap(75, 75, 75))
+                .addGap(97, 97, 97))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,9 +91,9 @@ public class ProjektChefMeny extends javax.swing.JFrame {
 
     private void btnVisaPartnersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaPartnersActionPerformed
         // TODO add your handling code here:
-        Partnerlista PartnerListaFönster = new Partnerlista(InloggadHandlaggare, idb);
+        MinaProjekt PartnerFönster = new MinaProjekt(InloggadHandlaggare, idb);
         
-        PartnerListaFönster.setVisible(true);
+        PartnerFönster.setVisible(true);
     }//GEN-LAST:event_btnVisaPartnersActionPerformed
 
     /**

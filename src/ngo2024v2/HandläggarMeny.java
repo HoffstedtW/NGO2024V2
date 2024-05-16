@@ -168,8 +168,8 @@ public class HandläggarMeny extends javax.swing.JFrame {
       String ePost = InloggadHandlaggare.get("epost");
       String projektchef = InloggadHandlaggare.get("projektchef");  
       
-        ProjektChefMeny ProjektChefMeny = new ProjektChefMeny(idb, ePost);
-                ProjektChefMeny.setVisible(true);
+      ProjektChefMeny ProjektChefMeny = new ProjektChefMeny(idb, ePost);
+      ProjektChefMeny.setVisible(true);
       
             
   } else {
