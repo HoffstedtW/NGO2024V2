@@ -118,7 +118,7 @@ public class AdminMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTilldeladeProjektActionPerformed
 
     private void btnPersonalListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersonalListaActionPerformed
-        PersonalLista PersonalListaFönster = new PersonalLista(idb);
+        PersonalLista PersonalListaFönster = new PersonalLista(idb, InloggadAdmin);
         
         PersonalListaFönster.setVisible(true);
     }//GEN-LAST:event_btnPersonalListaActionPerformed

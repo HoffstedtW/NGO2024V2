@@ -22,22 +22,28 @@ public class PersonalLista extends javax.swing.JFrame {
     /**
      * Creates new form PersonalLista
      */
-    public PersonalLista(InfDB idb) {
+    public PersonalLista(InfDB idb, String inloggadAdmin) {
         initComponents();
         this.idb = idb;
+        this.InloggadAdmin = inloggadAdmin;
         
         try {
-            String sqlFraga = "SELECT * FROM anstalld WHERE avdelning = '1'";
-            ArrayList<HashMap<String, String>> ListaPersonal = idb.fetchRows(sqlFraga);
+            // Hämta avdelningen för inloggad admin
+        String sqlFragaAdminAvdelning = "SELECT avdelning FROM anstalld WHERE epost = '"+inloggadAdmin+"'";
+        String adminAvdelning = idb.fetchSingle(sqlFragaAdminAvdelning);
+        
+        // Om avdelningen för adminen finns
+        if (adminAvdelning != null) {
+            // Hämta all annan personal som tillhör samma avdelning
+            String sqlFragaAnnatPersonal = "SELECT * FROM anstalld WHERE avdelning = "+adminAvdelning;
+            ArrayList<HashMap<String, String>> ListaPersonal = idb.fetchRows(sqlFragaAnnatPersonal);
             
-                    // Skapa en modell för listan
+            // Skapa en modell för listan
             DefaultListModel<String> model = new DefaultListModel<>();
             
-           
-
             // Loopa igenom resultaten och lägg till dem i listmodellen
             for (HashMap<String, String> rad : ListaPersonal) {
-                // Skapa en sträng med HTML-formatering för varje hållbarhetsmål
+                // Skapa en sträng med HTML-formatering för varje anställd
                 String htmlFormattedItem = "<html><font color='gray'><b>Namn:</b></font> " + rad.get("fornamn") + "<br>"
                                           + "<font color='gray'><b>Målnummer:</b></font> " + rad.get("efternamn") + "<br>"
                                           + "<font color='gray'><b>Beskrivning:</b></font> " + rad.get("telefon") + "<br>"
@@ -45,15 +51,17 @@ public class PersonalLista extends javax.swing.JFrame {
                                           
                 model.addElement(htmlFormattedItem);
             }
-                        // Skapa en JList med modellen
+            
+            // Skapa en JList med modellen
             JList<String> PersonalLista = new JList<>(model);
-
+            
             // Lägg till JList till en JScrollPane för att göra det möjligt att rulla
-           JScrollPane scrollPane = new JScrollPane(PersonalLista);
+            JScrollPane scrollPane = new JScrollPane(PersonalLista);
             scrollPane.setBounds(20, 40, 500, 300); // Ange position och storlek för JScrollPane
             
             // Lägg till JScrollPane till JFrame
             getContentPane().add(scrollPane);
+        }
 
             
         } catch (InfException ex) {

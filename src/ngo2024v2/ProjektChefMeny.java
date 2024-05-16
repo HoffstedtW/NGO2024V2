@@ -44,20 +44,12 @@ public class ProjektChefMeny extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         VälkomnenProjektChef = new javax.swing.JLabel();
-        btnVisaPartners = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("jLabel1");
 
         VälkomnenProjektChef.setText("jLabel2");
-
-        btnVisaPartners.setText("Partners");
-        btnVisaPartners.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVisaPartnersActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,31 +62,20 @@ public class ProjektChefMeny extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnVisaPartners)
-                .addGap(97, 97, 97))
+                .addGap(97, 329, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(VälkomnenProjektChef)
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(btnVisaPartners))
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addComponent(jLabel1)
+                .addContainerGap(206, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnVisaPartnersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaPartnersActionPerformed
-        // TODO add your handling code here:
-        MinaProjekt PartnerFönster = new MinaProjekt(InloggadHandlaggare, idb);
-        
-        PartnerFönster.setVisible(true);
-    }//GEN-LAST:event_btnVisaPartnersActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,7 +115,6 @@ public static void main(String args[]) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel VälkomnenProjektChef;
-    private javax.swing.JButton btnVisaPartners;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
