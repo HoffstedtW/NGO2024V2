@@ -160,12 +160,13 @@ public class HandläggarMeny extends javax.swing.JFrame {
     private void btnChefsMenyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChefsMenyActionPerformed
         // TODO add your handling code here:
         try {
-      String sqlFraga = "SELECT projektchef from anstalld join projekt on aid = projektchef where '" + InloggadHandlaggare + "' = projektchef";
+      String sqlFraga = "SELECT epost, projektchef from anstalld join projekt on aid = projektchef where epost = '" + InloggadHandlaggare + "'";
       System.out.println(sqlFraga);
       HashMap<String, String> InloggadHandlaggare = idb.fetchRow(sqlFraga);
+      System.out.println(InloggadHandlaggare.size());
        
        if (InloggadHandlaggare != null && !InloggadHandlaggare.isEmpty()) {
-      String ePost = InloggadHandlaggare.get("ePost");
+      String ePost = InloggadHandlaggare.get("epost");
       String projektchef = InloggadHandlaggare.get("projektchef");  
       
     if (ePost.equals(projektchef)){

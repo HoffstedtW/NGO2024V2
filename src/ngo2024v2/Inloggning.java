@@ -142,21 +142,24 @@ public class Inloggning extends javax.swing.JFrame {
                     new HandläggarMeny(idb, ePost).setVisible(true);
                 
                     this.setVisible(false);
-            } else  {
+            } 
+
+             
+            }
+            else  {
                 // Visa felmeddelande om användaren inte har någon giltig roll
                 lblFelmeddelande.setText("Användaren har ingen giltig roll.");
                 lblFelmeddelande.setVisible(true); 
                 }
-
-             
-            } else {
+        }
+        else {
             // Visa felmeddelande om användaren inte finns i databasen eller lösenordet är felaktigt
             lblFelmeddelande.setText("Felaktigt lösenord eller epost, vänligen försök igen.");
             lblFelmeddelande.setVisible(true);
         }
         }
-        }catch (InfException ex) {
-        System.out.println(ex.getMessage());
+        catch (InfException ex) {
+            System.out.println(ex.getMessage());
     }//GEN-LAST:event_btnLoggaInActionPerformed
         }
     private void pfLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pfLosenordActionPerformed
