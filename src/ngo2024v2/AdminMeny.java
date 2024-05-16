@@ -23,7 +23,8 @@ public class AdminMeny extends javax.swing.JFrame {
         this.InloggadAdmin = InloggadAdmin;
         initComponents();
         lblInloggadAdmin.setText(InloggadAdmin);
-        lblValkommen.setText("Välkommen Admin, " + InloggadAdmin + "!");
+        // Använd HTML-formatering för att göra texten grönt
+    lblValkommen.setText("<html>Välkommen</font><font color='green'> Admin</font>, " + InloggadAdmin + "!</html>");
     }
 
     /**
