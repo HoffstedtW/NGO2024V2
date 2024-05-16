@@ -56,7 +56,7 @@ public class Anstalldinfo extends javax.swing.JFrame {
     private void gatillhandlaggarmeny() {
         this.dispose();
         HandläggarMeny handläggarMeny = new HandläggarMeny(idb, InloggadHandlaggare);
-        handläggarMeny.setVisible(true);
+        handläggarMeny.setVisible(false);
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
