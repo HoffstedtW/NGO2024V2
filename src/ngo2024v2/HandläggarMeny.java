@@ -43,7 +43,20 @@ public class HandläggarMeny extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     
-   
+
+   private void visaPersonligaUppgifter() {
+       try { 
+           String sqlFraga = "SELECT * from anstalld WHERE epost = '" + InloggadHandlaggare + "'";
+           HashMap<String, String> personligaUppgifter = idb.fetchRow(sqlFraga);
+           Anstalldinfo AnstalldInfoFönster = new Anstalldinfo(idb, InloggadHandlaggare);
+           
+           AnstalldInfoFönster.setVisible(true);
+           
+           } catch (InfException ex) {
+        System.out.println(ex.getMessage());
+    }
+}
+       
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -141,11 +154,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVisaHållbarhetsMålActionPerformed
 
     private void btnÄndraUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÄndraUppgifterActionPerformed
-        // Skapa ett nytt objekt av Anstalldinfo-klassen
-        Anstalldinfo AnstalldInfoFönster = new Anstalldinfo(idb, InloggadHandlaggare);
-        
-        // Gör det nya fönstret synligt
-        AnstalldInfoFönster.setVisible(true);
+          visaPersonligaUppgifter();
     }//GEN-LAST:event_btnÄndraUppgifterActionPerformed
 
     private void btnChefsMenyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChefsMenyActionPerformed
