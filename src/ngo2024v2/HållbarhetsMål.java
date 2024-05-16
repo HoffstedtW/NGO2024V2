@@ -37,14 +37,19 @@ public class HållbarhetsMål extends javax.swing.JFrame {
 
             // Loopa igenom resultaten och lägg till dem i listmodellen
             for (HashMap<String, String> rad : ListaHållbarhetsMål) {
-                model.addElement(rad.get("namn"));
+                // Skapa en sträng med HTML-formatering för varje hållbarhetsmål
+                String htmlFormattedItem = "<html><font color='green'><b>Namn:</b></font> " + rad.get("namn") + "<br>"
+                                          + "<font color='blue'><b>Målnummer:</b></font> " + rad.get("malnummer") + "<br>"
+                                          + "<font color='orange'><b>Beskrivning:</b></font> " + rad.get("beskrivning") + "<br>"
+                                          + "<font color='red'><b>Prioritet:</b></font> " + rad.get("prioritet") + "</html>";
+                model.addElement(htmlFormattedItem);
             }
                         // Skapa en JList med modellen
             JList<String> hållbarhetsMålLista = new JList<>(model);
 
             // Lägg till JList till en JScrollPane för att göra det möjligt att rulla
            JScrollPane scrollPane = new JScrollPane(hållbarhetsMålLista);
-            scrollPane.setBounds(20, 40, 400, 200); // Ange position och storlek för JScrollPane
+            scrollPane.setBounds(20, 40, 500, 300); // Ange position och storlek för JScrollPane
             
             // Lägg till JScrollPane till JFrame
             getContentPane().add(scrollPane);
@@ -65,10 +70,18 @@ public class HållbarhetsMål extends javax.swing.JFrame {
     private void initComponents() {
 
         lblHållbarhetsMål = new javax.swing.JLabel();
+        btnGåTillbaka = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblHållbarhetsMål.setText("Hållbarhetsmålen");
+
+        btnGåTillbaka.setText("Gå tillbaka");
+        btnGåTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGåTillbakaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,18 +90,26 @@ public class HållbarhetsMål extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(129, 129, 129)
                 .addComponent(lblHållbarhetsMål, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(btnGåTillbaka)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblHållbarhetsMål)
-                .addContainerGap(278, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnGåTillbaka)
+                    .addComponent(lblHållbarhetsMål))
+                .addContainerGap(271, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGåTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGåTillbakaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGåTillbakaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,6 +147,7 @@ public class HållbarhetsMål extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGåTillbaka;
     private javax.swing.JLabel lblHållbarhetsMål;
     // End of variables declaration//GEN-END:variables
 }
