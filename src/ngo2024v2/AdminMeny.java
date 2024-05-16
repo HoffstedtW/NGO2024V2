@@ -39,6 +39,7 @@ public class AdminMeny extends javax.swing.JFrame {
         lblValkommen = new javax.swing.JLabel();
         btnÄndraUppgifter = new javax.swing.JButton();
         btnTilldeladeProjekt = new javax.swing.JButton();
+        btnPersonalLista = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +61,13 @@ public class AdminMeny extends javax.swing.JFrame {
             }
         });
 
+        btnPersonalLista.setText("Personallista");
+        btnPersonalLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPersonalListaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,6 +81,7 @@ public class AdminMeny extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnPersonalLista)
                     .addComponent(btnTilldeladeProjekt)
                     .addComponent(btnÄndraUppgifter))
                 .addGap(72, 72, 72))
@@ -88,7 +97,9 @@ public class AdminMeny extends javax.swing.JFrame {
                 .addComponent(btnÄndraUppgifter)
                 .addGap(18, 18, 18)
                 .addComponent(btnTilldeladeProjekt)
-                .addGap(49, 49, 49))
+                .addGap(18, 18, 18)
+                .addComponent(btnPersonalLista)
+                .addGap(8, 8, 8))
         );
 
         pack();
@@ -105,6 +116,12 @@ public class AdminMeny extends javax.swing.JFrame {
     // Gör det nya fönstret synligt
     TilldeladeprojektFönster.setVisible(true);
     }//GEN-LAST:event_btnTilldeladeProjektActionPerformed
+
+    private void btnPersonalListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersonalListaActionPerformed
+        PersonalLista PersonalListaFönster = new PersonalLista(idb);
+        
+        PersonalListaFönster.setVisible(true);
+    }//GEN-LAST:event_btnPersonalListaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,6 +159,7 @@ public class AdminMeny extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPersonalLista;
     private javax.swing.JButton btnTilldeladeProjekt;
     private javax.swing.JButton btnÄndraUppgifter;
     private javax.swing.JLabel lblInloggadAdmin;
