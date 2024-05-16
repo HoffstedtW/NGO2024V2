@@ -26,7 +26,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
         this.InloggadHandlaggare = InloggadHandlaggare;
         initComponents();
         lblInloggadHandlaggare.setText(InloggadHandlaggare);
-        lblValkommen.setText("Välkommen Handläggare, " + InloggadHandlaggare + "!");
+        lblValkommen.setText("<html>Välkommen</font><font color='blue'> Handläggare</font>, " + InloggadHandlaggare + "!</html>");
         lblFelmeddelande.setVisible(false);
     }
 
