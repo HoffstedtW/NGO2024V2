@@ -43,6 +43,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     
+   
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -141,7 +142,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
 
     private void btnÄndraUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÄndraUppgifterActionPerformed
         // Skapa ett nytt objekt av Anstalldinfo-klassen
-        Anstalldinfo AnstalldInfoFönster = new Anstalldinfo(InloggadHandlaggare, idb);
+        Anstalldinfo AnstalldInfoFönster = new Anstalldinfo(idb, InloggadHandlaggare);
         
         // Gör det nya fönstret synligt
         AnstalldInfoFönster.setVisible(true);

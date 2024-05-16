@@ -17,9 +17,7 @@ public class Inloggning extends javax.swing.JFrame {
     private final InfDB idb;
     private String ePost;
 
-    /**
-     * Creates new form Inloggning
-     */
+   
     public Inloggning(InfDB idb) {
         this.idb = idb;
         initComponents();
@@ -142,7 +140,7 @@ public class Inloggning extends javax.swing.JFrame {
                     new AdminMeny(idb, ePost).setVisible(true);
                 } else if (roll.equals("handlaggare")) {
                     new HandläggarMeny(idb, ePost).setVisible(true);
-                    
+                
                     this.setVisible(false);
             } else  {
                 // Visa felmeddelande om användaren inte har någon giltig roll
