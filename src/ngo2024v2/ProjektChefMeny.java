@@ -4,6 +4,7 @@
  */
 package ngo2024v2;
 
+import java.util.HashMap;
 import oru.inf.InfDB;
 
 /**
@@ -26,6 +27,10 @@ public class ProjektChefMeny extends javax.swing.JFrame {
     }
 
     private ProjektChefMeny() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    ProjektChefMeny(InfDB idb, HashMap<String, String> InloggadHandlaggare) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
