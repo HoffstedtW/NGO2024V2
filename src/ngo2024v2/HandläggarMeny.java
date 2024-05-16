@@ -163,15 +163,14 @@ public class HandläggarMeny extends javax.swing.JFrame {
       String sqlFraga = "SELECT epost, projektchef from anstalld join projekt on aid = projektchef where epost = '" + InloggadHandlaggare + "'";
       System.out.println(sqlFraga);
       HashMap<String, String> InloggadHandlaggare = idb.fetchRow(sqlFraga);
-      System.out.println(InloggadHandlaggare.size());
        
        if (InloggadHandlaggare != null && !InloggadHandlaggare.isEmpty()) {
       String ePost = InloggadHandlaggare.get("epost");
       String projektchef = InloggadHandlaggare.get("projektchef");  
       
     if (ePost.equals(projektchef)){
-        ProjektChefMeny ProjektChefMenyFönster = new ProjektChefMeny(idb, ePost);
-                ProjektChefMenyFönster.setVisible(true);
+        ProjektChefMeny ProjektChefMeny = new ProjektChefMeny(idb, ePost);
+                ProjektChefMeny.setVisible(true);
       
 }            
   } else {
