@@ -18,6 +18,7 @@ import oru.inf.InfException;
 public class PersonalLista extends javax.swing.JFrame {
     private InfDB idb;
     private String InloggadAdmin;
+    private String InloggadHandlaggare;
 
     /**
      * Creates new form PersonalLista
@@ -45,9 +46,9 @@ public class PersonalLista extends javax.swing.JFrame {
             for (HashMap<String, String> rad : ListaPersonal) {
                 // Skapa en sträng med HTML-formatering för varje anställd
                 String htmlFormattedItem = "<html><font color='gray'><b>Namn:</b></font> " + rad.get("fornamn") + "<br>"
-                                          + "<font color='gray'><b>Målnummer:</b></font> " + rad.get("efternamn") + "<br>"
-                                          + "<font color='gray'><b>Beskrivning:</b></font> " + rad.get("telefon") + "<br>"
-                                          + "<font color='gray'><b>Prioritet:</b></font> " + rad.get("epost") + "</html>";
+                                          + "<font color='gray'><b>Efternamn:</b></font> " + rad.get("efternamn") + "<br>"
+                                          + "<font color='gray'><b>Telefon:</b></font> " + rad.get("telefon") + "<br>"
+                                          + "<font color='gray'><b>Epost:</b></font> " + rad.get("epost") + "</html>";
                                           
                 model.addElement(htmlFormattedItem);
             }
