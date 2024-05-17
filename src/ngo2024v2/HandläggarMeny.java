@@ -70,6 +70,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
         btnChefsMeny = new javax.swing.JButton();
         lblFelmeddelande = new javax.swing.JLabel();
         btnPersonalLista = new javax.swing.JButton();
+        btnSokHandlaggare = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -111,6 +112,13 @@ public class HandläggarMeny extends javax.swing.JFrame {
             }
         });
 
+        btnSokHandlaggare.setText("Sök Handläggare");
+        btnSokHandlaggare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSokHandlaggareActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,15 +126,17 @@ public class HandläggarMeny extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblValkommen, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblInloggadHandlaggare, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblFelmeddelande))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnÄndraUppgifter)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnPersonalLista, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnVisaHållbarhetsMål, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnSokHandlaggare, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnÄndraUppgifter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVisaHållbarhetsMål, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(lblValkommen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblInloggadHandlaggare, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblFelmeddelande, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(173, 173, 173)
+                            .addComponent(btnPersonalLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnChefsMeny)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -143,11 +153,13 @@ public class HandläggarMeny extends javax.swing.JFrame {
                         .addComponent(btnChefsMeny)))
                 .addGap(40, 40, 40)
                 .addComponent(lblInloggadHandlaggare)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(btnSokHandlaggare)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnÄndraUppgifter)
                 .addGap(18, 18, 18)
                 .addComponent(btnVisaHållbarhetsMål)
-                .addGap(9, 9, 9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFelmeddelande)
                     .addComponent(btnPersonalLista))
@@ -201,6 +213,12 @@ public class HandläggarMeny extends javax.swing.JFrame {
         
         PersonalListaFönster.setVisible(true);
     }//GEN-LAST:event_btnPersonalListaActionPerformed
+
+    private void btnSokHandlaggareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokHandlaggareActionPerformed
+        SökHandläggarePåAvdelning SokHandlaggareFönster = new SökHandläggarePåAvdelning(idb, InloggadHandlaggare);
+                
+                SokHandlaggareFönster.setVisible(true);
+    }//GEN-LAST:event_btnSokHandlaggareActionPerformed
     
     /**
      * @param args the command line arguments
@@ -240,6 +258,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChefsMeny;
     private javax.swing.JButton btnPersonalLista;
+    private javax.swing.JButton btnSokHandlaggare;
     private javax.swing.JButton btnVisaHållbarhetsMål;
     private javax.swing.JButton btnÄndraUppgifter;
     private java.awt.Button button1;
