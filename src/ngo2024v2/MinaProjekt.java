@@ -26,16 +26,20 @@ public class MinaProjekt extends javax.swing.JFrame {
         this.idb = idb;
         this.InloggadHandlaggare = InloggadHandlaggare;
         initComponents();
+        fyllProjektLista();
         
+}  
+        private void fyllProjektLista(){
 try {
             // Hämta projekten där den inloggade användaren är projektchef
-            String sqlFragaProjekt = "SELECT * FROM projekt WHERE pid = '" + InloggadHandlaggare + "'";
+            String sqlFragaProjekt = "SELECT * FROM projekt join anstalld on aid = projektchef WHERE epost = '" + InloggadHandlaggare + "'";
             ArrayList<HashMap<String, String>> listaProjekt = idb.fetchRows(sqlFragaProjekt);
 
             // Skapa en modell för listan
             DefaultListModel<String> model = new DefaultListModel<>();
 
             // Loopa igenom resultaten och lägg till dem i listmodellen
+            if (listaProjekt != null) {
             for (HashMap<String, String> rad : listaProjekt) {
                 // Skapa en sträng med HTML-formatering för varje projekt
                 String htmlFormattedItem = "<html><font color='gray'><b>Projekt Namn:</b></font> " + rad.get("projektnamn") + "<br>"
@@ -44,6 +48,9 @@ try {
                                           + "<font color='gray'><b>Beskrivning:</b></font> " + rad.get("beskrivning") + "</html>";
 
                 model.addElement(htmlFormattedItem);
+            }
+            } else {
+                model.addElement("Inga projekt hittades.");
             }
 
             // Skapa en JList med modellen
@@ -64,9 +71,10 @@ try {
         this.setVisible(true);
     }
 
+
     private MinaProjekt() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -135,9 +143,11 @@ try {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MinaProjekt().setVisible(true);
-            }
+
+}
+            
         });
-    }
+}
 
 
 
