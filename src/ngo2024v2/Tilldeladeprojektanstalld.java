@@ -16,9 +16,11 @@ private String InloggadAdmin;
     /**
      * Creates new form Tilldeladeprojektanstalld
      */
-    public Tilldeladeprojektanstalld(InfDB idb) {
+    public Tilldeladeprojektanstalld(InfDB idb, String InloggadAdmin) {
         initComponents();
         this.idb = idb;
+        this.InloggadAdmin = InloggadAdmin;
+     
     }
 
     Tilldeladeprojektanstalld() {
@@ -38,6 +40,7 @@ private String InloggadAdmin;
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        btnGatillbaka = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +61,13 @@ private String InloggadAdmin;
             }
         });
 
+        btnGatillbaka.setText("Gå tillbaka");
+        btnGatillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGatillbakaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,16 +76,21 @@ private String InloggadAdmin;
                 .addGap(121, 121, 121)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(124, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(164, 164, 164))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(164, 164, 164))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnGatillbaka)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,7 +103,9 @@ private String InloggadAdmin;
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49)
                 .addComponent(jButton1)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(btnGatillbaka)
+                .addContainerGap())
         );
 
         pack();
@@ -116,6 +133,16 @@ private String InloggadAdmin;
             System.out.println ("Det här anställningsIDt finns inte i databasen");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+     private void gatilladminmeny() {
+        this.dispose();
+        AdminMeny AdminMenyFönster = new AdminMeny(idb, InloggadAdmin);
+        AdminMenyFönster.setVisible(false);
+    }
+    
+    private void btnGatillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGatillbakaActionPerformed
+        gatilladminmeny();
+    }//GEN-LAST:event_btnGatillbakaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,6 +180,7 @@ private String InloggadAdmin;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGatillbaka;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
