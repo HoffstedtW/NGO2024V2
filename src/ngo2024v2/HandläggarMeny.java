@@ -72,6 +72,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
         btnPersonalLista = new javax.swing.JButton();
         btnSokHandlaggare = new javax.swing.JButton();
         btnAvdelning = new javax.swing.JToggleButton();
+        btnSokaProjekt = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -127,6 +128,13 @@ public class HandläggarMeny extends javax.swing.JFrame {
             }
         });
 
+        btnSokaProjekt.setText("Sök Projekt");
+        btnSokaProjekt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSokaProjektActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,10 +159,11 @@ public class HandläggarMeny extends javax.swing.JFrame {
                                 .addComponent(btnPersonalLista, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSokHandlaggare, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnÄndraUppgifter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnVisaHållbarhetsMål, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnVisaHållbarhetsMål, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSokHandlaggare, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSokaProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -169,7 +178,9 @@ public class HandläggarMeny extends javax.swing.JFrame {
                         .addComponent(btnChefsMeny)))
                 .addGap(40, 40, 40)
                 .addComponent(lblInloggadHandlaggare)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(btnSokaProjekt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSokHandlaggare)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnÄndraUppgifter)
@@ -243,6 +254,12 @@ public class HandläggarMeny extends javax.swing.JFrame {
         
         MinAvdelningFönster.setVisible(true);
     }//GEN-LAST:event_btnAvdelningActionPerformed
+
+    private void btnSokaProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokaProjektActionPerformed
+        SökaProjekt SokaProjektFönster = new SökaProjekt(idb, InloggadHandlaggare);
+                
+                SokaProjektFönster.setVisible(true);
+    }//GEN-LAST:event_btnSokaProjektActionPerformed
     
     /**
      * @param args the command line arguments
@@ -284,6 +301,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
     private javax.swing.JButton btnChefsMeny;
     private javax.swing.JButton btnPersonalLista;
     private javax.swing.JButton btnSokHandlaggare;
+    private javax.swing.JButton btnSokaProjekt;
     private javax.swing.JButton btnVisaHållbarhetsMål;
     private javax.swing.JButton btnÄndraUppgifter;
     private java.awt.Button button1;
