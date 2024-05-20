@@ -39,11 +39,6 @@ public class ProjektChefMeny extends javax.swing.JFrame {
         HandläggarMeny handläggarMeny = new HandläggarMeny(idb, InloggadHandlaggare);
         handläggarMeny.setVisible(false);
     }
-
-    private void MinaProjekt() {
-        MinaProjekt visaMinaProjekt = new MinaProjekt(idb, InloggadHandlaggare);
-        visaMinaProjekt.setVisible(true);
-    }
     
             @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

@@ -73,8 +73,11 @@ try {
         // Sätt JFrame till synlig efter att alla komponenter har lagts till
         this.setVisible(true);
     }
-
-
+private void gaTillProjektChefMeny() {
+        this.dispose();
+        ProjektChefMeny ProjektChefMeny = new ProjektChefMeny(idb, InloggadHandlaggare);
+        ProjektChefMeny.setVisible(false);
+}
     private MinaProjekt() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 }
@@ -89,22 +92,40 @@ try {
     private void initComponents() {
 
         jScrollPane5 = new javax.swing.JScrollPane();
+        btnTillbaka = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnTillbaka.setText("Tillbaka");
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTillbakaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(322, Short.MAX_VALUE)
+                .addComponent(btnTillbaka)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(btnTillbaka)
+                .addGap(0, 277, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
+        // TODO add your handling code here:
+        gaTillProjektChefMeny();
+    }//GEN-LAST:event_btnTillbakaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,6 +176,7 @@ try {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTillbaka;
     private javax.swing.JScrollPane jScrollPane5;
     // End of variables declaration//GEN-END:variables
 }
