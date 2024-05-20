@@ -14,6 +14,10 @@ import oru.inf.InfException;
  * @author jerry
  */
 public class ListaHållbarhetsMål {
+
+    static String size() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     private InfDB idb;
    
 public ListaHållbarhetsMål(InfDB idb){
