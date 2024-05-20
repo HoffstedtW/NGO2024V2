@@ -23,6 +23,7 @@ public class SökHandläggarePåAvdelning extends javax.swing.JFrame {
     private InfDB idb;
     private String InloggadHandlaggare;
     private DefaultListModel<String> model;
+    private JList<String> listHandlaggare;  // JList för att visa resultat
     
 
     /**
@@ -33,8 +34,15 @@ public class SökHandläggarePåAvdelning extends javax.swing.JFrame {
         this.InloggadHandlaggare = inloggadHandlaggare;
         initComponents();
         
-        
-        
+        // Initiera modellen och JList
+        model = new DefaultListModel<>();
+        listHandlaggare = new JList<>(model);
+
+        // Lägg till JList i en JScrollPane för att göra den rullbar
+        JScrollPane scrollPane = new JScrollPane(listHandlaggare);
+        scrollPane.setBounds(50, 150, 300, 150);
+        add(scrollPane);
+
         // Lägg till lyssnare för sökfältet
         txtSokHandlaggare.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -56,28 +64,30 @@ public class SökHandläggarePåAvdelning extends javax.swing.JFrame {
 
     private void sökHandläggare() {
         String sökord = txtSokHandlaggare.getText().trim();
-        
+
         // Töm listan för att visa nya resultat
         model.clear();
-        
+
         try {
             // Hämta avdelningen för inloggad handläggare
-            String sqlFragaHandlaggareAvdelning = "SELECT avdelning FROM anstalld WHERE epost = '"+InloggadHandlaggare+"'";
+            String sqlFragaHandlaggareAvdelning = "SELECT avdelning FROM anstalld WHERE epost = '" + InloggadHandlaggare + "'";
             String handlaggareAvdelning = idb.fetchSingle(sqlFragaHandlaggareAvdelning);
-        
+
             // Om avdelningen för handläggaren finns
             if (handlaggareAvdelning != null) {
                 // Hämta personal som tillhör samma avdelning och matchar sökordet
-                String sqlFragaPersonal = "SELECT * FROM anstalld WHERE avdelning = '"+handlaggareAvdelning+"' "
-                                        + "AND (fornamn LIKE '%"+sökord+"%' OR efternamn LIKE '%"+sökord+"%' OR epost LIKE '%"+sökord+"%')";
+                String sqlFragaPersonal = "SELECT * FROM anstalld WHERE avdelning = '" + handlaggareAvdelning + "' "
+                        + "AND (fornamn LIKE '%" + sökord + "%' OR efternamn LIKE '%" + sökord + "%' OR epost LIKE '%" + sökord + "%')";
                 ArrayList<HashMap<String, String>> sökResultat = idb.fetchRows(sqlFragaPersonal);
-                
+
                 // Loopa igenom resultatet och lägg till dem i listmodellen
-                for (HashMap<String, String> rad : sökResultat) {
-                    // Skapa en sträng med HTML-formatering för varje handläggare
-                    String htmlFormattedItem = "<html><font color='gray'><b>Namn:</b></font> " + rad.get("fornamn") + " " + rad.get("efternamn") + "<br>"
-                                              + "<font color='gray'><b>Epost:</b></font> " + rad.get("epost") + "</html>";
-                    model.addElement(htmlFormattedItem);
+                if (sökResultat != null) {
+                    for (HashMap<String, String> rad : sökResultat) {
+                        // Skapa en sträng med HTML-formatering för varje handläggare
+                        String htmlFormattedItem = "<html><font color='gray'><b>Namn:</b></font> " + rad.get("fornamn") + " " + rad.get("efternamn") + "<br>"
+                                + "<font color='gray'><b>Epost:</b></font> " + rad.get("epost") + "</html>";
+                        model.addElement(htmlFormattedItem);
+                    }
                 }
             }
         } catch (InfException ex) {
