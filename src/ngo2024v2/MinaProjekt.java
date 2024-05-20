@@ -25,39 +25,43 @@ public class MinaProjekt extends javax.swing.JFrame {
     public MinaProjekt(InfDB idb, String InloggadHandlaggare) {
         this.idb = idb;
         this.InloggadHandlaggare = InloggadHandlaggare;
-        this.setVisible(true);
         initComponents();
         
 try {
-        String sqlFraga = "select * from projekt where projektchef = '" + InloggadHandlaggare + "'";
-        ArrayList<HashMap<String, String>> ListaMinaProjekt = idb.fetchRows(sqlFraga);
+            // Hämta projekten där den inloggade användaren är projektchef
+            String sqlFragaProjekt = "SELECT * FROM projekt WHERE pid = '" + InloggadHandlaggare + "'";
+            ArrayList<HashMap<String, String>> listaProjekt = idb.fetchRows(sqlFragaProjekt);
 
-        DefaultListModel<String> model = new DefaultListModel<>();
-        
-        System.out.println("Antal projekt: " + ListaMinaProjekt.size());
-        
-        for (HashMap<String, String> rad : ListaMinaProjekt) {
-                // Skapa en sträng med HTML-formatering för varje hållbarhetsmål
-                String htmlFormattedItem = "<html><font color='green'><b>ProjektID:</b></font> " + rad.get("pid") + "<br>"
-                                          + "<font color='blue'><b>Namn:</b></font> " + rad.get("projektnamn") + "<br>"
-                                          + "<font color='orange'><b>Beskrivning:</b></font> " + rad.get("beskrivning") + "<br>"
-                                          + "<font color='red'><b>Status:</b></font> " + rad.get("status") + "</html>";
+            // Skapa en modell för listan
+            DefaultListModel<String> model = new DefaultListModel<>();
+
+            // Loopa igenom resultaten och lägg till dem i listmodellen
+            for (HashMap<String, String> rad : listaProjekt) {
+                // Skapa en sträng med HTML-formatering för varje projekt
+                String htmlFormattedItem = "<html><font color='gray'><b>Projekt Namn:</b></font> " + rad.get("projektnamn") + "<br>"
+                                          + "<font color='gray'><b>Startdatum:</b></font> " + rad.get("startdatum") + "<br>"
+                                          + "<font color='gray'><b>Slutdatum:</b></font> " + rad.get("slutdatum") + "<br>"
+                                          + "<font color='gray'><b>Beskrivning:</b></font> " + rad.get("beskrivning") + "</html>";
+
                 model.addElement(htmlFormattedItem);
             }
-                        // Skapa en JList med modellen
-            JList<String> MinaProjekt = new JList<>(model);
+
+            // Skapa en JList med modellen
+            projektLista = new JList<>(model);
 
             // Lägg till JList till en JScrollPane för att göra det möjligt att rulla
-           JScrollPane scrollPane = new JScrollPane(MinaProjekt);
+            JScrollPane scrollPane = new JScrollPane(projektLista);
             scrollPane.setBounds(20, 40, 500, 300); // Ange position och storlek för JScrollPane
-            
+
             // Lägg till JScrollPane till JFrame
             getContentPane().add(scrollPane);
 
-            
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
         }
+
+        // Sätt JFrame till synlig efter att alla komponenter har lagts till
+        this.setVisible(true);
     }
 
     private MinaProjekt() {
@@ -74,64 +78,18 @@ try {
     private void initComponents() {
 
         jScrollPane5 = new javax.swing.JScrollPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
-        btnMinaProjekt = new javax.swing.JLabel();
-        btnScrollPaneProjekt = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        btnMinaProjekt.setText("Mina Projekt");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(btnMinaProjekt)
-                .addContainerGap(152, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(btnScrollPaneProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(btnMinaProjekt)
-                .addGap(0, 260, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(21, Short.MAX_VALUE)
-                    .addComponent(btnScrollPaneProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
-        );
-
-        jScrollPane4.setViewportView(jPanel1);
-
-        jScrollPane3.setViewportView(jScrollPane4);
-
-        jScrollPane2.setViewportView(jScrollPane3);
-
-        jScrollPane1.setViewportView(jScrollPane2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(280, Short.MAX_VALUE))
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(175, Short.MAX_VALUE))
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -184,13 +142,6 @@ try {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnMinaProjekt;
-    private javax.swing.JScrollPane btnScrollPaneProjekt;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     // End of variables declaration//GEN-END:variables
 }
