@@ -98,8 +98,8 @@ public class SökaProjekt extends javax.swing.JFrame {
             // Om avdelningen för handläggaren finns
             if (handlaggareAvdelning != null) {
                 // Hämta projekt som tillhör samma avdelning och ligger inom datumintervallet
-                String sqlFragaProjekt = "SELECT * FROM projekt WHERE avdelning = '" + handlaggareAvdelning + "' "
-                        + "AND startdatum >= '" + startDatum + "' AND slutdatum <= '" + slutDatum + "'";
+                String sqlFragaProjekt = "SELECT projektnamn, startdatum, slutdatum FROM projekt WHERE startdatum >= ? AND slutdatum <= ?";
+
                 ArrayList<HashMap<String, String>> sokaResultat = idb.fetchRows(sqlFragaProjekt);
 
                 // Loopa igenom resultatet och lägg till dem i listmodellen

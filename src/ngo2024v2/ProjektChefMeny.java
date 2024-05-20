@@ -9,7 +9,7 @@ import oru.inf.InfDB;
 
 /**
  *
- * @author hoffs
+ * @author Jerry/hoffs
  */
 public class ProjektChefMeny extends javax.swing.JFrame {
 
