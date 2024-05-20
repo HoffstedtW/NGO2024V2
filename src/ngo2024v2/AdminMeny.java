@@ -112,7 +112,7 @@ public class AdminMeny extends javax.swing.JFrame {
 
     private void btnTilldeladeProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilldeladeProjektActionPerformed
         // Skapa ett nytt objekt av HållbarhetsMål-klassen
-    Tilldeladeprojektanstalld TilldeladeprojektFönster = new Tilldeladeprojektanstalld(idb);
+    Tilldeladeprojektanstalld TilldeladeprojektFönster = new Tilldeladeprojektanstalld(idb, InloggadAdmin);
     
     // Gör det nya fönstret synligt
     TilldeladeprojektFönster.setVisible(true);

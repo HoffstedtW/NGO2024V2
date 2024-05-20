@@ -23,16 +23,24 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace pref="122" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnSok" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="txtSokHandlaggare" min="-2" pref="150" max="-2" attributes="0"/>
-                      <Component id="lblSokHandlaggare" min="-2" pref="137" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnSok" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="txtSokHandlaggare" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="lblSokHandlaggare" min="-2" pref="137" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="btnGatillbaka" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -45,7 +53,9 @@
               <Component id="txtSokHandlaggare" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnSok" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="126" max="32767" attributes="0"/>
+              <EmptySpace pref="97" max="32767" attributes="0"/>
+              <Component id="btnGatillbaka" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,6 +77,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSokActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnGatillbaka">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="G&#xe5; tillbaka"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGatillbakaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

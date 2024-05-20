@@ -19,6 +19,7 @@ public class PersonalLista extends javax.swing.JFrame {
     private InfDB idb;
     private String InloggadAdmin;
     private String InloggadHandlaggare;
+    private JList<String> PersonalLista;
 
     /**
      * Creates new form PersonalLista
@@ -27,6 +28,7 @@ public class PersonalLista extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.InloggadAdmin = inloggadAdmin;
+        this.InloggadHandlaggare = inloggadAdmin;
         
         try {
             // Hämta avdelningen för inloggad admin
@@ -54,7 +56,7 @@ public class PersonalLista extends javax.swing.JFrame {
             }
             
             // Skapa en JList med modellen
-            JList<String> PersonalLista = new JList<>(model);
+            PersonalLista = new JList<>(model);
             
             // Lägg till JList till en JScrollPane för att göra det möjligt att rulla
             JScrollPane scrollPane = new JScrollPane(PersonalLista);
@@ -85,11 +87,17 @@ public class PersonalLista extends javax.swing.JFrame {
         HandläggarMeny handläggarMeny = new HandläggarMeny(idb, InloggadHandlaggare);
         handläggarMeny.setVisible(false);
     }
+    
+   
+    
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
         btnGåTillbaka = new javax.swing.JButton();
+        btnRadera = new javax.swing.JButton();
+        btnÄndra = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,23 +110,43 @@ public class PersonalLista extends javax.swing.JFrame {
             }
         });
 
+        btnRadera.setText("Radera");
+        btnRadera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRaderaActionPerformed(evt);
+            }
+        });
+
+        btnÄndra.setText("Ändra");
+        btnÄndra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnÄndraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(96, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnÄndra)
+                .addGap(18, 18, 18)
+                .addComponent(btnRadera)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnGåTillbaka)
-                .addGap(69, 69, 69))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(btnGåTillbaka))
+                    .addComponent(btnGåTillbaka)
+                    .addComponent(btnRadera)
+                    .addComponent(btnÄndra))
                 .addGap(0, 277, Short.MAX_VALUE))
         );
 
@@ -128,6 +156,14 @@ public class PersonalLista extends javax.swing.JFrame {
     private void btnGåTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGåTillbakaActionPerformed
         gatillhandlaggarmeny();
     }//GEN-LAST:event_btnGåTillbakaActionPerformed
+
+    private void btnRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaActionPerformed
+         
+    }//GEN-LAST:event_btnRaderaActionPerformed
+
+    private void btnÄndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÄndraActionPerformed
+        
+    }//GEN-LAST:event_btnÄndraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,6 +202,8 @@ public class PersonalLista extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGåTillbaka;
+    private javax.swing.JButton btnRadera;
+    private javax.swing.JButton btnÄndra;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 
