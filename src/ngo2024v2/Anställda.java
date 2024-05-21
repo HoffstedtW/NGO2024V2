@@ -71,7 +71,7 @@ public class Anställda extends javax.swing.JFrame {
     private void gatilladminmeny() {
         this.dispose();
         AdminMeny AdminMenyFönster = new AdminMeny(idb, InloggadAdmin);
-        AdminMenyFönster.setVisible(false);
+        AdminMenyFönster.setVisible(true);
     }
     
  
@@ -181,7 +181,8 @@ public class Anställda extends javax.swing.JFrame {
     private void btnLäggtillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLäggtillActionPerformed
        LäggtillAnställd LäggtillAnställdFönster = new LäggtillAnställd(idb, InloggadAdmin);
        
-       LäggtillAnställdFönster.setVisible(false);
+       LäggtillAnställdFönster.setVisible(true);
+       this.setVisible(false);
     }//GEN-LAST:event_btnLäggtillActionPerformed
 
     /**

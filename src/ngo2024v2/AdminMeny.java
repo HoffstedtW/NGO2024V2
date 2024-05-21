@@ -121,6 +121,7 @@ public class AdminMeny extends javax.swing.JFrame {
         Anställda AnställdaFönster = new Anställda(idb, InloggadAdmin);
         
         AnställdaFönster.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnAnställdaActionPerformed
 
     /**
