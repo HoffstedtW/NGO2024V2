@@ -37,22 +37,35 @@ public class LäggtillAnställd extends javax.swing.JFrame {
     }
     
     private void sparaandringar() {
-        try {
-            String fornamn = txtFörnamn.getText();
-            String efternamn = textEfternamn.getText();
-            String adress = txtAdress.getText();
-            String avdelning = txtAvdelning.getText();
-            String epost = txtEpost.getText();
-            String aid = txtAID.getText();
-            String anstallningsdatum = txtDatum.getText();
-            String telefon = txtNummer.getText();
-            String lösenord = new String(txtLosenord.getPassword());
-        
-            if (fornamn.isEmpty() || efternamn.isEmpty() || adress.isEmpty() || avdelning.isEmpty() || epost.isEmpty() || aid.isEmpty() || anstallningsdatum.isEmpty() || telefon.isEmpty() || lösenord.isEmpty()) {
+    try {
+        String fornamn = txtFörnamn.getText();
+        String efternamn = textEfternamn.getText();
+        String adress = txtAdress.getText();
+        String avdelning = txtAvdelning.getText();
+        String epost = txtEpost.getText();
+        String aidStr = txtAID.getText();
+        String anstallningsdatum = txtDatum.getText();
+        String telefon = txtNummer.getText();
+        String lösenord = new String(txtLosenord.getPassword());
+
+        // Kontrollera att alla fält är ifyllda
+        if (fornamn.isEmpty() || efternamn.isEmpty() || adress.isEmpty() || avdelning.isEmpty() || epost.isEmpty() || aidStr.isEmpty() || anstallningsdatum.isEmpty() || telefon.isEmpty() || lösenord.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Alla fält måste fyllas i");
             return;
         }
-            String sqlFraga = "INSERT INTO anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, losenord, avdelning,) VALUES (" +   aid + ", " +
+
+        // Konvertera aid till int
+        int aid = Integer.parseInt(aidStr);
+
+        // Validera datumformatet
+        if (!anstallningsdatum.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            JOptionPane.showMessageDialog(null, "Datum måste vara i formatet YYYY-MM-DD");
+            return;
+        }
+
+        // Skapa SQL-frågan
+        String sqlFraga = "INSERT INTO anstalld (aid, fornamn, efternamn, adress, avdelning, epost, anstallningsdatum, telefon, losenord) VALUES (" + 
+                aid + ", " +
                 "'" + fornamn + "', " +
                 "'" + efternamn + "', " +
                 "'" + adress + "', " +
@@ -61,16 +74,20 @@ public class LäggtillAnställd extends javax.swing.JFrame {
                 "'" + anstallningsdatum + "', " +
                 "'" + telefon + "', " +
                 "'" + lösenord + "')";
-         idb.insert(sqlFraga);
-            
-         JOptionPane.showMessageDialog(null, "Ny anställd har lagts till");
-         
-          } catch (InfException e) {
+
+        // Utför SQL-frågan
+        idb.insert(sqlFraga);
+
+        // Visa ett meddelande när insättning är klar
+        JOptionPane.showMessageDialog(null, "Ny anställd har lagts till");
+
+    } catch (InfException e) {
         JOptionPane.showMessageDialog(null, "Ett fel inträffade: " + e.getMessage());
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(null, "Ogiltigt nummerformat: " + e.getMessage());
     }
 }
+
          
         
      
