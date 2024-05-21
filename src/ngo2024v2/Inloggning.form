@@ -33,10 +33,16 @@
                           <Component id="lblEpost" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="pfLosenord" max="32767" attributes="0"/>
-                          <Component id="btnLoggaIn" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfEpost" min="-2" pref="139" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="pfLosenord" max="32767" attributes="0"/>
+                              <Component id="tfEpost" min="-2" pref="139" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="btnGlomtLosenord" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                              <Component id="btnLoggaIn" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -59,7 +65,9 @@
               </Group>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Component id="btnLoggaIn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnGlomtLosenord" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               <Component id="lblFelmeddelande" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="75" max="32767" attributes="0"/>
           </Group>
@@ -101,6 +109,14 @@
     <Component class="javax.swing.JPasswordField" name="pfLosenord">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pfLosenordActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnGlomtLosenord">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Gl&#xf6;mt L&#xf6;senord"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGlomtLosenordActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
