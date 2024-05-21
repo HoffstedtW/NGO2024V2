@@ -106,7 +106,7 @@ public class AdminMeny extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnÄndraUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÄndraUppgifterActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnÄndraUppgifterActionPerformed
 
     private void btnTilldeladeProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilldeladeProjektActionPerformed

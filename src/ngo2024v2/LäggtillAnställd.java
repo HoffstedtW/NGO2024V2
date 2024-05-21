@@ -10,6 +10,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import javax.swing.JOptionPane;
 /**
  *
  * @author hampusdaven
@@ -35,6 +36,44 @@ public class LäggtillAnställd extends javax.swing.JFrame {
         AnställdaFönster.setVisible(true);
     }
     
+    private void sparaandringar() {
+        try {
+            String fornamn = txtFörnamn.getText();
+            String efternamn = textEfternamn.getText();
+            String adress = txtAdress.getText();
+            String avdelning = txtAvdelning.getText();
+            String epost = txtEpost.getText();
+            String aid = txtAID.getText();
+            String anstallningsdatum = txtDatum.getText();
+            String telefon = txtNummer.getText();
+            String lösenord = new String(txtLosenord.getPassword());
+        
+            if (fornamn.isEmpty() || efternamn.isEmpty() || adress.isEmpty() || avdelning.isEmpty() || epost.isEmpty() || aid.isEmpty() || anstallningsdatum.isEmpty() || telefon.isEmpty() || lösenord.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Alla fält måste fyllas i");
+            return;
+        }
+            String sqlFraga = "INSERT INTO anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, losenord, avdelning,) VALUES (" +   aid + ", " +
+                "'" + fornamn + "', " +
+                "'" + efternamn + "', " +
+                "'" + adress + "', " +
+                "'" + avdelning + "', " +
+                "'" + epost + "', " +
+                "'" + anstallningsdatum + "', " +
+                "'" + telefon + "', " +
+                "'" + lösenord + "')";
+         idb.insert(sqlFraga);
+            
+         JOptionPane.showMessageDialog(null, "Ny anställd har lagts till");
+         
+          } catch (InfException e) {
+        JOptionPane.showMessageDialog(null, "Ett fel inträffade: " + e.getMessage());
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Ogiltigt nummerformat: " + e.getMessage());
+    }
+}
+         
+        
+     
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,11 +90,11 @@ public class LäggtillAnställd extends javax.swing.JFrame {
         txtAvdelning = new javax.swing.JTextField();
         btnGåtillbaka = new javax.swing.JButton();
         btnSpara = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtEpost = new javax.swing.JTextField();
+        txtAID = new javax.swing.JTextField();
+        txtDatum = new javax.swing.JTextField();
+        txtNummer = new javax.swing.JTextField();
+        txtLosenord = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -89,14 +128,42 @@ public class LäggtillAnställd extends javax.swing.JFrame {
         });
 
         btnSpara.setText("Spara");
-
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        btnSpara.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                btnSparaActionPerformed(evt);
             }
         });
 
-        jPasswordField1.setText("jPasswordField1");
+        txtEpost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEpostActionPerformed(evt);
+            }
+        });
+
+        txtAID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAIDActionPerformed(evt);
+            }
+        });
+
+        txtDatum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDatumActionPerformed(evt);
+            }
+        });
+
+        txtNummer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNummerActionPerformed(evt);
+            }
+        });
+
+        txtLosenord.setText("jPasswordField1");
+        txtLosenord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLosenordActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Efternamn");
 
@@ -160,11 +227,11 @@ public class LäggtillAnställd extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel7)
-                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtAID, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel8)
-                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtNummer, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtEpost, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(6, 135, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +240,7 @@ public class LäggtillAnställd extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel9)
-                                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -192,8 +259,8 @@ public class LäggtillAnställd extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFörnamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEpost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -201,14 +268,14 @@ public class LäggtillAnställd extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAdress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -217,7 +284,7 @@ public class LäggtillAnställd extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGåtillbaka)
@@ -236,13 +303,33 @@ public class LäggtillAnställd extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAvdelningActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void txtNummerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNummerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_txtNummerActionPerformed
 
     private void btnGåtillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGåtillbakaActionPerformed
         gatillanstalldameny();
     }//GEN-LAST:event_btnGåtillbakaActionPerformed
+
+    private void txtEpostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEpostActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEpostActionPerformed
+
+    private void txtAIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAIDActionPerformed
+
+    private void txtDatumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDatumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDatumActionPerformed
+
+    private void txtLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLosenordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLosenordActionPerformed
+
+    private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
+        sparaandringar();
+    }//GEN-LAST:event_btnSparaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,14 +379,14 @@ public class LäggtillAnställd extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField textEfternamn;
+    private javax.swing.JTextField txtAID;
     private javax.swing.JTextField txtAdress;
     private javax.swing.JTextField txtAvdelning;
+    private javax.swing.JTextField txtDatum;
+    private javax.swing.JTextField txtEpost;
     private javax.swing.JTextField txtFörnamn;
+    private javax.swing.JPasswordField txtLosenord;
+    private javax.swing.JTextField txtNummer;
     // End of variables declaration//GEN-END:variables
 }
