@@ -40,7 +40,6 @@ public class AdminMeny extends javax.swing.JFrame {
         lblValkommen = new javax.swing.JLabel();
         btnÄndraUppgifter = new javax.swing.JButton();
         btnTilldeladeProjekt = new javax.swing.JButton();
-        btnPersonalLista = new javax.swing.JButton();
         btnAnställda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,13 +59,6 @@ public class AdminMeny extends javax.swing.JFrame {
         btnTilldeladeProjekt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTilldeladeProjektActionPerformed(evt);
-            }
-        });
-
-        btnPersonalLista.setText("Personallista");
-        btnPersonalLista.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPersonalListaActionPerformed(evt);
             }
         });
 
@@ -91,12 +83,8 @@ public class AdminMeny extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnÄndraUppgifter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnAnställda, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnPersonalLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnTilldeladeProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addComponent(btnTilldeladeProjekt, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAnställda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,9 +98,7 @@ public class AdminMeny extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnTilldeladeProjekt)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPersonalLista)
-                    .addComponent(btnAnställda))
+                .addComponent(btnAnställda)
                 .addGap(8, 8, 8))
         );
 
@@ -130,12 +116,6 @@ public class AdminMeny extends javax.swing.JFrame {
     // Gör det nya fönstret synligt
     TilldeladeprojektFönster.setVisible(true);
     }//GEN-LAST:event_btnTilldeladeProjektActionPerformed
-
-    private void btnPersonalListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersonalListaActionPerformed
-        PersonalLista PersonalListaFönster = new PersonalLista(idb, InloggadAdmin);
-        
-        PersonalListaFönster.setVisible(true);
-    }//GEN-LAST:event_btnPersonalListaActionPerformed
 
     private void btnAnställdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnställdaActionPerformed
         Anställda AnställdaFönster = new Anställda(idb, InloggadAdmin);
@@ -180,7 +160,6 @@ public class AdminMeny extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnställda;
-    private javax.swing.JButton btnPersonalLista;
     private javax.swing.JButton btnTilldeladeProjekt;
     private javax.swing.JButton btnÄndraUppgifter;
     private javax.swing.JLabel lblInloggadAdmin;

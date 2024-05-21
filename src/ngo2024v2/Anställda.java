@@ -21,6 +21,8 @@ public class Anställda extends javax.swing.JFrame {
     private InfDB idb;
     private String InloggadAdmin;
     private JList<String> PersonalLista;
+    
+    
 
     /**
      * Creates new form Anställda
@@ -59,19 +61,32 @@ public class Anställda extends javax.swing.JFrame {
             // Lägg till JScrollPane till JFrame
             getContentPane().add(scrollPane);
 
-        } catch (InfException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        
+         } catch (InfException ex) {
+        System.out.println(ex.getMessage());
     }
+}
+    
+    
     
     private void gatilladminmeny() {
         this.dispose();
         AdminMeny AdminMenyFönster = new AdminMeny(idb, InloggadAdmin);
         AdminMenyFönster.setVisible(false);
     }
+    
+ 
 
+    
+    
+    
+ 
+
+
+
+
+
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,6 +98,9 @@ public class Anställda extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         btnGåtillbaka = new javax.swing.JButton();
+        btnLäggtill = new javax.swing.JButton();
+        btnRadera = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,6 +113,27 @@ public class Anställda extends javax.swing.JFrame {
             }
         });
 
+        btnLäggtill.setText("Lägg till");
+        btnLäggtill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLäggtillActionPerformed(evt);
+            }
+        });
+
+        btnRadera.setText("Radera");
+        btnRadera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRaderaActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Uppdatera");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,7 +141,13 @@ public class Anställda extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRadera)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLäggtill)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnGåtillbaka))
         );
         layout.setVerticalGroup(
@@ -111,7 +156,10 @@ public class Anställda extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(btnGåtillbaka))
+                    .addComponent(btnGåtillbaka)
+                    .addComponent(btnLäggtill)
+                    .addComponent(btnRadera)
+                    .addComponent(jButton1))
                 .addContainerGap(271, Short.MAX_VALUE))
         );
 
@@ -121,6 +169,20 @@ public class Anställda extends javax.swing.JFrame {
     private void btnGåtillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGåtillbakaActionPerformed
        gatilladminmeny();
     }//GEN-LAST:event_btnGåtillbakaActionPerformed
+
+    private void btnRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaActionPerformed
+        
+    }//GEN-LAST:event_btnRaderaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnLäggtillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLäggtillActionPerformed
+       LäggtillAnställd LäggtillAnställdFönster = new LäggtillAnställd(idb, InloggadAdmin);
+       
+       LäggtillAnställdFönster.setVisible(false);
+    }//GEN-LAST:event_btnLäggtillActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,6 +221,9 @@ public class Anställda extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGåtillbaka;
+    private javax.swing.JButton btnLäggtill;
+    private javax.swing.JButton btnRadera;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
