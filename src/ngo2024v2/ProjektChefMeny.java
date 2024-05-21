@@ -22,7 +22,7 @@ public class ProjektChefMeny extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.InloggadHandlaggare = InloggadHandlaggare;
-        Valkommen.setText("Välkommen Projektchef, " + InloggadHandlaggare + "!");
+        Valkommen.setText("<html>Välkommen</font><font color='red'> Projektchef</font>, " + InloggadHandlaggare + "!</html>");
         jLabel1.setText(InloggadHandlaggare);
     }
 
