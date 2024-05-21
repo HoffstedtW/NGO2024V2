@@ -45,7 +45,7 @@ try {
                 String htmlFormattedItem = "<html><font color='gray'><b>Projekt Namn:</b></font> " + rad.get("projektnamn") + "<br>"
                                           + "<font color='gray'><b>Startdatum:</b></font> " + rad.get("startdatum") + "<br>"
                                           + "<font color='gray'><b>Slutdatum:</b></font> " + rad.get("slutdatum") + "<br>"
-                                          + "<font color='gray'><b>Beskrivning:</b></font> " + rad.get("beskrivning") + "</html>"
+                                          + "<font color='gray'><b>Beskrivning:</b></font> " + rad.get("beskrivning") + "<br>"
                                           + "<font color='gray'><b>Kostnad:</b></font> " + rad.get("kostnad") + "<br>"
                                           + "<font color='gray'><b>Status:</b></font> " + rad.get("status") + "<br>"
                                           + "<font color='gray'><b>Prioritet:</b></font> " + rad.get("prioritet") + "<br>"
