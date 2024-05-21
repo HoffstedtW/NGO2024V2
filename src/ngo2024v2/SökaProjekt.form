@@ -47,8 +47,8 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtSokaProjekt" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSok" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSokaProjekt" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="165" max="32767" attributes="0"/>
           </Group>
