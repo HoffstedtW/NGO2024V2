@@ -85,7 +85,9 @@ public class SökHandläggarePåAvdelning extends javax.swing.JFrame {
                     for (HashMap<String, String> rad : sökResultat) {
                         // Skapa en sträng med HTML-formatering för varje handläggare
                         String htmlFormattedItem = "<html><font color='gray'><b>Namn:</b></font> " + rad.get("fornamn") + " " + rad.get("efternamn") + "<br>"
-                                + "<font color='gray'><b>Epost:</b></font> " + rad.get("epost") + "</html>";
+                                + "<font color='gray'><b>Epost:</b></font> " + rad.get("epost") + "</html>"
+                                + "<font color='gray'><b>Adress:</b></font> " + rad.get("adress") + "</html>"
+                        + "<font color='gray'><b>Telefonnr:</b></font> " + rad.get("telefon") + "</html>";
                         model.addElement(htmlFormattedItem);
                     }
                 }

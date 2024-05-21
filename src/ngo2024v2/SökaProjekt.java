@@ -65,7 +65,7 @@ public class SökaProjekt extends javax.swing.JFrame {
             }
         });
         
-        txtSlutDatum.getDocument().addDocumentListener(new DocumentListener() {
+        txtSokaProjekt.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 sokaProjekt();
@@ -81,11 +81,14 @@ public class SökaProjekt extends javax.swing.JFrame {
                 sokaProjekt();
             }
         });
+        
+       
     }
 
     private void sokaProjekt() {
         String startDatum = txtStartDatum.getText().trim();
         String slutDatum = txtSlutDatum.getText().trim();
+        String sökord = txtSokaProjekt.getText().trim();
 
         // Töm listan för att visa nya resultat
         model.clear();
@@ -98,8 +101,8 @@ public class SökaProjekt extends javax.swing.JFrame {
             // Om avdelningen för handläggaren finns
             if (handlaggareAvdelning != null) {
                 // Hämta projekt som tillhör samma avdelning och ligger inom datumintervallet
-                String sqlFragaProjekt = "SELECT projektnamn, startdatum, slutdatum FROM projekt WHERE startdatum >= ? AND slutdatum <= ?";
-
+                String sqlFragaProjekt = "SELECT projektnamn, startdatum, slutdatum FROM projekt WHERE avdelning = '" + handlaggareAvdelning + "' AND startdatum >= '" + startDatum + "' AND slutdatum <= '" + slutDatum + "'";
+                System.out.println(sqlFragaProjekt);
                 ArrayList<HashMap<String, String>> sokaResultat = idb.fetchRows(sqlFragaProjekt);
 
                 // Loopa igenom resultatet och lägg till dem i listmodellen
@@ -160,8 +163,8 @@ public class SökaProjekt extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(90, 90, 90)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSokaProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSok))
+                    .addComponent(btnSok)
+                    .addComponent(txtSokaProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(165, Short.MAX_VALUE))
         );
 
