@@ -92,7 +92,10 @@ public class SökaProjekt extends javax.swing.JFrame {
 
         // Töm listan för att visa nya resultat
         model.clear();
-
+if (!sökord.matches("\\d{4}-\\d{2}-\\d{2}")) {
+        System.out.println("Datumet måste vara i formatet yyyy-mm-dd");
+        return;
+    }
         try {
             // Hämta avdelningen för inloggad handläggare
             String sqlFragaHandlaggareAvdelning = "SELECT avdelning FROM anstalld WHERE epost = '" + InloggadHandlaggare + "'";
@@ -101,7 +104,7 @@ public class SökaProjekt extends javax.swing.JFrame {
             // Om avdelningen för handläggaren finns
             if (handlaggareAvdelning != null) {
                 // Hämta projekt som tillhör samma avdelning och ligger inom datumintervallet
-                String sqlFragaProjekt = "SELECT projektnamn, startdatum, slutdatum FROM projekt WHERE avdelning = '" + handlaggareAvdelning + "' AND startdatum >= '" + startDatum + "' AND slutdatum <= '" + slutDatum + "'";
+                String sqlFragaProjekt = "SELECT projektnamn, startdatum, slutdatum FROM projekt WHERE startdatum <= '" + sökord + "' AND slutdatum >= '" + sökord + "'";
                 System.out.println(sqlFragaProjekt);
                 ArrayList<HashMap<String, String>> sokaResultat = idb.fetchRows(sqlFragaProjekt);
 
