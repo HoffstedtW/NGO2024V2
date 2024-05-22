@@ -143,7 +143,7 @@ private void gaTillProjektChefMeny() {
     private void btnAndraUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraUppgifterActionPerformed
         // TODO add your handling code here:
    int selectedIndex = projektLista.getSelectedIndex();
-        if (selectedIndex != 1 && listaProjekt != null) {
+        if (selectedIndex != -1 && listaProjekt != null) {
             HashMap<String, String> selectedProjekt = listaProjekt.get(selectedIndex);
             ÄndraProjektUppgifter newÄndraProjektUppgifter = new ÄndraProjektUppgifter(idb, selectedProjekt);
             newÄndraProjektUppgifter.setVisible(true);

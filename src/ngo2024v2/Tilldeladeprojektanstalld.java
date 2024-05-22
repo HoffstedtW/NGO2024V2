@@ -130,7 +130,7 @@ private String InloggadAdmin;
             HashMap <String, String> projekt = idb.fetchRow(aid);
         }
         catch(InfException e) {
-            System.out.println ("Det här anställningsIDt finns inte i databasen");
+            System.out.println ("<html>Det här</font><font color='red'> AnställningsID:t</font>, "  + " finns inre i databasen!</html>");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
