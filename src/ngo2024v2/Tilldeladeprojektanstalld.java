@@ -6,6 +6,9 @@ package ngo2024v2;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.util.HashMap;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author livlagercrantz
@@ -13,6 +16,10 @@ import java.util.HashMap;
 public class Tilldeladeprojektanstalld extends javax.swing.JFrame {
 private InfDB idb;
 private String InloggadAdmin;
+
+// Instansvariabler för tabellen och scrollpane
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     /**
      * Creates new form Tilldeladeprojektanstalld
      */
@@ -20,6 +27,9 @@ private String InloggadAdmin;
         initComponents();
         this.idb = idb;
         this.InloggadAdmin = InloggadAdmin;
+        
+        
+        
      
     }
 
@@ -36,11 +46,59 @@ private String InloggadAdmin;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         btnGatillbaka = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable5 = new javax.swing.JTable();
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable3);
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(jTable4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,44 +126,59 @@ private String InloggadAdmin;
             }
         });
 
+        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(jTable5);
+
+        jScrollPane7.setViewportView(jScrollPane6);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(164, 164, 164))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnGatillbaka)
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnGatillbaka))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addComponent(btnGatillbaka)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addGap(56, 56, 56)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addComponent(btnGatillbaka)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -118,19 +191,40 @@ private String InloggadAdmin;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String aid = jButton1.getText();
+        String aid = jTextField1.getText();
         
-        try{
+        
+        
+        try {
             String sqlFraga = "SELECT projekt.projektnamn, projekt.beskrivning, projekt.startdatum, projekt.slutdatum, projekt.kostnad, projekt.status " +
                             "FROM projekt " +
                             "JOIN ans_proj ON projekt.pid = ans_proj.pid " +
-                            "WHERE ans_proj.aid = '" + aid + "'";
-            System.out.println (sqlFraga);
+                            "WHERE ans_proj.aid = "+ aid;
+            System.out.println(sqlFraga);
             
-            HashMap <String, String> projekt = idb.fetchRow(aid);
-        }
-        catch(InfException e) {
-            System.out.println ("<html>Det här</font><font color='red'> AnställningsID:t</font>, "  + " finns inre i databasen!</html>");
+            
+            
+            List<HashMap<String, String>> projektList = idb.fetchRows(sqlFraga);
+            
+            if (projektList != null) {
+                DefaultTableModel model = (DefaultTableModel) jTable5.getModel();
+                model.setRowCount(0); // Tömma tabellen innan ny data läggs till
+                
+                for (HashMap<String, String> projekt : projektList) {
+                    String projektnamn = projekt.get("projektnamn");
+                    String beskrivning = projekt.get("beskrivning");
+                    String startdatum = projekt.get("startdatum");
+                    String slutdatum = projekt.get("slutdatum");
+                    String kostnad = projekt.get("kostnad");
+                    String status = projekt.get("status");
+                    
+                    model.addRow(new Object[]{projektnamn, beskrivning, startdatum, slutdatum, kostnad, status});
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Inga projekt hittades för detta anställningsID.");
+            }
+        } catch (InfException e) {
+            System.out.println("Ett fel uppstod: " + e.getMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -139,6 +233,7 @@ private String InloggadAdmin;
         AdminMeny AdminMenyFönster = new AdminMeny(idb, InloggadAdmin);
         AdminMenyFönster.setVisible(false);
     }
+     
     
     private void btnGatillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGatillbakaActionPerformed
         gatilladminmeny();
@@ -184,6 +279,15 @@ private String InloggadAdmin;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
