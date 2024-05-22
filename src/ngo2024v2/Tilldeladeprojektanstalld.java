@@ -27,6 +27,7 @@ private String InloggadAdmin;
         initComponents();
         this.idb = idb;
         this.InloggadAdmin = InloggadAdmin;
+        lblFelmeddelande.setVisible(false);
         
         
         
@@ -57,9 +58,9 @@ private String InloggadAdmin;
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         btnGatillbaka = new javax.swing.JButton();
-        jScrollPane7 = new javax.swing.JScrollPane();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
+        lblFelmeddelande = new javax.swing.JLabel();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -128,41 +129,43 @@ private String InloggadAdmin;
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Projektnamn", "Beskrivning", "Startdatum", "Slutdatum", "Kostnad", "Status", "Prioritet", "Projektchef", "Land"
             }
         ));
         jScrollPane6.setViewportView(jTable5);
 
-        jScrollPane7.setViewportView(jScrollPane6);
+        lblFelmeddelande.setText("Inga projekt hittades för detta anställningsID.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblFelmeddelande))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(38, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnGatillbaka))
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane6))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -176,9 +179,12 @@ private String InloggadAdmin;
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(lblFelmeddelande, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -196,7 +202,7 @@ private String InloggadAdmin;
         
         
         try {
-            String sqlFraga = "SELECT projekt.projektnamn, projekt.beskrivning, projekt.startdatum, projekt.slutdatum, projekt.kostnad, projekt.status " +
+            String sqlFraga = "SELECT projekt.projektnamn, projekt.beskrivning, projekt.startdatum, projekt.slutdatum, projekt.kostnad, projekt.status, projekt.prioritet, projekt.projektchef, projekt.land " +
                             "FROM projekt " +
                             "JOIN ans_proj ON projekt.pid = ans_proj.pid " +
                             "WHERE ans_proj.aid = "+ aid;
@@ -217,11 +223,15 @@ private String InloggadAdmin;
                     String slutdatum = projekt.get("slutdatum");
                     String kostnad = projekt.get("kostnad");
                     String status = projekt.get("status");
+                    String prioritet = projekt.get("prioritet");
+                    String projektchef = projekt.get("projektchef");
+                    String land = projekt.get("land");
                     
-                    model.addRow(new Object[]{projektnamn, beskrivning, startdatum, slutdatum, kostnad, status});
+                    model.addRow(new Object[]{projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land});
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Inga projekt hittades för detta anställningsID.");
+                lblFelmeddelande.setText("Inga projekt hittades för detta anställningsID.");
+                setVisible(true);
             }
         } catch (InfException e) {
             System.out.println("Ett fel uppstod: " + e.getMessage());
@@ -283,11 +293,11 @@ private String InloggadAdmin;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblFelmeddelande;
     // End of variables declaration//GEN-END:variables
 }
