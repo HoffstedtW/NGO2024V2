@@ -21,6 +21,7 @@ public class MinaProjekt extends javax.swing.JFrame {
     private InfDB idb;
     private String InloggadHandlaggare;
     private JList<String> projektLista;
+    private ArrayList<HashMap<String, String>> listaProjekt;
 
     public MinaProjekt(InfDB idb, String InloggadHandlaggare) {
         this.idb = idb;
@@ -33,7 +34,7 @@ public class MinaProjekt extends javax.swing.JFrame {
 try {
             // Hämta projekten där den inloggade användaren är projektchef
             String sqlFragaProjekt = "SELECT * FROM projekt join anstalld on aid = projektchef WHERE epost = '" + InloggadHandlaggare + "'";
-            ArrayList<HashMap<String, String>> listaProjekt = idb.fetchRows(sqlFragaProjekt);
+            listaProjekt = idb.fetchRows(sqlFragaProjekt);
 
             // Skapa en modell för listan
             DefaultListModel<String> model = new DefaultListModel<>();
@@ -93,6 +94,7 @@ private void gaTillProjektChefMeny() {
 
         jScrollPane5 = new javax.swing.JScrollPane();
         btnTillbaka = new javax.swing.JButton();
+        btnAndraUppgifter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,19 +105,30 @@ private void gaTillProjektChefMeny() {
             }
         });
 
+        btnAndraUppgifter.setText("Ändra uppgifter");
+        btnAndraUppgifter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAndraUppgifterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(322, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(btnTillbaka)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                .addComponent(btnAndraUppgifter)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(btnTillbaka)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAndraUppgifter)
+                    .addComponent(btnTillbaka))
                 .addGap(0, 277, Short.MAX_VALUE))
         );
 
@@ -126,6 +139,18 @@ private void gaTillProjektChefMeny() {
         // TODO add your handling code here:
         gaTillProjektChefMeny();
     }//GEN-LAST:event_btnTillbakaActionPerformed
+
+    private void btnAndraUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraUppgifterActionPerformed
+        // TODO add your handling code here:
+   int selectedIndex = projektLista.getSelectedIndex();
+        if (selectedIndex != 1 && listaProjekt != null) {
+            HashMap<String, String> selectedProjekt = listaProjekt.get(selectedIndex);
+            ÄndraProjektUppgifter newÄndraProjektUppgifter = new ÄndraProjektUppgifter(idb, selectedProjekt);
+            newÄndraProjektUppgifter.setVisible(true);
+        } else {
+            System.out.println("Vänligen välj ett projekt att redigera.");
+        }
+    }//GEN-LAST:event_btnAndraUppgifterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,6 +201,7 @@ private void gaTillProjektChefMeny() {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAndraUppgifter;
     private javax.swing.JButton btnTillbaka;
     private javax.swing.JScrollPane jScrollPane5;
     // End of variables declaration//GEN-END:variables
