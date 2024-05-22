@@ -21,8 +21,8 @@ public class GlömtLösenord extends javax.swing.JFrame {
     public GlömtLösenord(InfDB idb) {
         this.idb = idb;
         this.setVisible(true);
-        initComponents();
-    }
+        initComponents();   }
+    
 
      {
     }
