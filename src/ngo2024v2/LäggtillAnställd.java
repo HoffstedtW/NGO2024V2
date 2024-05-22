@@ -3,11 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngo2024v2;
-import java.util.ArrayList;
-import java.util.HashMap;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
+
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
@@ -23,18 +19,10 @@ public class LäggtillAnställd extends javax.swing.JFrame {
    
     public LäggtillAnställd(InfDB idb, String inloggadAdmin) {
         initComponents();
-        
-   if (inloggadAdmin != null) {
-        comboroller.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Handläggare", "Administratör" }));
-    } else {
-        comboroller.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Handläggare" }));
+        this.idb = idb;
     }
-    
+       
         
-         this.idb = idb;
-        this.InloggadAdmin = inloggadAdmin;
-    }
-
     
     private void gatillanstalldameny() {
         this.dispose();
@@ -53,6 +41,7 @@ public class LäggtillAnställd extends javax.swing.JFrame {
         String anstallningsdatum = txtDatum.getText();
         String telefon = txtNummer.getText();
         String lösenord = new String(txtLosenord.getPassword());
+        
 
         // Kontrollera att alla fält är ifyllda
         if (fornamn.isEmpty() || efternamn.isEmpty() || adress.isEmpty() || avdelning.isEmpty() || epost.isEmpty() || aidStr.isEmpty() || anstallningsdatum.isEmpty() || telefon.isEmpty() || lösenord.isEmpty()) {
@@ -83,7 +72,9 @@ public class LäggtillAnställd extends javax.swing.JFrame {
 
         // Utför SQL-frågan
         idb.insert(sqlFraga);
-
+        
+       
+        
         // Visa ett meddelande när insättning är klar
         JOptionPane.showMessageDialog(null, "Ny anställd tillagd!");
 
@@ -128,8 +119,8 @@ public class LäggtillAnställd extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        comboroller = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -210,14 +201,14 @@ public class LäggtillAnställd extends javax.swing.JFrame {
 
         jLabel10.setText("Ny Anställd");
 
-        comboroller.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboroller.addActionListener(new java.awt.event.ActionListener() {
+        jLabel11.setText("Välj roll");
+
+        jButton1.setText("Roller");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comborollerActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-
-        jLabel11.setText("Roll");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -253,32 +244,31 @@ public class LäggtillAnställd extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(22, 22, 22)
-                                        .addComponent(jLabel5))
-                                    .addComponent(jLabel6))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel9)
-                                        .addGap(18, 18, 18))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(76, 76, 76)
-                                        .addComponent(jLabel11)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtAID, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtEpost, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtNummer, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboroller, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(24, 24, 24))
+                                    .addComponent(txtLosenord, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(32, 32, 32))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(22, 22, 22)
+                                        .addComponent(jLabel5))
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(42, 42, 42))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addGap(62, 62, 62))))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSpara)
@@ -310,10 +300,10 @@ public class LäggtillAnställd extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboroller, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -373,22 +363,12 @@ public class LäggtillAnställd extends javax.swing.JFrame {
         sparaandringar();
     }//GEN-LAST:event_btnSparaActionPerformed
 
-    private void comborollerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comborollerActionPerformed
-     
-    String valdRoll = (String) comboroller.getSelectedItem();
-
-    // Kontrollera vilken roll som är vald och sätt InloggadHandlaggare eller InloggadAdmin baserat på det
-    if (valdRoll.equals("Handläggare")) {
-        InloggadHandlaggare = "Handläggare";
-        InloggadAdmin = null;
-    } else if (valdRoll.equals("Administratör")) {
-        InloggadAdmin = "Administratör";
-        InloggadHandlaggare = null;
-    
-}
-
-
-    }//GEN-LAST:event_comborollerActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       Läggtillroll LäggtillrollFönster = new Läggtillroll(idb);
+       
+       LäggtillrollFönster.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -428,7 +408,7 @@ public class LäggtillAnställd extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGåtillbaka;
     private javax.swing.JButton btnSpara;
-    private javax.swing.JComboBox<String> comboroller;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

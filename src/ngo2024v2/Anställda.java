@@ -73,6 +73,17 @@ public class Anställda extends javax.swing.JFrame {
         AdminMeny AdminMenyFönster = new AdminMeny(idb, InloggadAdmin);
         AdminMenyFönster.setVisible(true);
     }
+    private void Radera() {
+        int index = PersonalLista.getSelectedIndex();
+        if (index != -1) {
+
+                DefaultListModel<String> model = (DefaultListModel<String>) PersonalLista.getModel();
+        model.remove(index);
+
+        } else {
+            System.out.println("Ingen anställd har raderats");
+        }
+    }
     
  
 
@@ -171,7 +182,7 @@ public class Anställda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGåtillbakaActionPerformed
 
     private void btnRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaActionPerformed
-        
+        Radera();
     }//GEN-LAST:event_btnRaderaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
