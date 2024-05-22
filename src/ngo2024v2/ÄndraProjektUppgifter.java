@@ -25,6 +25,8 @@ public class ÄndraProjektUppgifter extends javax.swing.JFrame {
     private JTextField txtProjektnamn, txtStartdatum, txtSlutdatum, txtBeskrivning, txtKostnad, txtStatus, txtPrioritet, txtLand;
     /**
      * Creates new form ÄndraProjektUppgifter
+     * @param idb
+     * @param projektData
      */
     public ÄndraProjektUppgifter(InfDB idb, HashMap<String, String> projektData) {
         this.idb = idb;
