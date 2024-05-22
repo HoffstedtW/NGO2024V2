@@ -364,10 +364,7 @@ public class LäggtillAnställd extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSparaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       Läggtillroll LäggtillrollFönster = new Läggtillroll(idb);
-       
-       LäggtillrollFönster.setVisible(true);
-       this.setVisible(false);
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
