@@ -128,13 +128,13 @@ private String InloggadAdmin;
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Projektnamn", "Beskrivning", "Startdatum", "Slutdatum", "Kostnad", "Status", "Prioritet", "Projektchef", "Land"
             }
         ));
         jScrollPane6.setViewportView(jTable5);
@@ -196,7 +196,7 @@ private String InloggadAdmin;
         
         
         try {
-            String sqlFraga = "SELECT projekt.projektnamn, projekt.beskrivning, projekt.startdatum, projekt.slutdatum, projekt.kostnad, projekt.status " +
+            String sqlFraga = "SELECT projekt.projektnamn, projekt.beskrivning, projekt.startdatum, projekt.slutdatum, projekt.kostnad, projekt.status, projekt.prioritet, projekt.projektchef, projekt.land " +
                             "FROM projekt " +
                             "JOIN ans_proj ON projekt.pid = ans_proj.pid " +
                             "WHERE ans_proj.aid = "+ aid;
@@ -217,8 +217,11 @@ private String InloggadAdmin;
                     String slutdatum = projekt.get("slutdatum");
                     String kostnad = projekt.get("kostnad");
                     String status = projekt.get("status");
+                    String prioritet = projekt.get("prioritet");
+                    String projektchef = projekt.get("projektchef");
+                    String land = projekt.get("land");
                     
-                    model.addRow(new Object[]{projektnamn, beskrivning, startdatum, slutdatum, kostnad, status});
+                    model.addRow(new Object[]{projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land});
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Inga projekt hittades för detta anställningsID.");
