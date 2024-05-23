@@ -19,16 +19,26 @@ public class TabortPartner extends javax.swing.JFrame {
     private String InloggadAdmin;
     private JList<String> partnerlista;
     private HashMap<String, String> selectedPartner;
+    private DefaultListModel<String> model;
     
     /**
      * Creates new form TabortPartner
      */
     public TabortPartner(InfDB idb, String InloggadAdmin, HashMap<String, String> selectedPartner) {
         initComponents();
-        this.idb=idb;
+        this.idb = idb;
         this.selectedPartner = selectedPartner;
+        this.model = new DefaultListModel<>();
         fyllPartnerLista();
     }
+    public TabortPartner(InfDB idb, String InloggadAdmin) {
+        this.idb = idb;
+        this.InloggadAdmin = InloggadAdmin;
+        this.model = new DefaultListModel<>();
+        initComponents();
+        fyllPartnerLista();
+    }
+    
     
        private void gatilladminMeny() {
           this.dispose();
@@ -39,46 +49,51 @@ public class TabortPartner extends javax.swing.JFrame {
        
          // Fyller partnerlistan med data från databasen
     private void fyllPartnerLista(){
+        if (selectedPartner == null) {
+            System.out.println("selectedPartner är null");
+            return;
+        }
         try {
-    String projektId = selectedPartner.get("pid");
+            String projektId = selectedPartner.get("pid");
             // Hämta projekten där den inloggade användaren är projektchef
             String sqlFragaPartner = "SELECT partner.pid, partner.namn, kontaktperson, kontaktepost, telefon, adress, branch, land " +
                                      "FROM partner " +
                                      "JOIN projekt_partner ON partner.pid = projekt_partner.partner_pid " +
                                      "JOIN projekt ON projekt.pid = projekt_partner.pid " +
                                      "WHERE projekt.pid = '" + projektId + "'";
-    ArrayList<HashMap<String, String>> listaPartners = idb.fetchRows(sqlFragaPartner);
-    
-     // Loopa igenom resultaten och lägg till dem i listmodellen
+            ArrayList<HashMap<String, String>> listaPartners = idb.fetchRows(sqlFragaPartner);
+
+            // Loopa igenom resultaten och lägg till dem i listmodellen
             if (listaPartners != null) {
-            for (HashMap<String, String> rad : listaPartners) {
-                // Skapa en sträng med HTML-formatering för varje projekt
-                String htmlFormattedItem = "<html><font color='gray'><b>Projekt PartnerID:</b></font> " + rad.get("pid") + "<br>"
-                                          + "<font color='gray'><b>Namn:</b></font> " + rad.get("namn") + "<br>"
-                                          + "<font color='gray'><b>KontaktPerson:</b></font> " + rad.get("kontaktperson") + "<br>"
-                                          + "<font color='gray'><b>Epost:</b></font> " + rad.get("kontaktepost") + "<br>"
-                                          + "<font color='gray'><b>Telefon:</b></font> " + rad.get("telefon") + "<br>"
-                                          + "<font color='gray'><b>Adress:</b></font> " + rad.get("adress") + "<br>"
-                                          + "<font color='gray'><b>Branch:</b></font> " + rad.get("branch") + "<br>"
-                                          + "<font color='gray'><b>Land:</b></font> " + rad.get("land") + "</html>";
-                model.addElement(htmlFormattedItem);
-            }
-              } else {
+                for (HashMap<String, String> rad : listaPartners) {
+                    // Skapa en sträng med HTML-formatering för varje projekt
+                    String htmlFormattedItem = "<html><font color='gray'><b>Projekt PartnerID:</b></font> " + rad.get("pid") + "<br>"
+                                              + "<font color='gray'><b>Namn:</b></font> " + rad.get("namn") + "<br>"
+                                              + "<font color='gray'><b>KontaktPerson:</b></font> " + rad.get("kontaktperson") + "<br>"
+                                              + "<font color='gray'><b>Epost:</b></font> " + rad.get("kontaktepost") + "<br>"
+                                              + "<font color='gray'><b>Telefon:</b></font> " + rad.get("telefon") + "<br>"
+                                              + "<font color='gray'><b>Adress:</b></font> " + rad.get("adress") + "<br>"
+                                              + "<font color='gray'><b>Branch:</b></font> " + rad.get("branch") + "<br>"
+                                              + "<font color='gray'><b>Land:</b></font> " + rad.get("land") + "</html>";
+                    model.addElement(htmlFormattedItem);
+                }
+            } else {
                 model.addElement("Inga partners hittades.");
             }
-            
+
             partnerlista = new JList<>(model); // Initiera partnerlista här
             JScrollPane scrollPane = new JScrollPane(partnerlista);
             scrollPane.setBounds(20, 40, 500, 300);
 
             // Lägg till JScrollPane till JFrame
             getContentPane().add(scrollPane);
-            
+
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
         }
-         // Sätt JFrame till synlig efter att alla komponenter har lagts till
+        // Sätt JFrame till synlig efter att alla komponenter har lagts till
         this.setVisible(true);
+    }
        
        
        
@@ -89,14 +104,23 @@ public class TabortPartner extends javax.swing.JFrame {
        
        
        
-    private void tabortpartner() {
+    private void tabortpartner(String partnerID) {
+        try {
+            String projektId = selectedPartner.get("pid");
+
+            String sqlFraga = "DELETE FROM projekt_partner WHERE partner_pid = '" + partnerID + "' AND pid = '" + projektId + "'";
+            idb.delete(sqlFraga);
+            String sqlRaderaPartner = "DELETE FROM partner WHERE pid = '" + partnerID + "'";
+            idb.delete(sqlRaderaPartner);
+
+            System.out.println("Partner med PID " + partnerID + " har raderats.");
+            model.clear(); // Töm listmodellen för att uppdatera listan
+            fyllPartnerLista(); // Uppdatera listan
+
+        } catch (InfException ex) {
+            System.out.println(ex.getMessage());
+        }
         
-    
-        String sqlFraga = "DELETE FROM projekt_partner WHERE partner_pid = '" + partnerID + "' AND pid = '" + projektId + "'";
-        
-        try{ 
-             String sqlRaderapartner = "DELETE FROM partner WHERE pid = '2" + pid + "'";
-            idb.delete(sqlRaderapartner);
         
         
         
@@ -131,7 +155,7 @@ public class TabortPartner extends javax.swing.JFrame {
 
         jLabel3.setText("Skriv i PID på den partner du vill radarea");
 
-        jButton1.setText("Radrea partner");
+        jButton1.setText("Radera partner");
 
         jButton2.setText("Gå tillbaka ");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -157,11 +181,12 @@ public class TabortPartner extends javax.swing.JFrame {
                         .addGap(85, 85, 85)
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(138, 138, 138)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)))
                 .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -171,9 +196,9 @@ public class TabortPartner extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(50, 50, 50)
                 .addComponent(jLabel3)
-                .addGap(26, 26, 26)
+                .addGap(27, 27, 27)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(37, 37, 37)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jButton2)
@@ -217,7 +242,7 @@ public class TabortPartner extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TabortPartner().setVisible(true);
+                //new TabortPartner().setVisible(true);
             }
         });
     }
