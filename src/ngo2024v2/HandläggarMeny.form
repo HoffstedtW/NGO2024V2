@@ -53,6 +53,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnTilldeladeProjekt" max="32767" attributes="0"/>
                           <Component id="btnAvdelning" max="32767" attributes="0"/>
+                          <Component id="btnAvdelningsProjekt" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
@@ -95,7 +96,10 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnSokHandlaggare" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btnÄndraUppgifter" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnÄndraUppgifter" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAvdelningsProjekt" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnVisaHållbarhetsMål" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -192,6 +196,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTilldeladeProjektActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAvdelningsProjekt">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Avdelnings projekt"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAvdelningsProjektActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
