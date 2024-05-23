@@ -104,27 +104,34 @@ public class TabortPartner extends javax.swing.JFrame {
        
        
        
-    private void tabortpartner(String partnerID) {
-        try {
-            String projektId = selectedPartner.get("pid");
+   private void tabortpartner() {
+    try {
+       
+        String partnerID = txtPID.getText();
 
-            String sqlFraga = "DELETE FROM projekt_partner WHERE partner_pid = '" + partnerID + "' AND pid = '" + projektId + "'";
-            idb.delete(sqlFraga);
-            String sqlRaderaPartner = "DELETE FROM partner WHERE pid = '" + partnerID + "'";
-            idb.delete(sqlRaderaPartner);
+        String sqlFraga = "DELETE FROM projekt_partner WHERE partner_pid = '" + partnerID + "' ";
+        idb.delete(sqlFraga);
+        String sqlRaderaPartner = "DELETE FROM partner WHERE pid = '" + partnerID + "'";
+        idb.delete(sqlRaderaPartner);
 
-            System.out.println("Partner med PID " + partnerID + " har raderats.");
-            model.clear(); // Töm listmodellen för att uppdatera listan
-            fyllPartnerLista(); // Uppdatera listan
+        System.out.println("Partner med PID " + partnerID + " har raderats.");
+        model.clear(); // Töm listmodellen för att uppdatera listan
+        fyllPartnerLista(); // Uppdatera listan
 
-        } catch (InfException ex) {
-            System.out.println(ex.getMessage());
-        }
-        
-        
-        
-        
+    } catch (InfException ex) {
+        System.out.println(ex.getMessage());
     }
+    
+    if (selectedPartner == null) {
+        System.out.println("Ingen partner vald att radera.");
+        return;
+    }
+}
+
+
+
+
+
     
        
         
@@ -143,7 +150,7 @@ public class TabortPartner extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtPID = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -156,6 +163,11 @@ public class TabortPartner extends javax.swing.JFrame {
         jLabel3.setText("Skriv i PID på den partner du vill radarea");
 
         jButton1.setText("Radera partner");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Gå tillbaka ");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -185,7 +197,7 @@ public class TabortPartner extends javax.swing.JFrame {
                         .addComponent(jButton1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPID, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)))
                 .addContainerGap(85, Short.MAX_VALUE))
         );
@@ -197,7 +209,7 @@ public class TabortPartner extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addComponent(jLabel3)
                 .addGap(27, 27, 27)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
@@ -211,6 +223,10 @@ public class TabortPartner extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       tabortpartner();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,6 +269,6 @@ public class TabortPartner extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtPID;
     // End of variables declaration//GEN-END:variables
 }
