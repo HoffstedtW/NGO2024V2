@@ -41,6 +41,8 @@ public class AdminMeny extends javax.swing.JFrame {
         btnÄndraUppgifter = new javax.swing.JButton();
         btnTilldeladeProjekt = new javax.swing.JButton();
         btnAnställda = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,14 +50,14 @@ public class AdminMeny extends javax.swing.JFrame {
 
         lblValkommen.setText("jLabel2");
 
-        btnÄndraUppgifter.setText("Ändra Uppgifter");
+        btnÄndraUppgifter.setText("Avdelningar");
         btnÄndraUppgifter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnÄndraUppgifterActionPerformed(evt);
             }
         });
 
-        btnTilldeladeProjekt.setText("Tilldelade Projekt");
+        btnTilldeladeProjekt.setText("Projekt");
         btnTilldeladeProjekt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTilldeladeProjektActionPerformed(evt);
@@ -66,6 +68,15 @@ public class AdminMeny extends javax.swing.JFrame {
         btnAnställda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnställdaActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Partner");
+
+        jButton2.setText("Land");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -81,10 +92,14 @@ public class AdminMeny extends javax.swing.JFrame {
                 .addContainerGap(103, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnÄndraUppgifter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTilldeladeProjekt, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnAnställda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnÄndraUppgifter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                    .addComponent(btnAnställda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnTilldeladeProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,9 +111,13 @@ public class AdminMeny extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addComponent(btnÄndraUppgifter)
                 .addGap(18, 18, 18)
-                .addComponent(btnTilldeladeProjekt)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTilldeladeProjekt)
+                    .addComponent(jButton2))
                 .addGap(18, 18, 18)
-                .addComponent(btnAnställda)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAnställda)
+                    .addComponent(jButton1))
                 .addGap(8, 8, 8))
         );
 
@@ -123,6 +142,13 @@ public class AdminMeny extends javax.swing.JFrame {
         AnställdaFönster.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnAnställdaActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       AdminLand AdminLandFönster = new AdminLand(idb, InloggadAdmin);
+       
+       AdminLandFönster.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,6 +189,8 @@ public class AdminMeny extends javax.swing.JFrame {
     private javax.swing.JButton btnAnställda;
     private javax.swing.JButton btnTilldeladeProjekt;
     private javax.swing.JButton btnÄndraUppgifter;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel lblInloggadAdmin;
     private javax.swing.JLabel lblValkommen;
     // End of variables declaration//GEN-END:variables
