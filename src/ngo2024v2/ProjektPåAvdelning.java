@@ -27,13 +27,12 @@ private String InloggadAdmin;
      * @param InloggadHandlaggare
      */
 
-    public ProjektPåAvdelning(InfDB idb, String InloggadHandlaggare) {
+    public ProjektPåAvdelning(InfDB idb, String InloggadAdmin) {
         initComponents();
         this.idb = idb;
-        this.InloggadHandlaggare = InloggadHandlaggare;
         this.projektLista = projektLista;
         this.lblFelmeddelande = new javax.swing.JLabel();
-        this.InloggadHandlaggare = InloggadHandlaggare;
+        this.InloggadAdmin = InloggadAdmin;
         lblFelmeddelande.setVisible(false);
         
         
