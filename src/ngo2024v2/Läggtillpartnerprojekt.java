@@ -19,6 +19,7 @@ public class Läggtillpartnerprojekt extends javax.swing.JFrame {
     private InfDB idb;
     private Partnermeny partnermeny;
     private String projektId;
+    private String InloggadHandLaggare;
 
     /**
      * Creates new form Läggtillpartnerprojekt
@@ -31,7 +32,6 @@ public class Läggtillpartnerprojekt extends javax.swing.JFrame {
     this.idb = idb;
     this.partnermeny = partnermeny;
     this.projektId = projektId;
-
     initComponents();
     }
 
@@ -51,6 +51,7 @@ public class Läggtillpartnerprojekt extends javax.swing.JFrame {
 
         btnSpara = new javax.swing.JButton();
         txtProjektID = new javax.swing.JTextField();
+        btnTillbaka = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +64,13 @@ public class Läggtillpartnerprojekt extends javax.swing.JFrame {
 
         txtProjektID.setText("jTextField1");
 
+        btnTillbaka.setText("Tillbaka");
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTillbakaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,11 +81,15 @@ public class Läggtillpartnerprojekt extends javax.swing.JFrame {
                     .addComponent(txtProjektID, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSpara))
                 .addContainerGap(60, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(btnTillbaka)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
+                .addComponent(btnTillbaka)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(txtProjektID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(btnSpara)
@@ -112,6 +124,15 @@ public class Läggtillpartnerprojekt extends javax.swing.JFrame {
     }
 
     }//GEN-LAST:event_btnSparaActionPerformed
+private void gatillPartnermeny() {
+        this.dispose();
+        Partnermeny newpartnermeny = new Partnermeny(idb, InloggadHandLaggare);
+        newpartnermeny.setVisible(false);
+    }
+    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
+        // TODO add your handling code here:
+        gatillPartnermeny();
+    }//GEN-LAST:event_btnTillbakaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,6 +171,7 @@ public class Läggtillpartnerprojekt extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSpara;
+    private javax.swing.JButton btnTillbaka;
     private javax.swing.JTextField txtProjektID;
     // End of variables declaration//GEN-END:variables
 }

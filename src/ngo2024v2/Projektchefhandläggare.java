@@ -4,7 +4,6 @@
  */
 package ngo2024v2;
 
-import java.awt.Component;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
@@ -17,66 +16,65 @@ import oru.inf.InfException;
  *
  * @author jerry
  */
-public class Partnermeny extends javax.swing.JFrame {
+public class Projektchefhandläggare extends javax.swing.JFrame {
 
     private InfDB idb;
-    private JList<String> partnerlista;
+    private JList<String> handlaggarlista;
     private HashMap<String, String> selectedProjekt;
     private String InloggadHandLaggare;
     /**
-     * Creates new form Partnermeny
+     * Creates new form Projektchefhandläggare
      * @param idb
      * @param selectedProjekt
      */
-    public Partnermeny(InfDB idb, HashMap<String, String> selectedProjekt) {
+    public Projektchefhandläggare(InfDB idb, HashMap<String, String> selectedProjekt) {
         this.idb = idb;
         this.selectedProjekt = selectedProjekt;
         initComponents();
-        fyllPartnerLista();
-        
+        fyllHandlaggarLista();
     }
-
-    private Partnermeny() {
+    
+    public void uppdateraHandlaggarLista() {
+    initComponents();
+    getContentPane().removeAll();
+    fyllHandlaggarLista();
+}
+private Projektchefhandläggare() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-    Partnermeny(InfDB idb, String InloggadHandLaggare) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-private void fyllPartnerLista(){
+private void fyllHandlaggarLista(){
 try {
     String projektId = selectedProjekt.get("pid");
             // Hämta projekten där den inloggade användaren är projektchef
-            String sqlFragaPartner = "SELECT partner.pid, partner.namn, kontaktperson, kontaktepost, telefon, adress, branch, land " +
-                                     "FROM partner " +
-                                     "JOIN projekt_partner ON partner.pid = projekt_partner.partner_pid " +
-                                     "JOIN projekt ON projekt.pid = projekt_partner.pid " +
+            String sqlFragaPartner = "SELECT anstalld.aid, fornamn, efternamn, adress, epost, telefon, avdelning " +
+                                     "FROM anstalld " +
+                                     "JOIN ans_proj ON anstalld.aid = ans_proj.aid " +
+                                     "JOIN projekt ON projekt.pid = ans_proj.pid " +
                                      "WHERE projekt.pid = '" + projektId + "'";
-    ArrayList<HashMap<String, String>> listaPartners = idb.fetchRows(sqlFragaPartner);
+    ArrayList<HashMap<String, String>> listaHandlaggare = idb.fetchRows(sqlFragaPartner);
 
             // Skapa en modell för listan
             DefaultListModel<String> model = new DefaultListModel<>();
 
             // Loopa igenom resultaten och lägg till dem i listmodellen
-            if (listaPartners != null) {
-            for (HashMap<String, String> rad : listaPartners) {
+            if (listaHandlaggare != null) {
+            for (HashMap<String, String> rad : listaHandlaggare) {
                 // Skapa en sträng med HTML-formatering för varje projekt
-                String htmlFormattedItem = "<html><font color='gray'><b>Projekt PartnerID:</b></font> " + rad.get("pid") + "<br>"
-                                          + "<font color='gray'><b>Namn:</b></font> " + rad.get("namn") + "<br>"
-                                          + "<font color='gray'><b>KontaktPerson:</b></font> " + rad.get("kontaktperson") + "<br>"
-                                          + "<font color='gray'><b>Epost:</b></font> " + rad.get("kontaktepost") + "<br>"
+                String htmlFormattedItem = "<html><font color='gray'><b>Projekt AnställdID:</b></font> " + rad.get("aid") + "<br>"
+                                          + "<font color='gray'><b>Förnamn:</b></font> " + rad.get("fornamn") + "<br>"
+                                          + "<font color='gray'><b>Efternamn:</b></font> " + rad.get("efternamn") + "<br>"
+                                          + "<font color='gray'><b>Epost:</b></font> " + rad.get("epost") + "<br>"
                                           + "<font color='gray'><b>Telefon:</b></font> " + rad.get("telefon") + "<br>"
                                           + "<font color='gray'><b>Adress:</b></font> " + rad.get("adress") + "<br>"
-                                          + "<font color='gray'><b>Branch:</b></font> " + rad.get("branch") + "<br>"
-                                          + "<font color='gray'><b>Land:</b></font> " + rad.get("land") + "</html>";
+                                          + "<font color='gray'><b>Avdelning:</b></font> " + rad.get("avdelning") + "</html>";
                 model.addElement(htmlFormattedItem);
             }
             } else {
                 model.addElement("Inga partners hittades.");
             }
             
-            partnerlista = new JList<>(model); // Initiera partnerlista här
-            JScrollPane scrollPane = new JScrollPane(partnerlista);
+            handlaggarlista = new JList<>(model); // Initiera partnerlista här
+            JScrollPane scrollPane = new JScrollPane(handlaggarlista);
             scrollPane.setBounds(20, 40, 500, 300);
 
             // Lägg till JScrollPane till JFrame
@@ -95,6 +93,28 @@ private void gatillminaprojekt() {
         MinaProjekt minaprojekt = new MinaProjekt(idb, InloggadHandLaggare);
         minaprojekt.setVisible(false);
     }
+private void taBortHandlaggare() {
+        try {
+            int selectedIndex = handlaggarlista.getSelectedIndex(); // Använd handlaggarlista här
+            if (selectedIndex != -1) {
+                String selectedValue = handlaggarlista.getModel().getElementAt(selectedIndex);
+                String[] parts = selectedValue.split("<br>");
+                String handlaggarId = parts[0].replaceAll("\\D+", "");
+                String projektId = selectedProjekt.get("pid");
+
+                String sqlDeleteHandlaggare = "DELETE FROM ans_proj WHERE aid = '" + handlaggarId + "' AND pid = '" + projektId + "'";
+                idb.delete(sqlDeleteHandlaggare);
+
+                ((DefaultListModel<String>) handlaggarlista.getModel()).remove(selectedIndex);
+
+                System.out.println("Handläggare har tagits bort från projektet.");
+            } else {
+                System.out.println("Vänligen välj en handläggare att ta bort.");
+            }
+        } catch (InfException ex) {
+            System.out.println("Database error: " + ex.getMessage());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,8 +125,8 @@ private void gatillminaprojekt() {
     private void initComponents() {
 
         btnTillbaka = new javax.swing.JButton();
-        btnLaggTillPartner = new javax.swing.JButton();
-        btnTaBortPartner = new javax.swing.JButton();
+        btnLaggTillHandlaggare = new javax.swing.JButton();
+        btnTaBortHandlaggare = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,17 +137,17 @@ private void gatillminaprojekt() {
             }
         });
 
-        btnLaggTillPartner.setText("Lägg till partner");
-        btnLaggTillPartner.addActionListener(new java.awt.event.ActionListener() {
+        btnLaggTillHandlaggare.setText("Lägg till handläggare");
+        btnLaggTillHandlaggare.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLaggTillPartnerActionPerformed(evt);
+                btnLaggTillHandlaggareActionPerformed(evt);
             }
         });
 
-        btnTaBortPartner.setText("Ta bort partner");
-        btnTaBortPartner.addActionListener(new java.awt.event.ActionListener() {
+        btnTaBortHandlaggare.setText("Ta bort handläggare");
+        btnTaBortHandlaggare.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTaBortPartnerActionPerformed(evt);
+                btnTaBortHandlaggareActionPerformed(evt);
             }
         });
 
@@ -136,70 +156,43 @@ private void gatillminaprojekt() {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addComponent(btnTillbaka)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addComponent(btnTaBortPartner)
                 .addGap(18, 18, 18)
-                .addComponent(btnLaggTillPartner)
-                .addContainerGap())
+                .addComponent(btnLaggTillHandlaggare)
+                .addGap(27, 27, 27)
+                .addComponent(btnTaBortHandlaggare)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLaggTillPartner)
-                    .addComponent(btnTaBortPartner)
-                    .addComponent(btnTillbaka))
-                .addContainerGap(277, Short.MAX_VALUE))
+                    .addComponent(btnTillbaka)
+                    .addComponent(btnLaggTillHandlaggare)
+                    .addComponent(btnTaBortHandlaggare))
+                .addContainerGap(271, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-private void taBortPartner() {
-        try {
-            int selectedIndex = partnerlista.getSelectedIndex(); // Använd partnerlista här
-            if (selectedIndex != -1) {
-                String selectedValue = partnerlista.getModel().getElementAt(selectedIndex);
-                String[] parts = selectedValue.split("<br>");
-                String partnerId = parts[0].replaceAll("\\D+", "");
-                String projektId = selectedProjekt.get("pid");
-
-                String sqlDeletePartner = "DELETE FROM projekt_partner WHERE partner_pid = '" + partnerId + "' AND pid = '" + projektId + "'";
-                idb.delete(sqlDeletePartner);
-
-                ((DefaultListModel<String>) partnerlista.getModel()).remove(selectedIndex);
-
-                System.out.println("Partner har tagits bort från projektet.");
-            } else {
-                System.out.println("Vänligen välj en partner att ta bort.");
-            }
-        } catch (InfException ex) {
-            System.out.println("Database error: " + ex.getMessage());
-        }
-    }
-
-public void uppdateraPartnerLista() {
-    initComponents();
-    getContentPane().removeAll();
-    fyllPartnerLista();
-}
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         // TODO add your handling code here:
-         gatillminaprojekt();
+        gatillminaprojekt();
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
-    private void btnLaggTillPartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillPartnerActionPerformed
+    private void btnTaBortHandlaggareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortHandlaggareActionPerformed
         // TODO add your handling code here:
-        Läggtillpartnerprojekt partnerfönster = new Läggtillpartnerprojekt(idb, this, selectedProjekt.get("pid"));
-        partnerfönster.setVisible(true);
-    }//GEN-LAST:event_btnLaggTillPartnerActionPerformed
+        taBortHandlaggare();
+    }//GEN-LAST:event_btnTaBortHandlaggareActionPerformed
 
-    private void btnTaBortPartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortPartnerActionPerformed
+    private void btnLaggTillHandlaggareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillHandlaggareActionPerformed
         // TODO add your handling code here:
-        taBortPartner();
-    }//GEN-LAST:event_btnTaBortPartnerActionPerformed
+        Läggtillhandläggare handläggarfönster = new Läggtillhandläggare(idb, this, selectedProjekt.get("pid"));
+        handläggarfönster.setVisible(true);
+    }//GEN-LAST:event_btnLaggTillHandlaggareActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,28 +211,27 @@ public void uppdateraPartnerLista() {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Partnermeny.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Projektchefhandläggare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Partnermeny.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Projektchefhandläggare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Partnermeny.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Projektchefhandläggare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Partnermeny.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Projektchefhandläggare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Partnermeny().setVisible(true);
+                new Projektchefhandläggare().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLaggTillPartner;
-    private javax.swing.JButton btnTaBortPartner;
+    private javax.swing.JButton btnLaggTillHandlaggare;
+    private javax.swing.JButton btnTaBortHandlaggare;
     private javax.swing.JButton btnTillbaka;
     // End of variables declaration//GEN-END:variables
-
 }
