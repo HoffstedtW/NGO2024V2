@@ -11,14 +11,18 @@ import oru.inf.InfException;
  *
  * @author jerry
  */
+/**
+ * Klass för att ändra projektuppgifter.
+ * Skapar ett fönster där användaren kan ändra detaljerna för ett projekt.
+ */
 public class ÄndraProjektUppgifter extends javax.swing.JFrame {
-
+ // Deklaration av variabler
     private InfDB idb;
     private HashMap<String, String> listaProjekt;
     private String InloggadHandLaggare;
 
-    /**
-     * Creates new form ÄndraProjektUppgifter
+   /**
+     * Konstruktor som initialiserar objektet och fyller fält med data.
      * @param idb
      * @param listaProjekt
      */
@@ -27,9 +31,12 @@ public class ÄndraProjektUppgifter extends javax.swing.JFrame {
         this.InloggadHandLaggare = InloggadHandLaggare;
         this.listaProjekt = listaProjekt;
         
-        initComponents();
-        fyllFaltMedData();
+        initComponents(); // Initierar komponenter
+        fyllFaltMedData();// Fyller fälten med data från projektet
     }
+    /**
+     * Metod för att fylla textfälten med projektets data.
+     */
 private void fyllFaltMedData() {
     if (txtProjektnamn != null) {
         txtProjektnamn.setText(listaProjekt.get("projektnamn"));
@@ -59,8 +66,12 @@ private void fyllFaltMedData() {
  public ÄndraProjektUppgifter() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+ /**
+     * Metod för att spara de uppdaterade projektuppgifterna i databasen.
+     */
 private void sparaProjekt() {
         try {
+            // Hämtar data från textfälten
             String projektnamn = txtProjektnamn.getText();
             String startdatum = txtStartdatum.getText();
             String slutdatum = txtSlutdatum.getText();
@@ -69,7 +80,8 @@ private void sparaProjekt() {
             String status = txtStatus.getText();
             String prioritet = txtPrioritet.getText();
             String land = txtLand.getText();
-
+            
+ // SQL-uppdatering av projektet
             String sqlUpdate = "UPDATE projekt SET "
                     + "projektnamn = '" + projektnamn + "', "
                     + "startdatum = '" + startdatum + "', "
@@ -80,15 +92,19 @@ private void sparaProjekt() {
                     + "prioritet = '" + prioritet + "', "
                     + "land = '" + land + "' "
                     + "WHERE pid = " + listaProjekt.get("pid");
-
+            
+            // Utför SQL-uppdateringen
             idb.update(sqlUpdate);
-            System.out.println("Projektet har uppdaterats.");
-            this.dispose();
+            System.out.println("Projektet har uppdaterats."); // Bekräftelsemeddelande
+            this.dispose(); // Stänger fönstret
         } catch (InfException ex) {
             System.out.println("Ett fel inträffade vid uppdatering: " + ex.getMessage());
         }
     }
-private void gatillminaprojekt() {
+        /**
+         * Metod för att gå tillbaka till föregående fönster.
+        */
+        private void gatillminaprojekt() {
         this.dispose();
         MinaProjekt minaprojekt = new MinaProjekt(idb, InloggadHandLaggare);
         minaprojekt.setVisible(false);

@@ -12,7 +12,7 @@ import oru.inf.InfDB;
  * @author Jerry/hoffs
  */
 public class ProjektChefMeny extends javax.swing.JFrame {
-
+    // Instansvariabler
     private InfDB idb;
     private String InloggadHandlaggare;
     /**
@@ -22,6 +22,7 @@ public class ProjektChefMeny extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.InloggadHandlaggare = InloggadHandlaggare;
+        // Sätt välkomsttexten med röd färg för "Projektchef"
         Valkommen.setText("<html>Välkommen</font><font color='red'> Projektchef</font>, " + InloggadHandlaggare + "!</html>");
         jLabel1.setText(InloggadHandlaggare);
     }
@@ -33,7 +34,7 @@ public class ProjektChefMeny extends javax.swing.JFrame {
     ProjektChefMeny(InfDB idb, HashMap<String, String> InloggadHandlaggare) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+     // Metod för att gå till handläggarmenyn
     private void gatillhandlaggarmeny() {
         this.dispose();
         HandläggarMeny handläggarMeny = new HandläggarMeny(idb, InloggadHandlaggare);
@@ -116,18 +117,19 @@ public class ProjektChefMeny extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+// Händelsehanterare för Tillbaka-knappen
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         // TODO add your handling code here:
         gatillhandlaggarmeny();
     }//GEN-LAST:event_btnTillbakaActionPerformed
-
+// Händelsehanterare för Visa Mina Projekt-knappen
     private void btnVisaMinaProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaMinaProjectActionPerformed
         // TODO add your handling code here:
         MinaProjekt visaMinaProjekt = new MinaProjekt(idb, InloggadHandlaggare);
         visaMinaProjekt.setVisible(true);
     }//GEN-LAST:event_btnVisaMinaProjectActionPerformed
-
+// Händelsehanterare för Kostnadsstatistik-knappen
     private void btnKostnadsStitistikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKostnadsStitistikActionPerformed
         Kostnadsstatistik visaKostnadsstatistik = new Kostnadsstatistik(idb, InloggadHandlaggare);
         visaKostnadsstatistik.setVisible(true);

@@ -16,8 +16,12 @@ import oru.inf.InfException;
  *
  * @author jerry
  */
+/**
+ * Klass för att hantera handläggare inom projektchefsmenyn
+ */
 public class Projektchefhandläggare extends javax.swing.JFrame {
 
+    // Instansvariabler
     private InfDB idb;
     private JList<String> handlaggarlista;
     private HashMap<String, String> selectedProjekt;
@@ -33,22 +37,23 @@ public class Projektchefhandläggare extends javax.swing.JFrame {
         initComponents();
         fyllHandlaggarLista();
     }
-
+// Konstruktor för att hantera ej implementerade funktioner
     Projektchefhandläggare(InfDB idb) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-    public void uppdateraHandlaggarLista() {
-    initComponents();
-    getContentPane().removeAll();
-    fyllHandlaggarLista();
-}
-private Projektchefhandläggare() {
+        public void uppdateraHandlaggarLista() {
+        initComponents();
+        getContentPane().removeAll();
+        fyllHandlaggarLista();
+        }
+        private Projektchefhandläggare() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-private void fyllHandlaggarLista(){
-try {
-    String projektId = selectedProjekt.get("pid");
+         // Metod för att fylla listan med handläggare    
+        private void fyllHandlaggarLista(){
+            try {
+            String projektId = selectedProjekt.get("pid");
             // Hämta projekten där den inloggade användaren är projektchef
             String sqlFragaPartner = "SELECT anstalld.aid, fornamn, efternamn, adress, epost, telefon, avdelning " +
                                      "FROM anstalld " +
@@ -92,12 +97,14 @@ try {
         // Sätt JFrame till synlig efter att alla komponenter har lagts till
         this.setVisible(true);
     }
-private void gatillminaprojekt() {
+        // Metod för att gå tillbaka till MinaProjekt
+    private void gatillminaprojekt() {
         this.dispose();
         MinaProjekt minaprojekt = new MinaProjekt(idb, InloggadHandLaggare);
         minaprojekt.setVisible(false);
     }
-private void taBortHandlaggare() {
+    // Metod för att ta bort en handläggare
+    private void taBortHandlaggare() {
         try {
             int selectedIndex = handlaggarlista.getSelectedIndex(); // Använd handlaggarlista här
             if (selectedIndex != -1) {
@@ -105,7 +112,7 @@ private void taBortHandlaggare() {
                 String[] parts = selectedValue.split("<br>");
                 String handlaggarId = parts[0].replaceAll("\\D+", "");
                 String projektId = selectedProjekt.get("pid");
-
+                // SQL-fråga för att ta bort handläggare från projektet
                 String sqlDeleteHandlaggare = "DELETE FROM ans_proj WHERE aid = '" + handlaggarId + "' AND pid = '" + projektId + "'";
                 idb.delete(sqlDeleteHandlaggare);
 

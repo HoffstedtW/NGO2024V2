@@ -41,7 +41,7 @@ public class Kostnadsstatistik extends javax.swing.JFrame {
     private void fyllKostnadsLista(){
 try {
             // Hämta projekten där den inloggade användaren är projektchef
-            String sqlFragaProjekt = "SELECT projektnamn, startdatum, slutdatum, kostnad FROM projekt join anstalld on aid = projektchef WHERE epost = '" + InloggadHandLaggare + "'";
+            String sqlFragaProjekt = "SELECT projektnamn, status, kostnad FROM projekt join anstalld on aid = projektchef WHERE epost = '" + InloggadHandLaggare + "'";
             listaProjekt = idb.fetchRows(sqlFragaProjekt);
 
             // Skapa en modell för listan
@@ -52,8 +52,7 @@ try {
             for (HashMap<String, String> rad : listaProjekt) {
                 // Skapa en sträng med HTML-formatering för varje projekt
                 String htmlFormattedItem = "<html><font color='gray'><b>Projekt Namn:</b></font> " + rad.get("projektnamn") + "<br>"
-                                          + "<font color='gray'><b>Startdatum:</b></font> " + rad.get("startdatum") + "<br>"
-                                          + "<font color='gray'><b>Slutdatum:</b></font> " + rad.get("slutdatum") + "<br>"
+                                          + "<font color='gray'><b>Status:</b></font> " + rad.get("status") + "<br>"
                                           + "<font color='gray'><b>Kostnad:</b></font> " + rad.get("kostnad") + "<html>";
                 model.addElement(htmlFormattedItem);
             }

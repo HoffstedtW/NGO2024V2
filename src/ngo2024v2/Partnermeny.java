@@ -43,8 +43,9 @@ public class Partnermeny extends javax.swing.JFrame {
     Partnermeny(InfDB idb, String InloggadHandLaggare) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-private void fyllPartnerLista(){
-try {
+    // Fyller partnerlistan med data från databasen
+    private void fyllPartnerLista(){
+        try {
     String projektId = selectedProjekt.get("pid");
             // Hämta projekten där den inloggade användaren är projektchef
             String sqlFragaPartner = "SELECT partner.pid, partner.namn, kontaktperson, kontaktepost, telefon, adress, branch, land " +
@@ -90,7 +91,8 @@ try {
         // Sätt JFrame till synlig efter att alla komponenter har lagts till
         this.setVisible(true);
     }
-private void gatillminaprojekt() {
+    // Navigerar tillbaka till MinaProjekt-fönstret
+    private void gatillminaprojekt() {
         this.dispose();
         MinaProjekt minaprojekt = new MinaProjekt(idb, InloggadHandLaggare);
         minaprojekt.setVisible(false);
@@ -156,7 +158,8 @@ private void gatillminaprojekt() {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-private void taBortPartner() {
+// Tar bort en vald partner från projektet
+    private void taBortPartner() {
         try {
             int selectedIndex = partnerlista.getSelectedIndex(); // Använd partnerlista här
             if (selectedIndex != -1) {
@@ -178,12 +181,12 @@ private void taBortPartner() {
             System.out.println("Database error: " + ex.getMessage());
         }
     }
-
-public void uppdateraPartnerLista() {
+// Uppdaterar partnerlistan
+    public void uppdateraPartnerLista() {
     initComponents();
     getContentPane().removeAll();
     fyllPartnerLista();
-}
+    }
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         // TODO add your handling code here:

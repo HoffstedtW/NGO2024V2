@@ -5,9 +5,6 @@
 package ngo2024v2;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.HashMap;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 /**
@@ -19,7 +16,6 @@ public class Läggtillhandläggare extends javax.swing.JFrame {
     private InfDB idb;
     private Projektchefhandläggare Projektchefhandläggare;
     private String projektId;
-    private String InloggadHandLaggare;
     /**
      * Creates new form Läggtillhandläggare
      * @param idb
