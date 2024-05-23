@@ -20,6 +20,7 @@ public class ÄndraProjektUppgifter extends javax.swing.JFrame {
     private InfDB idb;
     private HashMap<String, String> listaProjekt;
     private String InloggadHandLaggare;
+    private String InloggadAdmin;
 
    /**
      * Konstruktor som initialiserar objektet och fyller fält med data.
@@ -29,6 +30,7 @@ public class ÄndraProjektUppgifter extends javax.swing.JFrame {
     public ÄndraProjektUppgifter(InfDB idb, HashMap<String, String> listaProjekt) {
         this.idb = idb;
         this.InloggadHandLaggare = InloggadHandLaggare;
+        this.InloggadAdmin = InloggadAdmin;
         this.listaProjekt = listaProjekt;
         
         initComponents(); // Initierar komponenter

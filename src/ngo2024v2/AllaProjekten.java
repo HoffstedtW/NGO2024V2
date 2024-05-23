@@ -28,6 +28,8 @@ public class AllaProjekten extends javax.swing.JFrame {
     public AllaProjekten(InfDB idb, String InloggadAdmin) {
         initComponents();
         this.idb = idb;
+        this.InloggadAdmin = InloggadAdmin;
+        
         fyllProjektLista();
         
     }
