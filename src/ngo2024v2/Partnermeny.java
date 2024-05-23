@@ -70,12 +70,10 @@ try {
             } else {
                 model.addElement("Inga partners hittades.");
             }
-// Skapa en JList med modellen
-    Component partnerLista = new JList<>(model);
-
-            // Lägg till JList till en JScrollPane för att göra det möjligt att rulla
-            JScrollPane scrollPane = new JScrollPane(partnerLista);
-            scrollPane.setBounds(20, 40, 500, 300); // Ange position och storlek för JScrollPane
+            
+            partnerlista = new JList<>(model); // Initiera partnerlista här
+            JScrollPane scrollPane = new JScrollPane(partnerlista);
+            scrollPane.setBounds(20, 40, 500, 300);
 
             // Lägg till JScrollPane till JFrame
             getContentPane().add(scrollPane);
@@ -156,7 +154,7 @@ private void gatillminaprojekt() {
     }// </editor-fold>//GEN-END:initComponents
 private void taBortPartner() {
         try {
-            int selectedIndex = partnerlista.getSelectedIndex();
+            int selectedIndex = partnerlista.getSelectedIndex(); // Använd partnerlista här
             if (selectedIndex != -1) {
                 String selectedValue = partnerlista.getModel().getElementAt(selectedIndex);
                 String[] parts = selectedValue.split("<br>");
