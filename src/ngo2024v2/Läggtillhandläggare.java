@@ -100,7 +100,7 @@ public class Läggtillhandläggare extends javax.swing.JFrame {
             String existingHandlaggare = idb.fetchSingle(sqlCheckHandlaggare);
 
             if (existingHandlaggare != null) {
-                String sqlInsert = "INSERT INTO ans_proj (aid, pid) VALUES ('" + projektId + "', '" + anstalldId + "')";
+                String sqlInsert = "INSERT INTO ans_proj (pid, aid) VALUES ('" + projektId + "', '" + anstalldId + "')";
                 idb.insert(sqlInsert);
                 Projektchefhandläggare.uppdateraHandlaggarLista();
                 JOptionPane.showMessageDialog(this, "Handläggare har lagts till i projektet.");
