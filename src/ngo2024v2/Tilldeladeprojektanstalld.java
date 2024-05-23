@@ -20,6 +20,8 @@ private String InloggadAdmin;
 // Instansvariabler för tabellen och scrollpane
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private Object Projekt;
+    private Object projektLista;
     /**
      * Creates new form Tilldeladeprojektanstalld
      */
@@ -61,6 +63,7 @@ private String InloggadAdmin;
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
         lblFelmeddelande = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -142,6 +145,13 @@ private String InloggadAdmin;
 
         lblFelmeddelande.setText("Inga projekt hittades för detta anställningsID.");
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,6 +174,8 @@ private String InloggadAdmin;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
                         .addComponent(btnGatillbaka))
                     .addComponent(jScrollPane6))
                 .addContainerGap())
@@ -171,7 +183,9 @@ private String InloggadAdmin;
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(btnGatillbaka)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGatillbaka)
+                    .addComponent(jButton2))
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
@@ -249,6 +263,18 @@ private String InloggadAdmin;
         gatilladminmeny();
     }//GEN-LAST:event_btnGatillbakaActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = projektLista.getSelectedIndex();
+        if (selectedIndex != -1 && Projekt != null) {
+            HashMap<String, String> selectedProjekt = Projekt.get(selectedIndex);
+            Listapartners2 newpartnermeny = new Listapartners2(idb, selectedProjekt);
+            newpartnermeny.setVisible(true);
+        } else {
+            System.out.println("Vänligen välj ett projekt att redigera.");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -287,6 +313,7 @@ private String InloggadAdmin;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGatillbaka;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
