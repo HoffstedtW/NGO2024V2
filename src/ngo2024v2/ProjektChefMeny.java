@@ -48,6 +48,7 @@ public class ProjektChefMeny extends javax.swing.JFrame {
         Valkommen = new javax.swing.JLabel();
         btnTillbaka = new javax.swing.JButton();
         btnVisaMinaProject = new javax.swing.JButton();
+        btnPartners = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,6 +70,13 @@ public class ProjektChefMeny extends javax.swing.JFrame {
             }
         });
 
+        btnPartners.setText("Partners");
+        btnPartners.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPartnersActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,11 +91,12 @@ public class ProjektChefMeny extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(149, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(btnVisaMinaProject)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPartners, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVisaMinaProject, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
+                .addGap(122, 122, 122))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,14 +105,13 @@ public class ProjektChefMeny extends javax.swing.JFrame {
                 .addComponent(Valkommen)
                 .addGap(56, 56, 56)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
+                .addComponent(btnVisaMinaProject)
+                .addGap(18, 18, 18)
+                .addComponent(btnPartners)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addComponent(btnTillbaka)
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(btnVisaMinaProject)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -119,6 +127,10 @@ public class ProjektChefMeny extends javax.swing.JFrame {
         MinaProjekt visaMinaProjekt = new MinaProjekt(idb, InloggadHandlaggare);
         visaMinaProjekt.setVisible(true);
     }//GEN-LAST:event_btnVisaMinaProjectActionPerformed
+
+    private void btnPartnersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPartnersActionPerformed
+
+    }//GEN-LAST:event_btnPartnersActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,6 +170,7 @@ public static void main(String args[]) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Valkommen;
+    private javax.swing.JButton btnPartners;
     private javax.swing.JButton btnTillbaka;
     private javax.swing.JButton btnVisaMinaProject;
     private javax.swing.JLabel jLabel1;
