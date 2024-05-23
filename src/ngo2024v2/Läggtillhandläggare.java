@@ -35,6 +35,11 @@ public class Läggtillhandläggare extends javax.swing.JFrame {
       private Läggtillhandläggare() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+      private void gaTillProjektChefHandlaggareMeny() {
+        this.dispose();
+        Projektchefhandläggare ProjektchefhandläggareFönster = new Projektchefhandläggare(idb);
+        ProjektchefhandläggareFönster.setVisible(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,6 +51,7 @@ public class Läggtillhandläggare extends javax.swing.JFrame {
 
         btSpara = new javax.swing.JButton();
         txtAnstalldID = new javax.swing.JTextField();
+        btnGaTillbaka = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,21 +69,35 @@ public class Läggtillhandläggare extends javax.swing.JFrame {
             }
         });
 
+        btnGaTillbaka.setText("Gå Tillbaka");
+        btnGaTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGaTillbakaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtAnstalldID, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btSpara))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtAnstalldID, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btSpara)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnGaTillbaka)))
                 .addContainerGap(95, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
+                .addContainerGap()
+                .addComponent(btnGaTillbaka)
+                .addGap(56, 56, 56)
                 .addComponent(txtAnstalldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(btSpara)
@@ -117,6 +137,11 @@ public class Läggtillhandläggare extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btSparaActionPerformed
 
+    private void btnGaTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGaTillbakaActionPerformed
+        // TODO add your handling code here:
+        gaTillProjektChefHandlaggareMeny();
+    }//GEN-LAST:event_btnGaTillbakaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -154,6 +179,7 @@ public class Läggtillhandläggare extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btSpara;
+    private javax.swing.JButton btnGaTillbaka;
     private javax.swing.JTextField txtAnstalldID;
     // End of variables declaration//GEN-END:variables
 }

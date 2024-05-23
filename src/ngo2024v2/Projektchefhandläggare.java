@@ -33,6 +33,10 @@ public class Projektchefhandläggare extends javax.swing.JFrame {
         initComponents();
         fyllHandlaggarLista();
     }
+
+    Projektchefhandläggare(InfDB idb) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     public void uppdateraHandlaggarLista() {
     initComponents();
