@@ -28,7 +28,7 @@ public class AllaProjekten extends javax.swing.JFrame {
     public AllaProjekten(InfDB idb, String InloggadAdmin) {
         initComponents();
         this.idb = idb;
-        fyllProjektLista();
+        
     }
 
      private void fyllProjektLista(){
@@ -97,6 +97,7 @@ public class AllaProjekten extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,19 +118,32 @@ public class AllaProjekten extends javax.swing.JFrame {
         });
 
         jButton3.setText("Radera");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Lägg till");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -141,7 +155,8 @@ public class AllaProjekten extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addContainerGap(271, Short.MAX_VALUE))
         );
 
@@ -162,6 +177,57 @@ public class AllaProjekten extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        gatilladminmeny();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        LäggtillAvdelning LäggtillAvdelningFönster = new LäggtillAvdelning(idb,InloggadAdmin);
+        LäggtillAvdelningFönster.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = projektLista.getSelectedIndex();
+    if (selectedIndex != -1 && selectedIndex < listaProjekt.size()) {
+        HashMap<String, String> selectedProjekt = listaProjekt.get(selectedIndex);
+        String pid = selectedProjekt.get("pid");
+
+        try {
+            String sqlRaderaprojektpartner = "DELETE FROM projekt_partner WHERE pid = '" + pid + "'";
+            idb.delete(sqlRaderaprojektpartner);
+
+            // Radera från ans_proj där projektet är med
+            String sqlRaderaAnsproj = "DELETE FROM ans_proj WHERE pid = '" + pid + "'";
+            idb.delete(sqlRaderaAnsproj);
+
+            // Radera från proj_hallbarhet där projektet är med
+            String sqlRaderaProjhallbarhet = "DELETE FROM proj_hallbarhet WHERE pid = '" + pid + "'";
+            idb.delete(sqlRaderaProjhallbarhet);
+
+            // Radera från partner där projektet är med
+            String sqlRaderapartner = "DELETE FROM partner WHERE pid = '2" + pid + "'";
+            idb.delete(sqlRaderapartner);
+
+            // Slutligen, radera själva projektet från projekt-tabellen
+            String sqlRaderaProjekt = "DELETE FROM projekt WHERE pid = '" + pid + "'";
+            idb.delete(sqlRaderaProjekt);
+
+            // Ta bort det valda projektet från listan i applikationen
+            listaProjekt.remove(selectedIndex);
+
+            // Uppdatera JList
+            DefaultListModel<String> model = (DefaultListModel<String>) projektLista.getModel();
+            model.removeElementAt(selectedIndex);
+
+            System.out.println("Projektet har raderats.");
+        } catch (InfException ex) {
+            System.out.println("Ett fel uppstod vid radering av projekt: " + ex.getMessage());
+        }
+    } else {
+        System.out.println("Vänligen välj ett projekt att radera.");
+    }
+    
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,6 +270,7 @@ public class AllaProjekten extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
