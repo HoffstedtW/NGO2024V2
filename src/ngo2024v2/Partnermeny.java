@@ -29,6 +29,7 @@ public class Partnermeny extends javax.swing.JFrame {
      */
     public Partnermeny(InfDB idb, HashMap<String, String> selectedProjekt) {
         this.idb = idb;
+        this.selectedProjekt = selectedProjekt;
         initComponents();
         fyllPartnerLista();
     }
@@ -38,10 +39,13 @@ public class Partnermeny extends javax.swing.JFrame {
     }
 private void fyllPartnerLista(){
 try {
-    String selectedIndex = null;
+    String projektId = selectedProjekt.get("pid");
             // Hämta projekten där den inloggade användaren är projektchef
-            String sqlFragaPartner = "Select partner.pid, partner.namn, kontaktperson, kontaktepost, telefon, adress, branch, land, projektnamn from partner join projekt_partner on partner.pid = projekt_partner.partner_pid "
-                    + "join projekt on projekt.pid = projekt_partner.pid where projekt.pid = '" + selectedIndex + "'";
+            String sqlFragaPartner = "SELECT partner.pid, partner.namn, kontaktperson, kontaktepost, telefon, adress, branch, land " +
+                                     "FROM partner " +
+                                     "JOIN projekt_partner ON partner.pid = projekt_partner.partner_pid " +
+                                     "JOIN projekt ON projekt.pid = projekt_partner.pid " +
+                                     "WHERE projekt.pid = '" + projektId + "'";
     ArrayList<HashMap<String, String>> listaPartners = idb.fetchRows(sqlFragaPartner);
 
             // Skapa en modell för listan
