@@ -75,6 +75,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
         btnSokaProjekt = new javax.swing.JButton();
         btnTilldeladeProjekt = new javax.swing.JButton();
         btnAvdelningsProjekt = new javax.swing.JButton();
+        btnVisaMinaProjekt = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -151,6 +152,13 @@ public class HandläggarMeny extends javax.swing.JFrame {
             }
         });
 
+        btnVisaMinaProjekt.setText("Visa Projekt");
+        btnVisaMinaProjekt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisaMinaProjektActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,7 +179,8 @@ public class HandläggarMeny extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnTilldeladeProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnAvdelning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAvdelningsProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnAvdelningsProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnVisaMinaProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -200,7 +209,9 @@ public class HandläggarMeny extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(btnSokaProjekt)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSokHandlaggare)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSokHandlaggare)
+                    .addComponent(btnVisaMinaProjekt))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnÄndraUppgifter)
@@ -299,6 +310,14 @@ public class HandläggarMeny extends javax.swing.JFrame {
         ProjektPåAvdelningFönster.setVisible(true);
         
     }//GEN-LAST:event_btnAvdelningsProjektActionPerformed
+
+    private void btnVisaMinaProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaMinaProjektActionPerformed
+        // TODO add your handling code here:
+        MinaProjekt MinaProjektFönster = new MinaProjekt(idb, InloggadHandlaggare);
+        
+        MinaProjektFönster.setVisible(true);
+        
+    }//GEN-LAST:event_btnVisaMinaProjektActionPerformed
     
     /**
      * @param args the command line arguments
@@ -344,6 +363,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
     private javax.swing.JButton btnSokaProjekt;
     private javax.swing.JButton btnTilldeladeProjekt;
     private javax.swing.JButton btnVisaHållbarhetsMål;
+    private javax.swing.JButton btnVisaMinaProjekt;
     private javax.swing.JButton btnÄndraUppgifter;
     private java.awt.Button button1;
     private javax.swing.JButton jButton1;
