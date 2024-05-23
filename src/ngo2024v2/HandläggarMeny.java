@@ -74,6 +74,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
         btnAvdelning = new javax.swing.JToggleButton();
         btnSokaProjekt = new javax.swing.JButton();
         btnTilldeladeProjekt = new javax.swing.JButton();
+        btnAvdelningsProjekt = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -143,6 +144,13 @@ public class HandläggarMeny extends javax.swing.JFrame {
             }
         });
 
+        btnAvdelningsProjekt.setText("Avdelnings projekt");
+        btnAvdelningsProjekt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvdelningsProjektActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,7 +170,8 @@ public class HandläggarMeny extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnTilldeladeProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAvdelning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnAvdelning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAvdelningsProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -193,7 +202,9 @@ public class HandläggarMeny extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSokHandlaggare)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnÄndraUppgifter)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnÄndraUppgifter)
+                    .addComponent(btnAvdelningsProjekt))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVisaHållbarhetsMål)
@@ -280,6 +291,14 @@ public class HandläggarMeny extends javax.swing.JFrame {
     // Gör det nya fönstret synligt
     TilldeladeprojektFönster.setVisible(true);
     }//GEN-LAST:event_btnTilldeladeProjektActionPerformed
+
+    private void btnAvdelningsProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvdelningsProjektActionPerformed
+        // TODO add your handling code here:
+        ProjektPåAvdelning ProjektPåAvdelningFönster = new ProjektPåAvdelning(idb, InloggadHandlaggare);
+        
+        ProjektPåAvdelningFönster.setVisible(true);
+        
+    }//GEN-LAST:event_btnAvdelningsProjektActionPerformed
     
     /**
      * @param args the command line arguments
@@ -318,6 +337,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnAvdelning;
+    private javax.swing.JButton btnAvdelningsProjekt;
     private javax.swing.JButton btnChefsMeny;
     private javax.swing.JButton btnPersonalLista;
     private javax.swing.JButton btnSokHandlaggare;
