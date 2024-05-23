@@ -174,6 +174,13 @@ private void taBortPartner() {
             System.out.println("Database error: " + ex.getMessage());
         }
     }
+
+public void uppdateraPartnerLista() {
+    initComponents();
+    getContentPane().removeAll();
+    fyllPartnerLista();
+}
+
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         // TODO add your handling code here:
          gatillminaprojekt();
@@ -181,6 +188,8 @@ private void taBortPartner() {
 
     private void btnLaggTillPartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillPartnerActionPerformed
         // TODO add your handling code here:
+        Läggtillpartnerprojekt partnerfönster = new Läggtillpartnerprojekt(idb, this, selectedProjekt.get("pid"));
+        partnerfönster.setVisible(true);
     }//GEN-LAST:event_btnLaggTillPartnerActionPerformed
 
     private void btnTaBortPartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortPartnerActionPerformed
@@ -228,4 +237,5 @@ private void taBortPartner() {
     private javax.swing.JButton btnTaBortPartner;
     private javax.swing.JButton btnTillbaka;
     // End of variables declaration//GEN-END:variables
+
 }
