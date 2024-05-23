@@ -78,18 +78,29 @@ public class AdminAvdelning extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnGatillbaka = new javax.swing.JButton();
+        btnLaggtill = new javax.swing.JButton();
+        btnAndra = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Avdelningar");
 
-        jButton1.setText("Gå tillbaka");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGatillbaka.setText("Gå tillbaka");
+        btnGatillbaka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGatillbakaActionPerformed(evt);
             }
         });
+
+        btnLaggtill.setText("Lägg till");
+        btnLaggtill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggtillActionPerformed(evt);
+            }
+        });
+
+        btnAndra.setText("Ändra");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,8 +109,12 @@ public class AdminAvdelning extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(btnAndra)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLaggtill)
+                .addGap(18, 18, 18)
+                .addComponent(btnGatillbaka)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -107,16 +122,25 @@ public class AdminAvdelning extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton1))
+                    .addComponent(btnGatillbaka)
+                    .addComponent(btnLaggtill)
+                    .addComponent(btnAndra))
                 .addGap(0, 277, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnGatillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGatillbakaActionPerformed
         gatilladminmeny();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnGatillbakaActionPerformed
+
+    private void btnLaggtillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggtillActionPerformed
+        LäggtillAvdelning LäggtillAvdelningFönster = new LäggtillAvdelning(idb, InloggadAdmin);
+        
+        LäggtillAvdelningFönster.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnLaggtillActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,7 +178,9 @@ public class AdminAvdelning extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAndra;
+    private javax.swing.JButton btnGatillbaka;
+    private javax.swing.JButton btnLaggtill;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
