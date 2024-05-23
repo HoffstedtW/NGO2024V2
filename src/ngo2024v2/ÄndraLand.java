@@ -3,11 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngo2024v2;
-import java.util.ArrayList;
-import java.util.HashMap;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
+
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;

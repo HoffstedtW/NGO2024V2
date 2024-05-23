@@ -101,6 +101,11 @@ public class AdminAvdelning extends javax.swing.JFrame {
         });
 
         btnAndra.setText("Ändra");
+        btnAndra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAndraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,6 +146,13 @@ public class AdminAvdelning extends javax.swing.JFrame {
         LäggtillAvdelningFönster.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnLaggtillActionPerformed
+
+    private void btnAndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraActionPerformed
+        ÄndraAvdelning ÄndraAvdelningFönster = new ÄndraAvdelning(idb, InloggadAdmin);
+        
+        ÄndraAvdelningFönster.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAndraActionPerformed
 
     /**
      * @param args the command line arguments
