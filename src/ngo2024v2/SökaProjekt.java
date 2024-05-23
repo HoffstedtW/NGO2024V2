@@ -122,6 +122,12 @@ if (!sökord.matches("\\d{4}-\\d{2}-\\d{2}")) {
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
         }
+        
+    }
+    private void gatillhandlaggarmeny() {
+        this.dispose();
+        HandläggarMeny handläggarMeny = new HandläggarMeny(idb, InloggadHandlaggare);
+        handläggarMeny.setVisible(false);
     }
 
     /**
@@ -136,12 +142,20 @@ if (!sökord.matches("\\d{4}-\\d{2}-\\d{2}")) {
         jLabel1 = new javax.swing.JLabel();
         txtSokaProjekt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        btnGaTillbaka = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Sök projekt");
 
         jLabel2.setText("Sök med formatet xxxx-xx-xx");
+
+        btnGaTillbaka.setText("Gå tillbaka");
+        btnGaTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGaTillbakaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,8 +166,10 @@ if (!sökord.matches("\\d{4}-\\d{2}-\\d{2}")) {
                 .addComponent(txtSokaProjekt)
                 .addGap(139, 139, 139))
             .addGroup(layout.createSequentialGroup()
-                .addGap(164, 164, 164)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btnGaTillbaka)
+                .addGap(83, 83, 83)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
                 .addGap(139, 139, 139))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -164,16 +180,23 @@ if (!sökord.matches("\\d{4}-\\d{2}-\\d{2}")) {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnGaTillbaka))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(56, 56, 56)
                 .addComponent(txtSokaProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGaTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGaTillbakaActionPerformed
+        // TODO add your handling code here:
+        gatillhandlaggarmeny();
+    }//GEN-LAST:event_btnGaTillbakaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,6 +234,7 @@ if (!sökord.matches("\\d{4}-\\d{2}-\\d{2}")) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGaTillbaka;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txtSokaProjekt;
