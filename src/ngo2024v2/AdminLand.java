@@ -83,8 +83,9 @@ public class AdminLand extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnRadera = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        btnAndra = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,12 +98,19 @@ public class AdminLand extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Radera");
+        btnRadera.setText("Radera");
 
         jButton3.setText("Lägg till");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        btnAndra.setText("Ändra");
+        btnAndra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAndraActionPerformed(evt);
             }
         });
 
@@ -113,10 +121,12 @@ public class AdminLand extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAndra, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(btnRadera)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -128,8 +138,9 @@ public class AdminLand extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnRadera)
+                    .addComponent(jButton3)
+                    .addComponent(btnAndra))
                 .addContainerGap(271, Short.MAX_VALUE))
         );
 
@@ -146,6 +157,13 @@ public class AdminLand extends javax.swing.JFrame {
       LäggtillLandFönster.setVisible(true);
       this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnAndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraActionPerformed
+        ÄndraLand ÄndraLandFönster = new ÄndraLand(idb, InloggadAdmin);
+        
+        ÄndraLandFönster.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAndraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,8 +201,9 @@ public class AdminLand extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAndra;
+    private javax.swing.JButton btnRadera;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
