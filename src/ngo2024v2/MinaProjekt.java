@@ -95,6 +95,7 @@ private void gaTillProjektChefMeny() {
         jScrollPane5 = new javax.swing.JScrollPane();
         btnTillbaka = new javax.swing.JButton();
         btnAndraUppgifter = new javax.swing.JButton();
+        btnPartners = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,23 +113,33 @@ private void gaTillProjektChefMeny() {
             }
         });
 
+        btnPartners.setText("Partners");
+        btnPartners.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPartnersActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addComponent(btnTillbaka)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPartners)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addComponent(btnAndraUppgifter)
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAndraUppgifter)
-                    .addComponent(btnTillbaka))
+                    .addComponent(btnTillbaka)
+                    .addComponent(btnPartners))
                 .addGap(0, 277, Short.MAX_VALUE))
         );
 
@@ -152,15 +163,19 @@ private void gaTillProjektChefMeny() {
         }
     }//GEN-LAST:event_btnAndraUppgifterActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    /**
-     * @param args the command line arguments
-     */
-    /**
-     * @param args the command line arguments
-     */
+    private void btnPartnersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPartnersActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = projektLista.getSelectedIndex();
+        if (selectedIndex != -1 && listaProjekt != null) {
+            HashMap<String, String> selectedProjekt = listaProjekt.get(selectedIndex);
+            Partnermeny newpartnermeny = new Partnermeny(idb, selectedProjekt);
+            newpartnermeny.setVisible(true);
+        } else {
+            System.out.println("Vänligen välj ett projekt att redigera.");
+        }
+    }//GEN-LAST:event_btnPartnersActionPerformed
+
+
     /**
      * @param args the command line arguments
      */
@@ -202,6 +217,7 @@ private void gaTillProjektChefMeny() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndraUppgifter;
+    private javax.swing.JButton btnPartners;
     private javax.swing.JButton btnTillbaka;
     private javax.swing.JScrollPane jScrollPane5;
     // End of variables declaration//GEN-END:variables
