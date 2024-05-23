@@ -20,7 +20,7 @@ private InfDB idb;
 private HashMap <String, String> projektLista;
 private javax.swing.JLabel lblFelmeddelande;
 private String InloggadHandlaggare;
-
+private String InloggadAdmin;
     /**
      * Creates new form ProjektPåAvdelning
      * @param idb
@@ -39,6 +39,12 @@ private String InloggadHandlaggare;
         
         
       
+    }
+    
+    private void gatilladminmeny() {
+        this.dispose();
+        AdminMeny AdminMenyFönster = new AdminMeny(idb, InloggadAdmin);
+        AdminMenyFönster.setVisible(true);
     }
     
     private void projektstatus(String status) {
@@ -313,7 +319,7 @@ private String InloggadHandlaggare;
     //När man klickar på knappen används metoden och man öppnar handläggarmenyn.
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        gatillHandlaggarMeny();
+        gatilladminmeny();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnPlaneradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaneradeActionPerformed
