@@ -23,10 +23,12 @@ public class LäggtillAvdelning extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
     }
- private void gatilladminavdelning() {
+ private void gatillallaprojekten() {
         this.dispose();
         AdminAvdelning AdminAvdelningFönster = new AdminAvdelning(idb, InloggadAdmin);
+        
         AdminAvdelningFönster.setVisible(true);
+        this.setVisible(false);
     }
  
  private void sparaavdelning() {
@@ -221,7 +223,7 @@ public class LäggtillAvdelning extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGatillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGatillbakaActionPerformed
-        gatilladminavdelning();
+        gatillallaprojekten();
     }//GEN-LAST:event_btnGatillbakaActionPerformed
 
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed

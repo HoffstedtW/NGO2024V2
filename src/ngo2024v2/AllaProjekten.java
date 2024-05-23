@@ -28,6 +28,7 @@ public class AllaProjekten extends javax.swing.JFrame {
     public AllaProjekten(InfDB idb, String InloggadAdmin) {
         initComponents();
         this.idb = idb;
+        fyllProjektLista();
         
     }
 
@@ -81,6 +82,9 @@ public class AllaProjekten extends javax.swing.JFrame {
         AdminMenyFönster.setVisible(true);
     }
     
+ 
+ 
+ 
     
     
     
@@ -97,7 +101,7 @@ public class AllaProjekten extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnLaggtill = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,10 +128,10 @@ public class AllaProjekten extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Lägg till");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnLaggtill.setText("Lägg till");
+        btnLaggtill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnLaggtillActionPerformed(evt);
             }
         });
 
@@ -138,7 +142,7 @@ public class AllaProjekten extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(btnLaggtill)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -156,7 +160,7 @@ public class AllaProjekten extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(btnLaggtill))
                 .addContainerGap(271, Short.MAX_VALUE))
         );
 
@@ -178,12 +182,13 @@ public class AllaProjekten extends javax.swing.JFrame {
        gatilladminmeny();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        LäggtillAvdelning LäggtillAvdelningFönster = new LäggtillAvdelning(idb,InloggadAdmin);
-        LäggtillAvdelningFönster.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnLaggtillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggtillActionPerformed
+       LäggtillProjekt LäggtillProjektFönster = new LäggtillProjekt(idb, InloggadAdmin);
+       
+       LäggtillProjektFönster.setVisible(true);
+       this.setVisible(false);
+       
+    }//GEN-LAST:event_btnLaggtillActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -267,10 +272,10 @@ public class AllaProjekten extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLaggtill;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
