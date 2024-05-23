@@ -48,7 +48,7 @@ public class ProjektChefMeny extends javax.swing.JFrame {
         Valkommen = new javax.swing.JLabel();
         btnTillbaka = new javax.swing.JButton();
         btnVisaMinaProject = new javax.swing.JButton();
-        btnPartners = new javax.swing.JButton();
+        btnKostnadsStitistik = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,10 +70,10 @@ public class ProjektChefMeny extends javax.swing.JFrame {
             }
         });
 
-        btnPartners.setText("Partners");
-        btnPartners.addActionListener(new java.awt.event.ActionListener() {
+        btnKostnadsStitistik.setText("Kostnadsstatistik");
+        btnKostnadsStitistik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPartnersActionPerformed(evt);
+                btnKostnadsStitistikActionPerformed(evt);
             }
         });
 
@@ -94,7 +94,7 @@ public class ProjektChefMeny extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnPartners, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnKostnadsStitistik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnVisaMinaProject, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
                 .addGap(122, 122, 122))
         );
@@ -108,7 +108,7 @@ public class ProjektChefMeny extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(btnVisaMinaProject)
                 .addGap(18, 18, 18)
-                .addComponent(btnPartners)
+                .addComponent(btnKostnadsStitistik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addComponent(btnTillbaka)
                 .addContainerGap())
@@ -128,9 +128,10 @@ public class ProjektChefMeny extends javax.swing.JFrame {
         visaMinaProjekt.setVisible(true);
     }//GEN-LAST:event_btnVisaMinaProjectActionPerformed
 
-    private void btnPartnersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPartnersActionPerformed
-
-    }//GEN-LAST:event_btnPartnersActionPerformed
+    private void btnKostnadsStitistikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKostnadsStitistikActionPerformed
+        Kostnadsstatistik visaKostnadsstatistik = new Kostnadsstatistik(idb, InloggadHandlaggare);
+        visaKostnadsstatistik.setVisible(true);
+    }//GEN-LAST:event_btnKostnadsStitistikActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,7 +171,7 @@ public static void main(String args[]) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Valkommen;
-    private javax.swing.JButton btnPartners;
+    private javax.swing.JButton btnKostnadsStitistik;
     private javax.swing.JButton btnTillbaka;
     private javax.swing.JButton btnVisaMinaProject;
     private javax.swing.JLabel jLabel1;

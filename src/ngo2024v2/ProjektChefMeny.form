@@ -40,7 +40,7 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btnPartners" max="32767" attributes="0"/>
+                  <Component id="btnKostnadsStitistik" max="32767" attributes="0"/>
                   <Component id="btnVisaMinaProject" pref="149" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
@@ -57,7 +57,7 @@
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="btnVisaMinaProject" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnPartners" min="-2" max="-2" attributes="0"/>
+              <Component id="btnKostnadsStitistik" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="79" max="32767" attributes="0"/>
               <Component id="btnTillbaka" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -92,12 +92,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisaMinaProjectActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnPartners">
+    <Component class="javax.swing.JButton" name="btnKostnadsStitistik">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Partners"/>
+        <Property name="text" type="java.lang.String" value="Kostnadsstatistik"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPartnersActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKostnadsStitistikActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

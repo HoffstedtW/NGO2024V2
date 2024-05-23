@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngo2024v2;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
@@ -10,29 +11,37 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /**
  *
  * @author jerry
  */
-public class Dinaprojekt extends javax.swing.JFrame {
+public class Kostnadsstatistik extends javax.swing.JFrame {
 
     private InfDB idb;
-    private String InloggadHandlaggare;
-    private JList<String> projektLista;
+    private String InloggadHandLaggare;
     private ArrayList<HashMap<String, String>> listaProjekt;
+    private JList<String> projektLista;
     /**
-     * Creates new form Dinaprojekt
+     * Creates new form Kostnadsstatistik
+     * @param idb
+     * @param InloggadHandlaggare
      */
-    public Dinaprojekt(InfDB idb, String InloggadHandlaggare) {
+    public Kostnadsstatistik(InfDB idb, String InloggadHandlaggare) {
         this.idb = idb;
-        this.InloggadHandlaggare = InloggadHandlaggare;
+        this.InloggadHandLaggare = InloggadHandlaggare;
         initComponents();
-        fyllProjektLista();
+        fyllKostnadsLista();
     }
- private void fyllProjektLista(){
+
+    private Kostnadsstatistik() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void fyllKostnadsLista(){
 try {
             // Hämta projekten där den inloggade användaren är projektchef
-            String sqlFragaProjekt = "SELECT * FROM projekt join anstalld on aid = projektchef WHERE epost = '" + InloggadHandlaggare + "'";
+            String sqlFragaProjekt = "SELECT projektnamn, startdatum, slutdatum, kostnad FROM projekt join anstalld on aid = projektchef WHERE epost = '" + InloggadHandLaggare + "'";
             listaProjekt = idb.fetchRows(sqlFragaProjekt);
 
             // Skapa en modell för listan
@@ -45,11 +54,7 @@ try {
                 String htmlFormattedItem = "<html><font color='gray'><b>Projekt Namn:</b></font> " + rad.get("projektnamn") + "<br>"
                                           + "<font color='gray'><b>Startdatum:</b></font> " + rad.get("startdatum") + "<br>"
                                           + "<font color='gray'><b>Slutdatum:</b></font> " + rad.get("slutdatum") + "<br>"
-                                          + "<font color='gray'><b>Beskrivning:</b></font> " + rad.get("beskrivning") + "<br>"
-                                          + "<font color='gray'><b>Kostnad:</b></font> " + rad.get("kostnad") + "<br>"
-                                          + "<font color='gray'><b>Status:</b></font> " + rad.get("status") + "<br>"
-                                          + "<font color='gray'><b>Prioritet:</b></font> " + rad.get("prioritet") + "<br>"
-                                          + "<font color='gray'><b>Land:</b></font> " + rad.get("land") + "</html>";
+                                          + "<font color='gray'><b>Kostnad:</b></font> " + rad.get("kostnad") + "<html>";
                 model.addElement(htmlFormattedItem);
             }
             } else {
@@ -73,14 +78,11 @@ try {
         // Sätt JFrame till synlig efter att alla komponenter har lagts till
         this.setVisible(true);
     }
-        private Dinaprojekt() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-}
-        private void gaHandläggarmeny() {
+    private void gaTillProjektChefMeny() {
         this.dispose();
-        HandläggarMeny handläggarMeny = new HandläggarMeny(idb, InloggadHandlaggare);
-        handläggarMeny.setVisible(false);
-        }
+        ProjektChefMeny ProjektChefMeny = new ProjektChefMeny(idb, InloggadHandLaggare);
+        ProjektChefMeny.setVisible(false);
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,7 +93,6 @@ try {
     private void initComponents() {
 
         btnTillbaka = new javax.swing.JButton();
-        btnPartners = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,13 +103,6 @@ try {
             }
         });
 
-        btnPartners.setText("Partners");
-        btnPartners.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPartnersActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,17 +110,13 @@ try {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnTillbaka)
-                .addGap(96, 96, 96)
-                .addComponent(btnPartners)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(322, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTillbaka)
-                    .addComponent(btnPartners))
+                .addComponent(btnTillbaka)
                 .addContainerGap(271, Short.MAX_VALUE))
         );
 
@@ -135,20 +125,8 @@ try {
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         // TODO add your handling code here:
-        gaHandläggarmeny();
+        gaTillProjektChefMeny();
     }//GEN-LAST:event_btnTillbakaActionPerformed
-
-    private void btnPartnersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPartnersActionPerformed
-        // TODO add your handling code here:
-        int selectedIndex = projektLista.getSelectedIndex();
-        if (selectedIndex != -1 && listaProjekt != null) {
-            HashMap<String, String> selectedProjekt = listaProjekt.get(selectedIndex);
-            Partnerlista newpartnerlista = new Partnerlista(idb, selectedProjekt);
-            newpartnerlista.setVisible(true);
-        } else {
-            System.out.println("Vänligen välj ett projekt att redigera.");
-        }
-    }//GEN-LAST:event_btnPartnersActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,27 +145,25 @@ try {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dinaprojekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kostnadsstatistik.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dinaprojekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kostnadsstatistik.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dinaprojekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kostnadsstatistik.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dinaprojekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kostnadsstatistik.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Dinaprojekt().setVisible(true);
+                new Kostnadsstatistik().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnPartners;
     private javax.swing.JButton btnTillbaka;
     // End of variables declaration//GEN-END:variables
-
 }
