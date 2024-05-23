@@ -62,8 +62,6 @@ public class Läggtillpartnerprojekt extends javax.swing.JFrame {
             }
         });
 
-        txtProjektID.setText("jTextField1");
-
         btnTillbaka.setText("Tillbaka");
         btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

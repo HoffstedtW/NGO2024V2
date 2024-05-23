@@ -313,9 +313,9 @@ public class HandläggarMeny extends javax.swing.JFrame {
 
     private void btnVisaMinaProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaMinaProjektActionPerformed
         // TODO add your handling code here:
-        MinaProjekt MinaProjektFönster = new MinaProjekt(idb, InloggadHandlaggare);
+        Dinaprojekt DinaProjektFönster = new Dinaprojekt(idb, InloggadHandlaggare);
         
-        MinaProjektFönster.setVisible(true);
+        DinaProjektFönster.setVisible(true);
         
     }//GEN-LAST:event_btnVisaMinaProjektActionPerformed
     
