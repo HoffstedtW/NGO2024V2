@@ -41,6 +41,50 @@ private String InloggadHandlaggare;
       
     }
     
+    private void projektstatus(String status) {
+    String avdid = jTextField1.getText();
+
+    try {
+        String sqlFraga = "SELECT projekt.projektnamn, projekt.beskrivning, projekt.startdatum, projekt.slutdatum, projekt.kostnad, projekt.status, projekt.prioritet, projekt.projektchef, projekt.land " +
+                          "FROM projekt " +
+                          "JOIN ans_proj ON projekt.pid = ans_proj.pid " +
+                          "JOIN anstalld ON ans_proj.aid = anstalld.aid " +
+                          "JOIN avdelning ON anstalld.avdelning = avdelning.avdid " +
+                          "WHERE avdelning.avdid = " + avdid +
+                          " AND projekt.status = '" + status + "'"; // Hämta projekt med den specifika statusen
+
+        System.out.println(sqlFraga);
+
+        List<HashMap<String, String>> projektLista = idb.fetchRows(sqlFraga);
+
+        if (projektLista != null) {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            for (HashMap<String, String> projekt : projektLista) {
+                String projektnamn = projekt.get("projektnamn");
+                String beskrivning = projekt.get("beskrivning");
+                String startdatum = projekt.get("startdatum");
+                String slutdatum = projekt.get("slutdatum");
+                String kostnad = projekt.get("kostnad");
+                String statusProjekt = projekt.get("status");
+                String prioritet = projekt.get("prioritet");
+                String projektchef = projekt.get("projektchef");
+                String land = projekt.get("land");
+
+                model.addRow(new Object[]{projektnamn, beskrivning, startdatum, slutdatum, kostnad, statusProjekt, prioritet, projektchef, land});
+            }
+        } else {
+            // Inga projekt hittades för detta avdelnings-ID med den specifika statusen
+            // Här kan du hantera detta fall, t.ex. visa ett meddelande för användaren
+            System.out.println("Inga projekt med status '" + status + "' hittades för detta avdelningsID.");
+        }
+    } catch (InfException e) {
+        // Hantera eventuella fel som kan uppstå vid databasåtkomst
+        e.printStackTrace();
+    }
+}
+    
     
     private ProjektPåAvdelning() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -64,6 +108,9 @@ private String InloggadHandlaggare;
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        btnPlanerade = new javax.swing.JButton();
+        btnPagaende = new javax.swing.JButton();
+        btnAvslutade = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -108,6 +155,27 @@ private String InloggadHandlaggare;
 
         jLabel3.setText("Inga projekt hittades för detta avdelningsID.");
 
+        btnPlanerade.setText("Planerade");
+        btnPlanerade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlaneradeActionPerformed(evt);
+            }
+        });
+
+        btnPagaende.setText("Pågående");
+        btnPagaende.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPagaendeActionPerformed(evt);
+            }
+        });
+
+        btnAvslutade.setText("Avslutade");
+        btnAvslutade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvslutadeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,43 +186,65 @@ private String InloggadHandlaggare;
                         .addContainerGap()
                         .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel1))
+                        .addGap(127, 127, 127)
+                        .addComponent(jLabel3)
+                        .addGap(108, 108, 108)
+                        .addComponent(btnAvslutade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1)
-                        .addGap(129, 129, 129)))
+                        .addGap(59, 59, 59)
+                        .addComponent(btnPagaende, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jButton2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(jLabel1)))
+                        .addGap(275, 275, 275)
+                        .addComponent(btnPlanerade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(27, 27, 27))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(127, 127, 127)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnPlanerade)
+                        .addGap(9, 9, 9)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPagaende)
+                        .addGap(10, 10, 10)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAvslutade)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -167,47 +257,47 @@ private String InloggadHandlaggare;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    String avdid = jTextField1.getText();
-    
-    try { 
-        String sqlFraga= "select distinct projekt.pid, projektnamn, projekt.beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, projekt.land, avdelning.avdid from projekt "+
-                         "join ans_proj ON projekt.pid = ans_proj.pid " +
-                         "join anstalld ON ans_proj.aid = anstalld.aid " +
-                         "join avdelning On anstalld.avdelning = avdelning.avdid "+
-                         "where avdelning.avdid = " + avdid;
-        System.out.println (sqlFraga);
-        
-        
+   String avdid = jTextField1.getText();
+
+    try {
+        String sqlFraga = "SELECT projekt.projektnamn, projekt.beskrivning, projekt.startdatum, projekt.slutdatum, projekt.kostnad, projekt.status, projekt.prioritet, projekt.projektchef, projekt.land " +
+                          "FROM projekt " +
+                          "JOIN ans_proj ON projekt.pid = ans_proj.pid " +
+                          "JOIN anstalld ON ans_proj.aid = anstalld.aid " +
+                          "JOIN avdelning ON anstalld.avdelning = avdelning.avdid " +
+                          "WHERE avdelning.avdid = " + avdid +
+                          " ORDER BY projekt.status"; // Sortera projekten efter status
+
+        System.out.println(sqlFraga);
+
         List<HashMap<String, String>> projektLista = idb.fetchRows(sqlFraga);
-        
-         if (projektLista != null) {
-                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                model.setRowCount(0);
-        
-        for (HashMap<String, String> projekt : projektLista){
-            String projektnamn = projekt.get("projektnamn");
-            String beskrivning = projekt.get("beskrivning");
-            String startdatum = projekt.get("startdatum");
-            String slutdatum = projekt.get("slutdatum");
-            String kostnad = projekt.get("kostnad");
-            String status = projekt.get("status");
-            String prioritet = projekt.get("prioritet");
-            String projektchef = projekt.get("projektchef");
-            String land = projekt.get("land");
-            
-             model.addRow(new Object[]{projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land});
+
+        if (projektLista != null) {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            for (HashMap<String, String> projekt : projektLista) {
+                String projektnamn = projekt.get("projektnamn");
+                String beskrivning = projekt.get("beskrivning");
+                String startdatum = projekt.get("startdatum");
+                String slutdatum = projekt.get("slutdatum");
+                String kostnad = projekt.get("kostnad");
+                String status = projekt.get("status");
+                String prioritet = projekt.get("prioritet");
+                String projektchef = projekt.get("projektchef");
+                String land = projekt.get("land");
+
+                model.addRow(new Object[]{projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land});
+            }
+        } else {
+            // Inga projekt hittades för detta avdelnings-ID
+            // Här kan du hantera detta fall, t.ex. visa ett meddelande för användaren
+            System.out.println("Inga projekt hittades för detta avdelningsID.");
         }
-        
-         }else {
-             
-                
-             //System.out.println("Inga projekt hittades för detta avdelningsID.");
-             
-                }
+    } catch (InfException e) {
+        // Hantera eventuella fel som kan uppstå vid databasåtkomst
+        e.printStackTrace();
     }
-        catch(InfException e){
-                System.out.println("Ett fel uppstod: " + e.getMessage());
-                }
     
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -225,6 +315,18 @@ private String InloggadHandlaggare;
         // TODO add your handling code here:
         gatillHandlaggarMeny();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnPlaneradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaneradeActionPerformed
+        projektstatus("planerat");
+    }//GEN-LAST:event_btnPlaneradeActionPerformed
+
+    private void btnAvslutadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvslutadeActionPerformed
+       projektstatus("Avslutat");
+    }//GEN-LAST:event_btnAvslutadeActionPerformed
+
+    private void btnPagaendeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagaendeActionPerformed
+        projektstatus("Pågående");
+    }//GEN-LAST:event_btnPagaendeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,6 +365,9 @@ private String InloggadHandlaggare;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAvslutade;
+    private javax.swing.JButton btnPagaende;
+    private javax.swing.JButton btnPlanerade;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
