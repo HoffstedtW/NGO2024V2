@@ -22,6 +22,7 @@ public class Partnermeny extends javax.swing.JFrame {
     private InfDB idb;
     private JList<String> partnerlista;
     private HashMap<String, String> selectedProjekt;
+    private String InloggadHandLaggare;
     /**
      * Creates new form Partnermeny
      * @param idb
@@ -32,6 +33,7 @@ public class Partnermeny extends javax.swing.JFrame {
         this.selectedProjekt = selectedProjekt;
         initComponents();
         fyllPartnerLista();
+        
     }
 
     private Partnermeny() {
@@ -86,6 +88,11 @@ try {
         // Sätt JFrame till synlig efter att alla komponenter har lagts till
         this.setVisible(true);
     }
+private void gatillminaprojekt() {
+        this.dispose();
+        MinaProjekt minaprojekt = new MinaProjekt(idb, InloggadHandLaggare);
+        minaprojekt.setVisible(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,21 +102,93 @@ try {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnTillbaka = new javax.swing.JButton();
+        btnLaggTillPartner = new javax.swing.JButton();
+        btnTaBortPartner = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnTillbaka.setText("Tillbaka");
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTillbakaActionPerformed(evt);
+            }
+        });
+
+        btnLaggTillPartner.setText("Lägg till partner");
+        btnLaggTillPartner.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillPartnerActionPerformed(evt);
+            }
+        });
+
+        btnTaBortPartner.setText("Ta bort partner");
+        btnTaBortPartner.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaBortPartnerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnTillbaka)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addComponent(btnTaBortPartner)
+                .addGap(18, 18, 18)
+                .addComponent(btnLaggTillPartner)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLaggTillPartner)
+                    .addComponent(btnTaBortPartner)
+                    .addComponent(btnTillbaka))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+private void taBortPartner() {
+        try {
+            int selectedIndex = partnerlista.getSelectedIndex();
+            if (selectedIndex != -1) {
+                String selectedValue = partnerlista.getModel().getElementAt(selectedIndex);
+                String[] parts = selectedValue.split("<br>");
+                String partnerId = parts[0].replaceAll("\\D+", "");
+                String projektId = selectedProjekt.get("pid");
+
+                String sqlDeletePartner = "DELETE FROM projekt_partner WHERE partner_pid = '" + partnerId + "' AND pid = '" + projektId + "'";
+                idb.delete(sqlDeletePartner);
+
+                ((DefaultListModel<String>) partnerlista.getModel()).remove(selectedIndex);
+
+                System.out.println("Partner har tagits bort från projektet.");
+            } else {
+                System.out.println("Vänligen välj en partner att ta bort.");
+            }
+        } catch (InfException ex) {
+            System.out.println("Database error: " + ex.getMessage());
+        }
+    }
+    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
+        // TODO add your handling code here:
+         gatillminaprojekt();
+    }//GEN-LAST:event_btnTillbakaActionPerformed
+
+    private void btnLaggTillPartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillPartnerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLaggTillPartnerActionPerformed
+
+    private void btnTaBortPartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortPartnerActionPerformed
+        // TODO add your handling code here:
+        taBortPartner();
+    }//GEN-LAST:event_btnTaBortPartnerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,5 +226,8 @@ try {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLaggTillPartner;
+    private javax.swing.JButton btnTaBortPartner;
+    private javax.swing.JButton btnTillbaka;
     // End of variables declaration//GEN-END:variables
 }
