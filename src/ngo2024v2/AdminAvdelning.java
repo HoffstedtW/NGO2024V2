@@ -15,48 +15,44 @@ import oru.inf.InfException;
  *
  * @author hampusdaven
  */
-public class AdminLand extends javax.swing.JFrame {
-    
+public class AdminAvdelning extends javax.swing.JFrame {
+      
     private InfDB idb;
     private String InloggadAdmin;
-    private JList<String> Landlista;
-    
+    private JList<String> Avdelninglista;
 
     /**
-     * Creates new form AdminLand
+     * Creates new form AdminAvdelning
      */
-    public AdminLand(InfDB idb, String InloggadAdmin) {
+    public AdminAvdelning(InfDB idb, String InloggadAdmin) {
         initComponents();
-        this.idb = idb;
+         this.idb = idb;
         this.InloggadAdmin = InloggadAdmin;
         
-        
-        try {
+         try {
             
-            String sqlFragaLand = "SELECT * FROM land";
+            String sqlFragaLand = "SELECT * FROM avdelning";
              ArrayList<HashMap<String, String>> ListaPersonal = idb.fetchRows(sqlFragaLand);
              
              DefaultListModel<String> model = new DefaultListModel<>();
              
               for (HashMap<String, String> rad : ListaPersonal) {
                 // Skapa en sträng med HTML-formatering för varje anställd
-                String htmlFormattedItem = "<html><font color='gray'><b>lid:</b></font> " + rad.get("lid") + "<br>"
+                String htmlFormattedItem = "<html><font color='gray'><b>avdid:</b></font> " + rad.get("avdid") + "<br>"
                                           + "<font color='gray'><b>namn:</b></font> " + rad.get("namn") + "<br>"
-                                          + "<font color='gray'><b>sprak:</b></font> " + rad.get("sprak") + "<br>"
-                                          + "<font color='gray'><b>valuta:</b></font> " + rad.get("valuta") + "<br>"
-                                           + "<font color='gray'><b>tidszon:</b></font> " + rad.get("tidszon") + "<br>"
-                                           + "<font color='gray'><b>politisk_struktur:</b></font> " + rad.get("politisk_struktur") + "<br>"
-                                           + "<font color='gray'><b>ekonomi:</b></font> " + rad.get("ekonomi") + "</html>";
-
-
-
-                model.addElement(htmlFormattedItem);
+                                          + "<font color='gray'><b>beskrivning:</b></font> " + rad.get("beskrivning") + "<br>"
+                                          + "<font color='gray'><b>adress:</b></font> " + rad.get("adress") + "<br>"
+                                           + "<font color='gray'><b>epost:</b></font> " + rad.get("epost") + "<br>"
+                                           + "<font color='gray'><b>telefon:</b></font> " + rad.get("telefon") + "<br>"
+                                           + "<font color='gray'><b>stad:</b></font> " + rad.get("stad") + "<br>"
+                                         + "<font color='gray'><b>chef:</b></font> " + rad.get("chef") + "</html>";
+             model.addElement(htmlFormattedItem);
             }
               
-                Landlista = new JList<>(model);
+                Avdelninglista = new JList<>(model);
 
             // Lägg till JList till en JScrollPane för att göra det möjligt att rulla
-            JScrollPane scrollPane = new JScrollPane(Landlista);
+            JScrollPane scrollPane = new JScrollPane(Avdelninglista);
             scrollPane.setBounds(20, 40, 500, 300); // Ange position och storlek för JScrollPane
     // Lägg till JScrollPane till JFrame
             getContentPane().add(scrollPane);
@@ -65,12 +61,12 @@ public class AdminLand extends javax.swing.JFrame {
         System.out.println(ex.getMessage());
     }
 }
-    
-     private void gatilladminmeny() {
+    private void gatilladminmeny() {
         this.dispose();
         AdminMeny AdminMenyFönster = new AdminMeny(idb, InloggadAdmin);
         AdminMenyFönster.setVisible(true);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -83,31 +79,15 @@ public class AdminLand extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        btnAndra = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Länder");
+        jLabel1.setText("Avdelningar");
 
         jButton1.setText("Gå tillbaka");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Lägg till");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        btnAndra.setText("Ändra");
-        btnAndra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAndraActionPerformed(evt);
             }
         });
 
@@ -118,24 +98,17 @@ public class AdminLand extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAndra, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(96, 96, 96)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3)
-                    .addComponent(btnAndra))
-                .addContainerGap(271, Short.MAX_VALUE))
+                    .addComponent(jButton1))
+                .addGap(0, 277, Short.MAX_VALUE))
         );
 
         pack();
@@ -144,20 +117,6 @@ public class AdminLand extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         gatilladminmeny();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       LäggtillLand LäggtillLandFönster = new LäggtillLand(idb, InloggadAdmin);
-       
-      LäggtillLandFönster.setVisible(true);
-      this.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void btnAndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraActionPerformed
-        ÄndraLand ÄndraLandFönster = new ÄndraLand(idb, InloggadAdmin);
-        
-        ÄndraLandFönster.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnAndraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,28 +135,26 @@ public class AdminLand extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminLand.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminLand.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminLand.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminLand.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminAvdelning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new AdminLand().setVisible(true);
+                //new AdminAvdelning().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAndra;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

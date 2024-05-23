@@ -38,7 +38,7 @@ public class AdminMeny extends javax.swing.JFrame {
 
         lblInloggadAdmin = new javax.swing.JLabel();
         lblValkommen = new javax.swing.JLabel();
-        btnÄndraUppgifter = new javax.swing.JButton();
+        btnAvdelningar = new javax.swing.JButton();
         btnTilldeladeProjekt = new javax.swing.JButton();
         btnAnställda = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -50,10 +50,10 @@ public class AdminMeny extends javax.swing.JFrame {
 
         lblValkommen.setText("jLabel2");
 
-        btnÄndraUppgifter.setText("Avdelningar");
-        btnÄndraUppgifter.addActionListener(new java.awt.event.ActionListener() {
+        btnAvdelningar.setText("Avdelningar");
+        btnAvdelningar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnÄndraUppgifterActionPerformed(evt);
+                btnAvdelningarActionPerformed(evt);
             }
         });
 
@@ -97,7 +97,7 @@ public class AdminMeny extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnÄndraUppgifter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                    .addComponent(btnAvdelningar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                     .addComponent(btnAnställda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnTilldeladeProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -109,7 +109,7 @@ public class AdminMeny extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addComponent(lblInloggadAdmin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
-                .addComponent(btnÄndraUppgifter)
+                .addComponent(btnAvdelningar)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTilldeladeProjekt)
@@ -124,9 +124,12 @@ public class AdminMeny extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnÄndraUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÄndraUppgifterActionPerformed
-        
-    }//GEN-LAST:event_btnÄndraUppgifterActionPerformed
+    private void btnAvdelningarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvdelningarActionPerformed
+         AdminAvdelning AdminAvdelningFönster = new AdminAvdelning(idb, InloggadAdmin);
+         
+         AdminAvdelningFönster.setVisible(true);
+         this.setVisible(false);
+    }//GEN-LAST:event_btnAvdelningarActionPerformed
 
     private void btnTilldeladeProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilldeladeProjektActionPerformed
         // Skapa ett nytt objekt av HållbarhetsMål-klassen
@@ -187,8 +190,8 @@ public class AdminMeny extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnställda;
+    private javax.swing.JButton btnAvdelningar;
     private javax.swing.JButton btnTilldeladeProjekt;
-    private javax.swing.JButton btnÄndraUppgifter;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel lblInloggadAdmin;

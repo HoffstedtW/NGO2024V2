@@ -92,14 +92,14 @@ public class ÄndraLand extends javax.swing.JFrame {
         
          if (sqlFraga.toString().contains("=")) {
             idb.update(sqlFraga.toString());
-            JOptionPane.showMessageDialog(null, "Uppgifter om landet har uppdaterats!");
+            JOptionPane.showMessageDialog(null, "Uppgifter uppdaterade!");
         } else {
             JOptionPane.showMessageDialog(null, "Inga uppgifter att uppdatera!");
         }
  } catch (InfException e) {
-        JOptionPane.showMessageDialog(null, "Ett fel inträffade: " + e.getMessage());
+        JOptionPane.showMessageDialog(null, "Ett fel har inträffats: " + e.getMessage());
     } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "Ogiltigt format för LID! " + e.getMessage());
+        JOptionPane.showMessageDialog(null, "Ogiltigt LID! " + e.getMessage());
     }
 }
 

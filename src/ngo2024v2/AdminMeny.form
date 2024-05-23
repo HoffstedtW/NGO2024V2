@@ -39,7 +39,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btnÄndraUppgifter" alignment="1" pref="110" max="32767" attributes="0"/>
+                  <Component id="btnAvdelningar" alignment="1" pref="110" max="32767" attributes="0"/>
                   <Component id="btnAnställda" max="32767" attributes="0"/>
                   <Component id="btnTilldeladeProjekt" max="32767" attributes="0"/>
               </Group>
@@ -54,7 +54,7 @@
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Component id="lblInloggadAdmin" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="114" max="32767" attributes="0"/>
-              <Component id="btnÄndraUppgifter" min="-2" max="-2" attributes="0"/>
+              <Component id="btnAvdelningar" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnTilldeladeProjekt" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -81,12 +81,12 @@
         <Property name="text" type="java.lang.String" value="jLabel2"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btn&#xc4;ndraUppgifter">
+    <Component class="javax.swing.JButton" name="btnAvdelningar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Avdelningar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn&#xc4;ndraUppgifterActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAvdelningarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnTilldeladeProjekt">
