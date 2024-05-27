@@ -39,12 +39,7 @@ private String InloggadAdmin;
         
       
     }
-    
-    private void gatilladminmeny() {
-        this.dispose();
-        AdminMeny AdminMenyFönster = new AdminMeny(idb, InloggadAdmin);
-        AdminMenyFönster.setVisible(true);
-    }
+   
     
     private void projektstatus(String status) {
     String avdid = jTextField1.getText();
@@ -318,7 +313,7 @@ private String InloggadAdmin;
     //När man klickar på knappen används metoden och man öppnar handläggarmenyn.
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        gatilladminmeny();
+        gatillHandlaggarMeny();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnPlaneradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaneradeActionPerformed

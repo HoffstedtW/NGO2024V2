@@ -18,10 +18,12 @@ public class LäggtillAvdelning extends javax.swing.JFrame {
 
     /**
      * Creates new form LäggtillAvdelning
+     * @param inloggadAdmin
      */
     public LäggtillAvdelning(InfDB idb, String inloggadAdmin) {
         initComponents();
         this.idb = idb;
+        this.InloggadAdmin = InloggadAdmin;
     }
  private void gatillallaprojekten() {
         this.dispose();
