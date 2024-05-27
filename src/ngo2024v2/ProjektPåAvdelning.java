@@ -7,7 +7,6 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.util.HashMap;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,19 +19,18 @@ private InfDB idb;
 private HashMap <String, String> projektLista;
 private javax.swing.JLabel lblFelmeddelande;
 private String InloggadHandlaggare;
-private String InloggadAdmin;
     /**
      * Creates new form ProjektPåAvdelning
      * @param idb
      * @param InloggadHandlaggare
      */
 
-    public ProjektPåAvdelning(InfDB idb, String InloggadAdmin) {
+    public ProjektPåAvdelning(InfDB idb, String InloggadHandlaggare) {
         initComponents();
         this.idb = idb;
         this.projektLista = projektLista;
         this.lblFelmeddelande = new javax.swing.JLabel();
-        this.InloggadAdmin = InloggadAdmin;
+        this.InloggadHandlaggare = InloggadHandlaggare;
         lblFelmeddelande.setVisible(false);
         
         
@@ -102,12 +100,12 @@ private String InloggadAdmin;
         jToggleButton1 = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblAvdelningsProjekt = new javax.swing.JLabel();
+        lblSkrivInAID = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        btnHamtaProjekt = new javax.swing.JButton();
+        btnTillbaka = new javax.swing.JButton();
+        lblIngaProjekt = new javax.swing.JLabel();
         btnPlanerade = new javax.swing.JButton();
         btnPagaende = new javax.swing.JButton();
         btnAvslutade = new javax.swing.JButton();
@@ -129,9 +127,9 @@ private String InloggadAdmin;
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setText("Din avdelnings tilldelade projekt");
+        lblAvdelningsProjekt.setText("Din avdelnings tilldelade projekt");
 
-        jLabel2.setText("Skriv i avdelningsID");
+        lblSkrivInAID.setText("Skriv i avdelningsID");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,21 +137,21 @@ private String InloggadAdmin;
             }
         });
 
-        jButton1.setText("Hämta projekt");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnHamtaProjekt.setText("Hämta projekt");
+        btnHamtaProjekt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnHamtaProjektActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Gå tillbaka");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnTillbaka.setText("Gå tillbaka");
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnTillbakaActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Inga projekt hittades för detta avdelningsID.");
+        lblIngaProjekt.setText("Inga projekt hittades för detta avdelningsID.");
 
         btnPlanerade.setText("Planerade");
         btnPlanerade.addActionListener(new java.awt.event.ActionListener() {
@@ -187,26 +185,26 @@ private String InloggadAdmin;
                         .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(127, 127, 127)
-                        .addComponent(jLabel3)
+                        .addComponent(lblIngaProjekt)
                         .addGap(108, 108, 108)
                         .addComponent(btnAvslutade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(jLabel2)
+                        .addComponent(lblSkrivInAID)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(btnHamtaProjekt)
                         .addGap(59, 59, 59)
                         .addComponent(btnPagaende, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jButton2))
+                                .addComponent(btnTillbaka))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
-                                .addComponent(jLabel1)))
+                                .addComponent(lblAvdelningsProjekt)))
                         .addGap(275, 275, 275)
                         .addComponent(btnPlanerade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -217,9 +215,9 @@ private String InloggadAdmin;
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(btnTillbaka)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1))
+                        .addComponent(lblAvdelningsProjekt))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnPlanerade)
                         .addGap(9, 9, 9)))
@@ -227,24 +225,22 @@ private String InloggadAdmin;
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
+                            .addComponent(lblSkrivInAID)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1)))
+                            .addComponent(btnHamtaProjekt)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnPagaende)
                         .addGap(10, 10, 10)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
+                        .addComponent(lblIngaProjekt)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAvslutade)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
@@ -255,7 +251,7 @@ private String InloggadAdmin;
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnHamtaProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHamtaProjektActionPerformed
         // TODO add your handling code here:
    String avdid = jTextField1.getText();
 
@@ -299,7 +295,7 @@ private String InloggadAdmin;
         e.printStackTrace();
     }
     
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnHamtaProjektActionPerformed
 
     //Metoden anropas för att öppna handläggarmenyn. This.dispose stänger det fönster man har öppet.
     //Efter det skapar man en ny instans av Handläggarmeny med inloggadHandläggare som paramenter
@@ -311,10 +307,10 @@ private String InloggadAdmin;
     }
     
     //När man klickar på knappen används metoden och man öppnar handläggarmenyn.
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         // TODO add your handling code here:
         gatillHandlaggarMeny();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnTillbakaActionPerformed
 
     private void btnPlaneradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaneradeActionPerformed
         projektstatus("planerat");
@@ -366,16 +362,16 @@ private String InloggadAdmin;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvslutade;
+    private javax.swing.JButton btnHamtaProjekt;
     private javax.swing.JButton btnPagaende;
     private javax.swing.JButton btnPlanerade;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton btnTillbaka;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel lblAvdelningsProjekt;
+    private javax.swing.JLabel lblIngaProjekt;
+    private javax.swing.JLabel lblSkrivInAID;
     // End of variables declaration//GEN-END:variables
 }
