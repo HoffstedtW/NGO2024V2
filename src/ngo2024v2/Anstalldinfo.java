@@ -311,7 +311,8 @@ public class Anstalldinfo extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFornamnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            adressandring();
+           
+        adressandring();
             epostandring();
             losenandring();
             telefonnummerandring();

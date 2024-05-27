@@ -26,12 +26,21 @@ public class ÄndraAvdelning extends javax.swing.JFrame {
     
     
     private void andrainfo() {
-       
     try {
+        // Hämta värdet från txtEpost-fältet
+        String epost = txtEpost.getText();
+        
+        // Kontrollera om e-postadressen är giltig med hjälp av valideringsmetoden
+        if (!Validering.valideraEpost(epost)) {
+            // Visa meddelande till användaren om att valideringen misslyckades
+            JOptionPane.showMessageDialog(null, "Ogiltig e-postadress. Kontrollera att alla fält är korrekt ifyllda.");
+            return; 
+        }   
+
+        // Hämta värden från de andra textfälten
         String avdidStr = txtavdid.getText();
         String namn = txtNamn.getText();
         String beskrivning = txtBeskrivning.getText();
-        String epost = txtEpost.getText();
         String telefon = txtTelefon.getText();
         String stad = txtStad.getText();
         String chef = txtChef.getText();
@@ -102,6 +111,10 @@ public class ÄndraAvdelning extends javax.swing.JFrame {
     }
 }
 
+
+    
+    
+    
 
     
     
