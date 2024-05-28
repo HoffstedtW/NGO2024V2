@@ -17,7 +17,7 @@ public class Validering {
   
     
     public static boolean valideraLosenord (String losenord) {
-        String regex = "^(?:[\\x21-\\x7E]){8,20}$";
+        String regex = "^(?:[\\x21-\\x7E]){5,25}$";
         return losenord.matches(regex);
     }
     

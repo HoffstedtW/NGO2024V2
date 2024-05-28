@@ -62,7 +62,7 @@ public class SökHandläggarePåAvdelning extends javax.swing.JFrame {
         });
     }
 
-    private void sökHandläggare() {
+     private void sökHandläggare() {
         String sökord = txtSokHandlaggare.getText().trim();
 
         // Töm listan för att visa nya resultat
@@ -83,20 +83,26 @@ public class SökHandläggarePåAvdelning extends javax.swing.JFrame {
                 // Loopa igenom resultatet och lägg till dem i listmodellen
                 if (sökResultat != null) {
                     for (HashMap<String, String> rad : sökResultat) {
-                        // Skapa en sträng med HTML-formatering för varje handläggare
-                        String htmlFormattedItem = "<html><font color='gray'><b>Namn:</b></font> " + rad.get("fornamn") + " " + rad.get("efternamn") + "<br>"
-                                + "<font color='gray'><b>Epost:</b></font> " + rad.get("epost") + "</html>"
-                                + "<font color='gray'><b>Adress:</b></font> " + rad.get("adress") + "</html>"
-                        + "<font color='gray'><b>Telefonnr:</b></font> " + rad.get("telefon") + "</html>";
-                        model.addElement(htmlFormattedItem);
+                        // Validera text innan de visas
+                        String fornamn = rad.get("fornamn");
+                        String efternamn = rad.get("efternamn");
+
+                        if (Validering.valideraText(fornamn) && Validering.valideraText(efternamn)) {
+                            // Skapa en sträng med HTML-formatering för varje handläggare
+                            String htmlFormattedItem = "<html><font color='gray'><b>Namn:</b></font> " + fornamn + " " + efternamn + "<br>"
+                                    + "<font color='gray'><b>Epost:</b></font> " + rad.get("epost") + "<br>"
+                                    + "<font color='gray'><b>Adress:</b></font> " + rad.get("adress") + "<br>"
+                                    + "<font color='gray'><b>Telefonnr:</b></font> " + rad.get("telefon") + "</html>";
+                            model.addElement(htmlFormattedItem);
+                        } else {
+                            System.out.println("Ogiltig data för handläggare: " + rad);
+                        }
                     }
                 }
             }
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
         }
-        
-        
     }
 
     /**
