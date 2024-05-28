@@ -92,8 +92,6 @@ public class SökaProjekt extends javax.swing.JFrame {
 
         // Töm listan för att visa nya resultat
         model.clear();
-        
-        //Validera datumformatet
 if ((!startDatum.isEmpty() && !startDatum.matches("\\d{4}-\\d{2}-\\d{2}")) ||
         (!slutDatum.isEmpty() && !slutDatum.matches("\\d{4}-\\d{2}-\\d{2}"))) {
         System.out.println("Datumet måste vara i formatet yyyy-mm-dd");
@@ -101,32 +99,24 @@ if ((!startDatum.isEmpty() && !startDatum.matches("\\d{4}-\\d{2}-\\d{2}")) ||
     }
         try {
             // Hämta avdelningen för inloggad handläggare
-        String sqlFragaHandlaggareAvdelning = "SELECT avdelning FROM anstalld WHERE epost = '" + InloggadHandlaggare + "'";
-        String handlaggareAvdelning = idb.fetchSingle(sqlFragaHandlaggareAvdelning);
+            String sqlFragaHandlaggareAvdelning = "SELECT avdelning FROM anstalld WHERE epost = '" + InloggadHandlaggare + "'";
+            String handlaggareAvdelning = idb.fetchSingle(sqlFragaHandlaggareAvdelning);
 
-             // Om avdelningen för handläggaren finns
-        if (handlaggareAvdelning != null) {
-            // Bygg SQL-frågan baserat på angivna datum
-            StringBuilder sqlFragaProjekt = new StringBuilder("SELECT projektnamn, startdatum, slutdatum FROM projekt WHERE avdelning = '" + handlaggareAvdelning + "'");
-            
-            if (!startDatum.isEmpty()) {
-                sqlFragaProjekt.append(" AND startdatum >= '").append(startDatum).append("'");
-            }
-            if (!slutDatum.isEmpty()) {
-                sqlFragaProjekt.append(" AND slutdatum <= '").append(slutDatum).append("'");
-            }
-
-            System.out.println(sqlFragaProjekt.toString());
-            ArrayList<HashMap<String, String>> sokaResultat = idb.fetchRows(sqlFragaProjekt.toString());
+            // Om avdelningen för handläggaren finns
+            if (handlaggareAvdelning != null) {
+                // Hämta projekt som tillhör samma avdelning och ligger inom datumintervallet
+                String sqlFragaProjekt = "SELECT projektnamn, startdatum, slutdatum FROM projekt WHERE startdatum <= '" + startDatum + "' AND slutdatum >= '" + slutDatum + "'";
+                System.out.println(sqlFragaProjekt);
+                ArrayList<HashMap<String, String>> sokaResultat = idb.fetchRows(sqlFragaProjekt);
 
                 // Loopa igenom resultatet och lägg till dem i listmodellen
-            if (sokaResultat != null) {
-                for (HashMap<String, String> rad : sokaResultat) {
-                    // Skapa en sträng med HTML-formatering för varje projekt
-                    String htmlFormattedItem = "<html><font color='gray'><b>Projekt:</b></font> " + rad.get("projektnamn") + "<br>"
-                            + "<font color='gray'><b>Startdatum:</b></font> " + rad.get("startdatum") + "<br>"
-                            + "<font color='gray'><b>Slutdatum:</b></font> " + rad.get("slutdatum") + "</html>";
-                    model.addElement(htmlFormattedItem);
+                if (sokaResultat != null) {
+                    for (HashMap<String, String> rad : sokaResultat) {
+                        // Skapa en sträng med HTML-formatering för varje projekt
+                        String htmlFormattedItem = "<html><font color='gray'><b>Projekt:</b></font> " + rad.get("projektnamn") + "<br>"
+                                + "<font color='gray'><b>Startdatum:</b></font> " + rad.get("startdatum") + "<br>"
+                                + "<font color='gray'><b>Slutdatum:</b></font> " + rad.get("slutdatum") + "</html>";
+                        model.addElement(htmlFormattedItem);
                     }
                 }
             }
