@@ -55,7 +55,7 @@
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="85" max="32767" attributes="0"/>
+              <EmptySpace pref="92" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -85,7 +85,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Skriv i PID p&#xe5; den partner du vill radarea"/>
+        <Property name="text" type="java.lang.String" value="Skriv i PID p&#xe5; den partner du vill radera"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPID">

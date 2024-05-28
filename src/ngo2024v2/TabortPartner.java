@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -94,7 +95,12 @@ public class TabortPartner extends javax.swing.JFrame {
         // Sätt JFrame till synlig efter att alla komponenter har lagts till
         this.setVisible(true);
     }
-       
+    
+    private void gatilladminmeny() {
+        this.dispose();
+        AdminMeny AdminMenyFönster = new AdminMeny(idb, InloggadAdmin);
+        AdminMenyFönster.setVisible(true);
+    }   
        
        
        
@@ -114,7 +120,7 @@ public class TabortPartner extends javax.swing.JFrame {
         String sqlRaderaPartner = "DELETE FROM partner WHERE pid = '" + partnerID + "'";
         idb.delete(sqlRaderaPartner);
 
-        System.out.println("Partner med PID " + partnerID + " har raderats.");
+        JOptionPane.showMessageDialog(this,"Partner med PID " + partnerID + " har raderats.");
         model.clear(); // Töm listmodellen för att uppdatera listan
         fyllPartnerLista(); // Uppdatera listan
 
@@ -122,10 +128,10 @@ public class TabortPartner extends javax.swing.JFrame {
         System.out.println(ex.getMessage());
     }
     
-    if (selectedPartner == null) {
-        System.out.println("Ingen partner vald att radera.");
-        return;
-    }
+    
+    
+    
+    
 }
 
 
@@ -160,7 +166,7 @@ public class TabortPartner extends javax.swing.JFrame {
 
         jLabel1.setText("Ta bort partner");
 
-        jLabel3.setText("Skriv i PID på den partner du vill radarea");
+        jLabel3.setText("Skriv i PID på den partner du vill radera");
 
         jButton1.setText("Radera partner");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -199,7 +205,7 @@ public class TabortPartner extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(txtPID, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,6 +228,7 @@ public class TabortPartner extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        gatilladminmeny();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
