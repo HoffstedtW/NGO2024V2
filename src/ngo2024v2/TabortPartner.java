@@ -41,10 +41,10 @@ public class TabortPartner extends javax.swing.JFrame {
     }
     
     
-       private void gatilladminMeny() {
+       private void gatillAdminPartner() {
           this.dispose();
-          AdminMeny AdminMenyFönster = new AdminMeny (idb, InloggadAdmin);
-          AdminMenyFönster.setVisible(true);
+          AdminPartner AdminPartnerFönster = new AdminPartner (idb, InloggadAdmin);
+          AdminPartnerFönster.setVisible(true);
       }
     
        

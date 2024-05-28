@@ -26,10 +26,10 @@ private String InloggadAdmin;
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-       private void gatilladminMeny() {
+       private void gatillAdminPartner() {
         this.dispose();
-        AdminMeny AdminLandFönster = new AdminMeny(idb, InloggadAdmin);
-        AdminLandFönster.setVisible(true);
+        AdminPartner AdminPartnerFönster = new AdminPartner(idb, InloggadAdmin);
+        AdminPartnerFönster.setVisible(true);
     }
        
         private void andrainfo() {
@@ -271,7 +271,7 @@ private String InloggadAdmin;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        gatilladminMeny();
+        gatillAdminPartner();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
