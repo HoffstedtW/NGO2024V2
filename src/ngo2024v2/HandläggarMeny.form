@@ -52,7 +52,6 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnTilldeladeProjekt" max="32767" attributes="0"/>
-                          <Component id="btnAvdelning" max="32767" attributes="0"/>
                           <Component id="btnAvdelningsProjekt" max="32767" attributes="0"/>
                           <Component id="btnVisaMinaProjekt" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -112,10 +111,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblFelmeddelande" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="btnPersonalLista" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnAvdelning" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="btnPersonalLista" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
           </Group>
@@ -176,14 +172,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSokHandlaggareActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JToggleButton" name="btnAvdelning">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Min Avdelning"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAvdelningActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSokaProjekt">
