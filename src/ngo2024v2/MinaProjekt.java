@@ -30,8 +30,9 @@ public class MinaProjekt extends javax.swing.JFrame {
         fyllProjektLista();
         
 }  
+    //Metod för att skapa en JList och fylla den med projekt
         private void fyllProjektLista(){
-try {
+            try {
             // Hämta projekten där den inloggade användaren är projektchef
             String sqlFragaProjekt = "SELECT * FROM projekt join anstalld on aid = projektchef WHERE epost = '" + InloggadHandlaggare + "'";
             listaProjekt = idb.fetchRows(sqlFragaProjekt);
@@ -74,6 +75,7 @@ try {
         // Sätt JFrame till synlig efter att alla komponenter har lagts till
         this.setVisible(true);
     }
+        //Metod för att koppla tillbaka-knappen för att gå till Projektchefmeny
 private void gaTillProjektChefMeny() {
         this.dispose();
         ProjektChefMeny ProjektChefMeny = new ProjektChefMeny(idb, InloggadHandlaggare);
@@ -157,13 +159,14 @@ private void gaTillProjektChefMeny() {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        // TODO add your handling code here:
+        // Koppla knapp till metod:
         gaTillProjektChefMeny();
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     private void btnAndraUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraUppgifterActionPerformed
-        // TODO add your handling code here:
+        // Om det finns ett valt projekt, öppna redigeringsmeny för projektet:
    int selectedIndex = projektLista.getSelectedIndex();
         if (selectedIndex != -1 && listaProjekt != null) {
             HashMap<String, String> selectedProjekt = listaProjekt.get(selectedIndex);
@@ -175,7 +178,7 @@ private void gaTillProjektChefMeny() {
     }//GEN-LAST:event_btnAndraUppgifterActionPerformed
 
     private void btnPartnersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPartnersActionPerformed
-        // TODO add your handling code here:
+        // Om det finns ett valt projekt, öppna redigeringsmeny för projektparnter:
         int selectedIndex = projektLista.getSelectedIndex();
         if (selectedIndex != -1 && listaProjekt != null) {
             HashMap<String, String> selectedProjekt = listaProjekt.get(selectedIndex);
@@ -187,7 +190,7 @@ private void gaTillProjektChefMeny() {
     }//GEN-LAST:event_btnPartnersActionPerformed
 
     private void btnHandLaggareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHandLaggareActionPerformed
-        // TODO add your handling code here:
+        // Om det finns ett valt projekt, öppna redigeringsmeny för projekthandläggare:
             int selectedIndex = projektLista.getSelectedIndex();
         if (selectedIndex != -1 && listaProjekt != null) {
             HashMap<String, String> selectedProjekt = listaProjekt.get(selectedIndex);

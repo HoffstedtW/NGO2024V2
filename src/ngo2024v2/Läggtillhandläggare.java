@@ -48,6 +48,7 @@ public class Läggtillhandläggare extends javax.swing.JFrame {
         btSpara = new javax.swing.JButton();
         txtAnstalldID = new javax.swing.JTextField();
         btnGaTillbaka = new javax.swing.JButton();
+        lblHandLaggare = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +73,8 @@ public class Läggtillhandläggare extends javax.swing.JFrame {
             }
         });
 
+        lblHandLaggare.setText("Skriv in AID för önskad Handläggare");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,25 +82,31 @@ public class Läggtillhandläggare extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtAnstalldID, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btSpara)))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnGaTillbaka)))
-                .addContainerGap(95, Short.MAX_VALUE))
+                        .addComponent(btnGaTillbaka))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btSpara)
+                            .addComponent(txtAnstalldID, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 51, Short.MAX_VALUE)
+                .addComponent(lblHandLaggare)
+                .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnGaTillbaka)
-                .addGap(56, 56, 56)
+                .addGap(28, 28, 28)
+                .addComponent(lblHandLaggare)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtAnstalldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(29, 29, 29)
                 .addComponent(btSpara)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         pack();
@@ -176,6 +185,7 @@ public class Läggtillhandläggare extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btSpara;
     private javax.swing.JButton btnGaTillbaka;
+    private javax.swing.JLabel lblHandLaggare;
     private javax.swing.JTextField txtAnstalldID;
     // End of variables declaration//GEN-END:variables
 }
