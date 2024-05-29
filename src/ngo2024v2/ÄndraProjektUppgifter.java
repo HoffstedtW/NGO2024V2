@@ -64,6 +64,10 @@ private void fyllFaltMedData() {
     if (txtLand != null) {
         txtLand.setText(listaProjekt.get("land"));
     }
+    if (txtProjektChef != null) {
+        txtProjektChef.setText(listaProjekt.get("projektchef"));
+    }
+  
 }
  public ÄndraProjektUppgifter() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -82,6 +86,7 @@ private void sparaProjekt() {
             String status = txtStatus.getText();
             String prioritet = txtPrioritet.getText();
             String land = txtLand.getText();
+            String projektchef = txtProjektChef.getText();
             
  // SQL-uppdatering av projektet
             String sqlUpdate = "UPDATE projekt SET "
@@ -92,7 +97,8 @@ private void sparaProjekt() {
                     + "kostnad = '" + kostnad + "', "
                     + "status = '" + status + "', "
                     + "prioritet = '" + prioritet + "', "
-                    + "land = '" + land + "' "
+                    + "land = '" + land + "', "
+                     + "projektchef = '" + projektchef + "' "
                     + "WHERE pid = " + listaProjekt.get("pid");
             
             // Utför SQL-uppdateringen
@@ -139,6 +145,8 @@ private void sparaProjekt() {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        txtProjektChef = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -188,6 +196,15 @@ private void sparaProjekt() {
 
         jLabel9.setText("Beskrivning:");
 
+        txtProjektChef.setText("jTextField1");
+        txtProjektChef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProjektChefActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Projektchef");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -198,8 +215,10 @@ private void sparaProjekt() {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnTillbaka)
+                                .addComponent(txtProjektChef, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnTillbaka)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtSpara))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +246,8 @@ private void sparaProjekt() {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel10))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -273,11 +293,19 @@ private void sparaProjekt() {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBeskrivning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtLand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTillbaka)
-                    .addComponent(txtSpara))
-                .addGap(22, 22, 22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnTillbaka)
+                            .addComponent(txtSpara))
+                        .addGap(22, 22, 22))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtProjektChef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -292,6 +320,10 @@ private void sparaProjekt() {
         // TODO add your handling code here:
         sparaProjekt();
     }//GEN-LAST:event_txtSparaActionPerformed
+
+    private void txtProjektChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProjektChefActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProjektChefActionPerformed
 
     /**
      * @param args the command line arguments
@@ -331,6 +363,7 @@ private void sparaProjekt() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnTillbaka;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -343,6 +376,7 @@ private void sparaProjekt() {
     private javax.swing.JTextField txtKostnad;
     private javax.swing.JTextField txtLand;
     private javax.swing.JTextField txtPrioritet;
+    private javax.swing.JTextField txtProjektChef;
     private javax.swing.JTextField txtProjektnamn;
     private javax.swing.JTextField txtSlutdatum;
     private javax.swing.JButton txtSpara;

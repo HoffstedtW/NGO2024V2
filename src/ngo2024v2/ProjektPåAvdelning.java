@@ -253,7 +253,15 @@ private String InloggadHandlaggare;
 
     private void btnHamtaProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHamtaProjektActionPerformed
         // TODO add your handling code here:
-   String avdid = jTextField1.getText();
+     // Hämta avdelnings-ID från användarinmatningen
+    String avdid = jTextField1.getText().trim();
+
+    // Validera avdelnings-ID
+    if (!Validering.valideraint(avdid)) {
+        // Visa ett felmeddelande om avdelnings-ID inte är giltigt
+        System.out.println("Ogiltigt avdelnings-ID. Ange ett heltal.");
+        return; // Avsluta funktionen om avdelnings-ID inte är giltigt
+    }
 
     try {
         String sqlFraga = "SELECT projekt.projektnamn, projekt.beskrivning, projekt.startdatum, projekt.slutdatum, projekt.kostnad, projekt.status, projekt.prioritet, projekt.projektchef, projekt.land " +
