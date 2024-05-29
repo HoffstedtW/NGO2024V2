@@ -82,8 +82,8 @@ public class Validering {
     }
     
     public static boolean valideraTelefonnummer(String telefonnummer) {
-        // Enkel validering för att kontrollera att strängen har formatet nnn-nnn-nnnn
-        return telefonnummer != null && telefonnummer.matches("^\\d{3}-\\d{3}-\\d{4}$");
+        // Enkel validering för att kontrollera att strängen endast innehåller siffror
+        return telefonnummer != null && telefonnummer.matches("^\\d+$");
     }
     
     public static boolean valideraText (String enText) {

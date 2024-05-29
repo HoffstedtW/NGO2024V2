@@ -37,11 +37,47 @@ private String InloggadAdmin;
           String pid = jpid.getText();
           String namn = jnamn.getText();
           String kontaktperson = jkontaktperson.getText(); 
-          String kontakt_epost = jkontaktepost.getText();
+          String kontaktepost = jkontaktepost.getText();
           String telefonnummer = jtelefonnummer.getText();
           String adress = jadress.getText();
           String branch = jbranch.getText();
           
+          
+           // Validera inmatning
+            if (pid.isEmpty() || !Validering.valideraPid(idb, pid)) {
+                JOptionPane.showMessageDialog(null, "Ogiltigt eller tomt PID!");
+                return;
+            }
+
+            if (!namn.isEmpty() && !Validering.valideraText(namn)) {
+                JOptionPane.showMessageDialog(null, "Ogiltigt namn!");
+                return;
+            }
+
+            if (!kontaktperson.isEmpty() && !Validering.valideraText(kontaktperson)) {
+                JOptionPane.showMessageDialog(null, "Ogiltig kontaktperson!");
+                return;
+            }
+
+            if (!kontaktepost.isEmpty() && !Validering.valideraEpost(kontaktepost)) {
+                JOptionPane.showMessageDialog(null, "Ogiltig e-postadress!");
+                return;
+            }
+
+            if (!telefonnummer.isEmpty() && !Validering.valideraTelefonnummer(telefonnummer)) {
+                JOptionPane.showMessageDialog(null, "Ogiltigt telefonnummer!");
+                return;
+            }
+
+            if (!adress.isEmpty() && !Validering.valideraTextNummer(adress)) {
+                JOptionPane.showMessageDialog(null, "Ogiltig adress!");
+                return;
+            }
+
+            if (!branch.isEmpty() && !Validering.valideraText(branch)) {
+                JOptionPane.showMessageDialog(null, "Ogiltig bransch!");
+                return;
+            }
                     StringBuilder sqlFraga = new StringBuilder("UPDATE Partner SET ");
         boolean needComma = false;
         
@@ -59,14 +95,14 @@ private String InloggadAdmin;
             sqlFraga.append("kontaktperson = '").append(kontaktperson).append("'");
             needComma = true;
         }
-        if (!kontakt_epost.isEmpty()) {
+        if (!kontaktepost.isEmpty()) {
             if (needComma) sqlFraga.append(", ");
-            sqlFraga.append("kontakt_epost = '").append(kontakt_epost).append("'");
+            sqlFraga.append("kontaktepost = '").append(kontaktepost).append("'");
             needComma = true;
                }
         if (!telefonnummer.isEmpty()) {
             if (needComma) sqlFraga.append(", ");
-            sqlFraga.append("telefonnummer = '").append(telefonnummer).append("'");
+            sqlFraga.append("telefon = '").append(telefonnummer).append("'");
             needComma = true;
         }
         

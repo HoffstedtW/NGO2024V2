@@ -42,7 +42,7 @@ private String InloggadAdmin;
                                           + "<font color='gray'><b>namn:</b></font> " + rad.get("namn") + "<br>"
                                           + "<font color='gray'><b>Kontaktperson:</b></font> " + rad.get("kontaktperson") + "<br>"
                                           + "<font color='gray'><b>Kontaktepost:</b></font> " + rad.get("kontaktepost") + "<br>"
-                                          + "<font color='gray'><b>Telefonnummer:</b></font> " + rad.get("telefonnummer") + "<br>"
+                                          + "<font color='gray'><b>Telefonnummer:</b></font> " + rad.get("telefon") + "<br>"
                                           + "<font color='gray'><b>Adress:</b></font> " + rad.get("adress") + "<br>"
                                           + "<font color='gray'><b>Branch:</b></font> " + rad.get("branch") + "<br>"
                                           + "<font color='gray'><b>Stad:</b></font> " + rad.get("stad") + "</html>";
