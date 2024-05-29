@@ -80,6 +80,20 @@ public class Validering {
         }
         return kontrollSid;
     }
+      
+       public static boolean valideraavdid (InfDB idb, String avdid){
+        boolean kontrollavdid = false;
+        String fraga = "select avdid from avdelning where avdid = " + avdid;
+        try{
+            if (avdid.equals(idb.fetchSingle(fraga))){
+                kontrollavdid = true;
+            }
+        }
+        catch (InfException ex){
+            System.out.println(ex.getMessage());
+        }
+        return kontrollavdid;
+    }
     
     public static boolean valideraTelefonnummer(String telefonnummer) {
         // Enkel validering för att kontrollera att strängen endast innehåller siffror
