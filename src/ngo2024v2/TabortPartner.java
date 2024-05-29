@@ -96,11 +96,7 @@ public class TabortPartner extends javax.swing.JFrame {
         this.setVisible(true);
     }
     
-    private void gatilladminmeny() {
-        this.dispose();
-        AdminMeny AdminMenyFönster = new AdminMeny(idb, InloggadAdmin);
-        AdminMenyFönster.setVisible(true);
-    }   
+  
        
        
        
@@ -134,16 +130,6 @@ public class TabortPartner extends javax.swing.JFrame {
     
 }
 
-
-
-
-
-    
-       
-        
-                
-                
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -157,8 +143,8 @@ public class TabortPartner extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtPID = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jraderapartner = new javax.swing.JButton();
+        jgåtillbaka = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
 
@@ -168,17 +154,17 @@ public class TabortPartner extends javax.swing.JFrame {
 
         jLabel3.setText("Skriv i PID på den partner du vill radera");
 
-        jButton1.setText("Radera partner");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jraderapartner.setText("Radera partner");
+        jraderapartner.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jraderapartnerActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Gå tillbaka ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jgåtillbaka.setText("Gå tillbaka ");
+        jgåtillbaka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jgåtillbakaActionPerformed(evt);
             }
         });
 
@@ -188,7 +174,7 @@ public class TabortPartner extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(jgåtillbaka)
                 .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,12 +185,10 @@ public class TabortPartner extends javax.swing.JFrame {
                         .addGap(85, 85, 85)
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(138, 138, 138)
-                        .addComponent(jButton1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtPID, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)))
+                        .addGap(120, 120, 120)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jraderapartner)
+                            .addComponent(txtPID, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -214,26 +198,26 @@ public class TabortPartner extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(50, 50, 50)
                 .addComponent(jLabel3)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(txtPID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jraderapartner)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addComponent(jgåtillbaka)
                 .addGap(23, 23, 23))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jgåtillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jgåtillbakaActionPerformed
         // TODO add your handling code here:
-        gatilladminmeny();
-    }//GEN-LAST:event_jButton2ActionPerformed
+        gatillAdminPartner();
+    }//GEN-LAST:event_jgåtillbakaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jraderapartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jraderapartnerActionPerformed
        tabortpartner();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jraderapartnerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,11 +255,11 @@ public class TabortPartner extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton jgåtillbaka;
+    private javax.swing.JButton jraderapartner;
     private javax.swing.JTextField txtPID;
     // End of variables declaration//GEN-END:variables
 }

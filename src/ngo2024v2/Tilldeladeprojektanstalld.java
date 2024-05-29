@@ -202,7 +202,7 @@ private String InloggadAdmin;
         String aid = jTextField1.getText();
         
         
-        
+        //Använder en sql fråga för att hämta data från tabellen projekt.
         try {
             String sqlFraga = "SELECT projekt.projektnamn, projekt.beskrivning, projekt.startdatum, projekt.slutdatum, projekt.kostnad, projekt.status, projekt.prioritet, projekt.projektchef, projekt.land " +
                             "FROM projekt " +
@@ -211,9 +211,10 @@ private String InloggadAdmin;
             System.out.println(sqlFraga);
             
             
-            
+            //Retunerar en lista av hashmap representerar som är en rad i sql frågan.
             List<HashMap<String, String>> projektList = idb.fetchRows(sqlFraga);
             
+            //Om svaret inte är tomt så läggs en ny rad till i tabelen.
             if (projektList != null) {
                 DefaultTableModel model = (DefaultTableModel) jTable5.getModel();
                 model.setRowCount(0); // Tömma tabellen innan ny data läggs till
@@ -232,6 +233,7 @@ private String InloggadAdmin;
                     model.addRow(new Object[]{projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land});
                 }
             } else {
+                //Skriver ut ett felmeddelande. 
                 lblFelmeddelande.setText("Inga projekt hittades för detta anställningsID.");
                 setVisible(true);
             }
