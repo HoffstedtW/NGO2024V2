@@ -55,8 +55,17 @@ public class Anstalldinfo extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     
+    private void gatillhandlaggarmeny() {
+        this.dispose();
+        HandläggarMeny handläggarMeny = new HandläggarMeny(idb, InloggadHandlaggare);
+        handläggarMeny.setVisible(false);
+    }
+    
     private void adressandring() {
         String nyAdress = txtAdress.getText();
+        if (nyAdress.isEmpty()) {
+            return;
+        }
         
         try {
             String sqlUppdatering = "UPDATE anstalld SET adress = '" + nyAdress + "' WHERE epost = '" + InloggadHandlaggare + "'";
@@ -65,15 +74,14 @@ public class Anstalldinfo extends javax.swing.JFrame {
     }
 }
     
-    private void gatillhandlaggarmeny() {
-        this.dispose();
-        HandläggarMeny handläggarMeny = new HandläggarMeny(idb, InloggadHandlaggare);
-        handläggarMeny.setVisible(false);
-    }
+    
     
      
     private void epostandring() {
         String nyepost = txtEmail.getText();
+        if (nyepost.isEmpty()) {
+            return;
+        }
         
         try {
             String sqlUppdatering = "UPDATE anstalld SET epost = '" + nyepost + "' WHERE epost = '" + InloggadHandlaggare + "'";
@@ -86,6 +94,9 @@ public class Anstalldinfo extends javax.swing.JFrame {
         char[] losenchar = txtLosenord.getPassword();
         
         String nyttlosen = new String(losenchar);
+        if (nyttlosen.isEmpty()) {
+            return;
+        }
         
         try {
             String sqlUppdatering = "UPDATE anstalld SET losenord = '" + nyttlosen + "' WHERE epost = '" + InloggadHandlaggare + "'";
@@ -96,9 +107,36 @@ public class Anstalldinfo extends javax.swing.JFrame {
     
     private void telefonnummerandring() {
         String nyttnummer = txtTelefonnummer.getText();
+        if (nyttnummer.isEmpty()) {
+            return;
+        }
         
         try {
             String sqlUppdatering = "UPDATE anstalld SET telefon = '" + nyttnummer + "' WHERE epost = '" + InloggadHandlaggare + "'";
+            idb.update(sqlUppdatering);
+        } catch (Exception ex) {
+    }
+}
+    private void fornamnandring() {
+        String nyttnummer = txtFornamn.getText();
+        if (nyttnummer.isEmpty()) {
+            return;
+        }
+        
+        try {
+            String sqlUppdatering = "UPDATE anstalld SET fornamn = '" + nyttnummer + "' WHERE epost = '" + InloggadHandlaggare + "'";
+            idb.update(sqlUppdatering);
+        } catch (Exception ex) {
+    }
+}
+    private void efternamnandring() {
+        String nyttnummer = txtEfternamn.getText();
+        if (nyttnummer.isEmpty()) {
+            return;
+        }
+        
+        try {
+            String sqlUppdatering = "UPDATE anstalld SET efternamn = '" + nyttnummer + "' WHERE epost = '" + InloggadHandlaggare + "'";
             idb.update(sqlUppdatering);
         } catch (Exception ex) {
     }
@@ -313,6 +351,8 @@ public class Anstalldinfo extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
            
         adressandring();
+        fornamnandring();
+        efternamnandring();
             epostandring();
             losenandring();
             telefonnummerandring();
