@@ -45,6 +45,42 @@ public class ÄndraLand extends javax.swing.JFrame {
         String lidStr = lblLID.getText(); // Detta fält ska inte ändras, bara användas för att identifiera landet
         String sprak = lblSprak.getText();
         
+        // Validera inmatning
+            if (lidStr.isEmpty() || !Validering.valideraLid(idb, lidStr)) {
+                JOptionPane.showMessageDialog(null, "Ogiltigt eller tomt LID!");
+                return;
+            }
+
+            if (!namn.isEmpty() && !Validering.valideraTextNummer(namn)) {
+                JOptionPane.showMessageDialog(null, "Ogiltigt namn!");
+                return;
+            }
+
+            if (!ekonomi.isEmpty() && !Validering.valideraTextNummer(ekonomi)) {
+                JOptionPane.showMessageDialog(null, "Ogiltig ekonomi!");
+                return;
+            }
+
+            if (!politik.isEmpty() && !Validering.valideraTextNummer(politik)) {
+                JOptionPane.showMessageDialog(null, "Ogiltig politisk struktur!");
+                return;
+            }
+
+            if (!valuta.isEmpty() && !Validering.valideraNummerOchPunkt(valuta)) {
+                JOptionPane.showMessageDialog(null, "Ogiltig valuta!");
+                return;
+            }
+
+            if (!tid.isEmpty() && !Validering.valideraTextNummer(tid)) {
+                JOptionPane.showMessageDialog(null, "Ogiltig tidszon!");
+                return;
+            }
+
+            if (!sprak.isEmpty() && !Validering.valideraTextNummer(sprak)) {
+                JOptionPane.showMessageDialog(null, "Ogiltigt språk!");
+                return;
+            }
+
            StringBuilder sqlFraga = new StringBuilder("UPDATE land SET ");
         boolean needComma = false;
         

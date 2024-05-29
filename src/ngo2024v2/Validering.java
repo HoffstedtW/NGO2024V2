@@ -126,6 +126,9 @@ public class Validering {
         }
         return Nummer;
     }
+      public static boolean valideraNummerOchPunkt(String text) {
+        return text.matches("[0-9.]+");
+    }
       
         public static boolean valideratomString (String Strang) {
         boolean tomString = false;
