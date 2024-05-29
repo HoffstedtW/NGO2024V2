@@ -5,6 +5,7 @@
 package ngo2024v2;
 
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -22,6 +23,8 @@ public class Inloggning extends javax.swing.JFrame {
         this.idb = idb;
         initComponents();
         lblFelmeddelande.setVisible(false);
+        setSize(525,410);
+        
     }
 
     /**
@@ -40,21 +43,31 @@ public class Inloggning extends javax.swing.JFrame {
         btnLoggaIn = new javax.swing.JButton();
         pfLosenord = new javax.swing.JPasswordField();
         btnGlomtLosenord = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         lblEpost.setText("Epost");
+        getContentPane().add(lblEpost);
+        lblEpost.setBounds(50, 60, 37, 16);
 
         lblLosenord.setText("Lösenord");
+        getContentPane().add(lblLosenord);
+        lblLosenord.setBounds(50, 97, 49, 16);
 
         tfEpost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfEpostActionPerformed(evt);
             }
         });
+        getContentPane().add(tfEpost);
+        tfEpost.setBounds(126, 57, 139, 22);
 
         lblFelmeddelande.setForeground(new java.awt.Color(255, 0, 0));
         lblFelmeddelande.setText("Felaktigt lösenord eller epost, vänligen försök igen");
+        getContentPane().add(lblFelmeddelande);
+        lblFelmeddelande.setBounds(60, 210, 300, 16);
 
         btnLoggaIn.setText("Logga in");
         btnLoggaIn.addActionListener(new java.awt.event.ActionListener() {
@@ -62,12 +75,16 @@ public class Inloggning extends javax.swing.JFrame {
                 btnLoggaInActionPerformed(evt);
             }
         });
+        getContentPane().add(btnLoggaIn);
+        btnLoggaIn.setBounds(130, 150, 120, 23);
 
         pfLosenord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pfLosenordActionPerformed(evt);
             }
         });
+        getContentPane().add(pfLosenord);
+        pfLosenord.setBounds(126, 97, 139, 22);
 
         btnGlomtLosenord.setText("Glömt Lösenord");
         btnGlomtLosenord.addActionListener(new java.awt.event.ActionListener() {
@@ -75,49 +92,13 @@ public class Inloggning extends javax.swing.JFrame {
                 btnGlomtLosenordActionPerformed(evt);
             }
         });
+        getContentPane().add(btnGlomtLosenord);
+        btnGlomtLosenord.setBounds(110, 180, 160, 23);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFelmeddelande, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblLosenord)
-                            .addComponent(lblEpost, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(pfLosenord)
-                                .addComponent(tfEpost, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnGlomtLosenord)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(btnLoggaIn)))))
-                .addContainerGap(50, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEpost)
-                    .addComponent(tfEpost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblLosenord)
-                    .addComponent(pfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addComponent(btnLoggaIn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGlomtLosenord)
-                .addGap(5, 5, 5)
-                .addComponent(lblFelmeddelande)
-                .addContainerGap(75, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\hoffs\\OneDrive\\Bilder\\devgoalspic2.jpg")); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 520, 360);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -130,17 +111,10 @@ public class Inloggning extends javax.swing.JFrame {
         
         String ePost = tfEpost.getText();
         String losen = pfLosenord.getText();
+        String Text = lblFelmeddelande.getText();
         
         
-        if (!Validering.valideraEpost(ePost)) {
-   
-    return;
-}
-
-if (!Validering.valideraLosenord(losen)) {
-   
-    return;
-}
+        
 
         
         
@@ -169,20 +143,33 @@ if (!Validering.valideraLosenord(losen)) {
                     new HandläggarMeny(idb, ePost).setVisible(true);
                 
                     this.setVisible(false);
-            } 
+            }
+             
+            
 
              
             }
-            else  {
-                // Visa felmeddelande om användaren inte har någon giltig roll
-                lblFelmeddelande.setText("Användaren har ingen giltig roll.");
-                lblFelmeddelande.setVisible(true); 
-                }
+           
         }
         else {
             // Visa felmeddelande om användaren inte finns i databasen eller lösenordet är felaktigt
             lblFelmeddelande.setText("Felaktigt lösenord eller epost, vänligen försök igen.");
             lblFelmeddelande.setVisible(true);
+            
+            
+            if (!Validering.valideraEpost(ePost)) {
+   
+    return;
+}
+
+if (!Validering.valideraLosenord(losen)) {
+   
+    return;
+}
+if (!Validering.valideraText(Text)) {
+   
+    return;
+}
         }
         }
         catch (InfException ex) {
@@ -237,6 +224,7 @@ if (!Validering.valideraLosenord(losen)) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGlomtLosenord;
     private javax.swing.JButton btnLoggaIn;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblEpost;
     private javax.swing.JLabel lblFelmeddelande;
     private javax.swing.JLabel lblLosenord;
