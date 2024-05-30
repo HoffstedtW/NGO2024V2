@@ -21,6 +21,7 @@ public class LäggtillLand extends javax.swing.JFrame {
     public LäggtillLand(InfDB idb, String inloggadAdmin) {
         initComponents();
         this.idb = idb;
+        this.InloggadAdmin = inloggadAdmin;
         
     }
 
