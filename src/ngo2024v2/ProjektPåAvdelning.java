@@ -18,19 +18,19 @@ public class ProjektPåAvdelning extends javax.swing.JFrame {
 private InfDB idb;
 private HashMap <String, String> projektLista;
 private javax.swing.JLabel lblFelmeddelande;
-private String InloggadHandlaggare;
+private String InloggadAdmin;
     /**
      * Creates new form ProjektPåAvdelning
      * @param idb
      * @param InloggadHandlaggare
      */
 
-    public ProjektPåAvdelning(InfDB idb, String InloggadHandlaggare) {
+    public ProjektPåAvdelning(InfDB idb, String InloggadAdmin) {
         initComponents();
         this.idb = idb;
         this.projektLista = projektLista;
         this.lblFelmeddelande = new javax.swing.JLabel();
-        this.InloggadHandlaggare = InloggadHandlaggare;
+        this.InloggadAdmin = InloggadAdmin;
         lblFelmeddelande.setVisible(false);
         
         
@@ -310,8 +310,8 @@ private String InloggadHandlaggare;
     // sedan gör man den nya handläggarmenyn synlig genom att använda setVisible(true).
     private void gatillHandlaggarMeny(){
         this.dispose();
-        HandläggarMeny HandlaggareMenyFönster = new HandläggarMeny (idb, InloggadHandlaggare);
-        HandlaggareMenyFönster.setVisible(false);
+        AdminMeny AdminMenyFönster = new AdminMeny (idb, InloggadAdmin);
+        AdminMenyFönster.setVisible(true);
     }
     
     //När man klickar på knappen används metoden och man öppnar handläggarmenyn.
