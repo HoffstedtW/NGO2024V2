@@ -66,7 +66,6 @@ public class ÄndraAvdelning extends javax.swing.JFrame {
          
       // Validerar numeriska fält för  och 
       if (!Validering.valideraint(stad) ||
-    !Validering.valideraint(avdidStr) ||
     !Validering.valideraint(chef)) {
     JOptionPane.showMessageDialog(null, "Ogiltigt format i ett av de numeriska fälten!");
     return;
@@ -75,10 +74,15 @@ public class ÄndraAvdelning extends javax.swing.JFrame {
       
             // Validerar telefonnummer
         if (!Validering.valideraTelefonnummer(telefon)) {
-            JOptionPane.showMessageDialog(null, "Ogiltigt format för avdid");
+            JOptionPane.showMessageDialog(null, "Ogiltigt format för telefon");
             return;
         }
         
+        
+        if (!Validering.valideraavdid(avdidStr)) {
+            JOptionPane.showMessageDialog(null, "Ogiltigt format för avdid");
+            return;
+        }
        
 
         // Skapa en StringBuilder för att bygga SQL-frågan dynamiskt
