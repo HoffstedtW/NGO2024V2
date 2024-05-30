@@ -21,10 +21,14 @@ public class Validering {
         return losenord.matches(regex);
     }
     
-    public static boolean valideraDatum (String datum) {
+     public static boolean valideraDatum (String ettDatum) {
+        boolean datumOk = false;
         String regex = "^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$";
-        return datum.matches(regex);
-    }
+        if (ettDatum.matches(regex)) {
+            datumOk = true;
+        }
+        return datumOk;
+    }    
     
    
     
@@ -78,7 +82,17 @@ public class Validering {
     }
     return enavdid;
 }
-    
+       
+        public static boolean valideraAID(String AID) {
+    boolean ettAID = false;
+    // Tillåter heltal mellan 1 och 100
+    String regex = "^[1-9][0-9]?$|^100$";
+    if (AID.matches(regex)) {
+        ettAID = true;
+    }
+    return ettAID;
+}
+       
     
 
 public static boolean valideraTelefonnummer(String telefonnummer) {
@@ -115,19 +129,11 @@ public static boolean valideraTelefonnummer(String telefonnummer) {
     return Nummer;
 }
       public static boolean valideraNummerOchPunkt(String text) {
-        return text.matches("[0-9.]+");
-    }
-      
-        public static boolean valideratomString (String Strang) {
-        boolean tomString = false;
-        String regex1 = "^$";
-        String regex2 = "^\s*$";
-        if(Strang.matches(regex1) || Strang.matches(regex2)) {
-            tomString = true;
-        }
-        return tomString;
-        
-    }
+    String regex = "^\\d+(\\.\\d+)?$";
+    return text.matches(regex);
+}
+
+       
     
          public static boolean valideraEpost(String Epost){
         boolean epostOkej = false;

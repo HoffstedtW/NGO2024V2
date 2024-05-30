@@ -25,6 +25,10 @@ public class ÄndraAvdelning extends javax.swing.JFrame {
     }
     
     
+    
+
+
+    
     private void andrainfo() {
     try {
         // Hämta värdet från txtEpost-fältet
@@ -61,20 +65,14 @@ public class ÄndraAvdelning extends javax.swing.JFrame {
          
          
       // Validerar numeriska fält för  och 
-       if (!Validering.valideraint(stad) ||
-        !Validering.valideraint(chef)) {
-        JOptionPane.showMessageDialog(null, "Ogiltigt format i ett av de numeriska fälten!");
-       return;
-        }
+      if (!Validering.valideraint(stad) ||
+    !Validering.valideraint(avdidStr) ||
+    !Validering.valideraint(chef)) {
+    JOptionPane.showMessageDialog(null, "Ogiltigt format i ett av de numeriska fälten!");
+    return;
+}
        
       
-       
-           // Validerar avdid
-        if (!Validering.valideraint(avdidStr)) {
-            JOptionPane.showMessageDialog(null, "Ogiltigt format för avdid");
-            return;
-        }
-        
             // Validerar telefonnummer
         if (!Validering.valideraTelefonnummer(telefon)) {
             JOptionPane.showMessageDialog(null, "Ogiltigt format för avdid");
@@ -206,6 +204,12 @@ public class ÄndraAvdelning extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Ändra Avdelningar");
+
+        txtavdid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtavdidActionPerformed(evt);
+            }
+        });
 
         txtStad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -340,6 +344,10 @@ public class ÄndraAvdelning extends javax.swing.JFrame {
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
         andrainfo();
     }//GEN-LAST:event_btnSparaActionPerformed
+
+    private void txtavdidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtavdidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtavdidActionPerformed
 
     /**
      * @param args the command line arguments

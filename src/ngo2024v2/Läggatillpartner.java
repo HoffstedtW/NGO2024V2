@@ -34,47 +34,79 @@ private String InloggadAdmin;
           AdminPartnerFönster.setVisible(true);
       }
       
-      private void sparaandringar(){
-          
-          try { 
-              //Hämtar texten som användaren skrivit i i textfältet.
-              String Pid =jpid.getText();
-              String Namn = jnamn.getText();
-              String Kontaktperson = jkontaktperson.getText();
-              String Kontaktepost = jkontaktepost.getText();
-              String Telefon = jtelefon.getText();
-              String Adress = jadress.getText();
-              String Branch = jbranch.getText();
-              String Stad =jstad.getText();
-              
-              //Kontrollerar så att alla fält är ifyllda
-                if (Pid.isEmpty() ||Namn.isEmpty() || Kontaktperson.isEmpty() || Kontaktepost.isEmpty() || Telefon.isEmpty() || Adress.isEmpty() || Branch.isEmpty() || Stad.isEmpty()) {
+      private void sparaandringar() {
+    try { 
+        // Hämtar texten som användaren skrivit i textfälten.
+        String Pid = jpid.getText();
+        String Namn = jnamn.getText();
+        String Kontaktperson = jkontaktperson.getText();
+        String Kontaktepost = jkontaktepost.getText();
+        String Telefon = jtelefon.getText();
+        String Adress = jadress.getText();
+        String Branch = jbranch.getText();
+        String Stad = jstad.getText();
+        
+        // Kontrollerar så att alla fält är ifyllda
+        if (Pid.isEmpty() || Namn.isEmpty() || Kontaktperson.isEmpty() || Kontaktepost.isEmpty() || 
+            Telefon.isEmpty() || Adress.isEmpty() || Branch.isEmpty() || Stad.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Fyll i alla fält!");
             return;
         }
-                //skapa SQL-fråga
-                String sqlFraga = "INSERT INTO partner (Pid, Namn, Kontaktperson, Kontaktepost, telefon, Adress, Branch, Stad) VALUES (" + 
-                "'" + Pid + "', " +
-                "'" + Namn + "', " +
-                "'" + Kontaktperson + "', " +
-                "'" + Kontaktepost + "', " +
-                "'" + Telefon + "', " +
-                "'" + Adress + "', " +
-                "'" + Branch + "', " +
-                "'" + Stad + "')";
-              
-                idb.insert(sqlFraga);
-                
-                JOptionPane.showMessageDialog(null, "Ny partner tillagd!");
-                
-                 } catch (InfException e) {
+        
+       if (!Validering.valideraText(Namn)) {
+    JOptionPane.showMessageDialog(null, "Ogiltigt namn!");
+    return;
+}
+if (!Validering.valideraText(Adress)) {
+    JOptionPane.showMessageDialog(null, "Ogiltig adress!");
+    return;
+}
+if (!Validering.valideraint(Stad)) {
+    JOptionPane.showMessageDialog(null, "Ogiltig stad!");
+    return;
+}
+if (!Validering.valideraText(Branch)) {
+    JOptionPane.showMessageDialog(null, "Ogiltig branch!");
+    return;
+}
+if (!Validering.valideraText(Kontaktperson)) {
+    JOptionPane.showMessageDialog(null, "Ogiltig kontaktperson!");
+    return;
+}
+if (!Validering.valideraTelefonnummer(Telefon)) {
+    JOptionPane.showMessageDialog(null, "Ogiltigt telefonnummer!");
+    return;
+}
+if (!Validering.valideraPid(Pid)) {
+    JOptionPane.showMessageDialog(null, "Ogiltig PID!");
+    return;
+}
+if (!Validering.valideraEpost(Kontaktepost)) {
+    JOptionPane.showMessageDialog(null, "Ogiltig e-post!");
+    return;
+}
+        
+        // Skapar SQL-fråga
+        String sqlFraga = "INSERT INTO partner (Pid, Namn, Kontaktperson, Kontaktepost, telefon, Adress, Branch, Stad) VALUES (" + 
+                          "'" + Pid + "', " +
+                          "'" + Namn + "', " +
+                          "'" + Kontaktperson + "', " +
+                          "'" + Kontaktepost + "', " +
+                          "'" + Telefon + "', " +
+                          "'" + Adress + "', " +
+                          "'" + Branch + "', " +
+                          "'" + Stad + "')";
+        
+        // Utför SQL-frågan
+        idb.insert(sqlFraga);
+        
+        JOptionPane.showMessageDialog(null, "Ny partner tillagd!");
+    } catch (InfException e) {
         JOptionPane.showMessageDialog(null, "Ett fel inträffade: " + e.getMessage());
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(null, "Ogiltigt format! " + e.getMessage());
-                
-          }
-      }
-         
+    }
+}
       
 
     /**

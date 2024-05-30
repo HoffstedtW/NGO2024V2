@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /**
  *
  * @author livlagercrantz
@@ -106,7 +107,7 @@ public class TabortPartner extends javax.swing.JFrame {
        
        
        
-   private void tabortpartner() {
+   public void tabortpartner() {
     try {
        
         String partnerID = txtPID.getText();

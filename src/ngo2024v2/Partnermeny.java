@@ -183,8 +183,9 @@ public class Partnermeny extends javax.swing.JFrame {
     }
 // Uppdaterar partnerlistan
     public void uppdateraPartnerLista() {
-    initComponents();
+   
     getContentPane().removeAll();
+    initComponents();
     fyllPartnerLista();
     }
 

@@ -117,28 +117,32 @@ public class Läggtillhandläggare extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAnstalldIDActionPerformed
 
     private void btSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSparaActionPerformed
-        // TODO add your handling code here:
-        String anstalldId = txtAnstalldID.getText().trim();
-    if (!anstalldId.isEmpty()) {
-        try {
-            String sqlCheckHandlaggare = "SELECT aid FROM anstalld WHERE aid = '" + anstalldId + "'";
-            String existingHandlaggare = idb.fetchSingle(sqlCheckHandlaggare);
+     String anstalldId = txtAnstalldID.getText().trim();
 
-            if (existingHandlaggare != null) {
-                String sqlInsert = "INSERT INTO ans_proj (pid, aid) VALUES ('" + projektId + "', '" + anstalldId + "')";
-                idb.insert(sqlInsert);
-                Projektchefhandläggare.uppdateraHandlaggarLista();
-                JOptionPane.showMessageDialog(this, "Handläggare har lagts till i projektet.");
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Anställd ID finns inte.");
-            }
-        } catch (InfException ex) {
-            System.out.println("Database error: " + ex.getMessage());
+// Validera innehållet i textfältet
+if (!Validering.valideraAID(anstalldId)) {
+    JOptionPane.showMessageDialog(this, "Ogiltigt format för Anställd ID.");
+} else {
+    try {
+        // Kontrollera om det angivna anställd-ID:t finns i databasen
+        String sqlCheckHandlaggare = "SELECT aid FROM anstalld WHERE aid = '" + anstalldId + "'";
+        String existingHandlaggare = idb.fetchSingle(sqlCheckHandlaggare);
+
+        if (existingHandlaggare != null) {
+            // Om anställd-ID:t finns, lägg till det i projektet
+            String sqlInsert = "INSERT INTO ans_proj (pid, aid) VALUES ('" + projektId + "', '" + anstalldId + "')";
+            idb.insert(sqlInsert);
+            Projektchefhandläggare.uppdateraHandlaggarLista();
+            JOptionPane.showMessageDialog(this, "Handläggare har lagts till i projektet.");
+            this.dispose();
+        } else {
+            // Om anställd-ID:t inte finns, visa ett felmeddelande
+            JOptionPane.showMessageDialog(this, "Anställd ID finns inte.");
         }
-    } else {
-        JOptionPane.showMessageDialog(this, "Vänligen ange ett Partner ID.");
+    } catch (InfException ex) {
+        System.out.println("Database error: " + ex.getMessage());
     }
+}
 
     }//GEN-LAST:event_btSparaActionPerformed
 

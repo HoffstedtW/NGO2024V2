@@ -90,6 +90,8 @@ public class SökaProjekt extends javax.swing.JFrame {
         String startDatum = jtxtStartDatum.getText().trim();
         String slutDatum = jtxtSlutDatum.getText().trim();
 
+        
+        
         // Töm listan för att visa nya resultat
         model.clear();
 if ((!startDatum.isEmpty() && !startDatum.matches("\\d{4}-\\d{2}-\\d{2}")) ||
@@ -97,6 +99,12 @@ if ((!startDatum.isEmpty() && !startDatum.matches("\\d{4}-\\d{2}-\\d{2}")) ||
         System.out.println("Datumet måste vara i formatet yyyy-mm-dd");
         return;
     }
+
+ if (!Validering.valideraDatum(startDatum) || !Validering.valideraDatum(slutDatum)) {
+        
+        return;
+    }
+
         try {
             // Hämta avdelningen för inloggad handläggare
             String sqlFragaHandlaggareAvdelning = "SELECT avdelning FROM anstalld WHERE epost = '" + InloggadHandlaggare + "'";

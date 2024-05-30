@@ -108,8 +108,12 @@ public class Läggtillpartnerprojekt extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
-        // TODO add your handling code here:
-        String partnerId = txtProjektID.getText().trim();
+      String partnerId = txtProjektID.getText().trim();
+
+// Validera innehållet i textfältet med valideraPID-metoden
+if (!Validering.valideraPid(partnerId)) {
+    JOptionPane.showMessageDialog(this, "Ogiltigt format för Partner ID.");
+} else {
     if (!partnerId.isEmpty()) {
         try {
             String sqlCheckPartner = "SELECT pid FROM partner WHERE pid = '" + partnerId + "'";
@@ -129,8 +133,7 @@ public class Läggtillpartnerprojekt extends javax.swing.JFrame {
         }
     } else {
         JOptionPane.showMessageDialog(this, "Vänligen ange ett Partner ID.");
-    }
-
+    } }
     }//GEN-LAST:event_btnSparaActionPerformed
 private void gatillPartnermeny() {
         this.dispose();
