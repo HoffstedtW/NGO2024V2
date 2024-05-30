@@ -16,6 +16,7 @@ import oru.inf.InfException;
  *
  * @author jerry
  */
+
 public class MinaProjekt extends javax.swing.JFrame {
 
     private InfDB idb;
@@ -65,7 +66,7 @@ public class MinaProjekt extends javax.swing.JFrame {
             JScrollPane scrollPane = new JScrollPane(projektLista);
             scrollPane.setBounds(20, 40, 500, 300); // Ange position och storlek för JScrollPane
 
-            // Lägg till JScrollPane till JFrame
+            // Lägg till JScrollPane till JFrame 
             getContentPane().add(scrollPane);
 
         } catch (InfException ex) {
@@ -80,7 +81,7 @@ private void gaTillProjektChefMeny() {
         this.dispose();
         ProjektChefMeny ProjektChefMeny = new ProjektChefMeny(idb, InloggadHandlaggare);
         ProjektChefMeny.setVisible(false);
-}
+}   
     private MinaProjekt() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 }

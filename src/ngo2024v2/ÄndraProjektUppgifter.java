@@ -40,6 +40,7 @@ public class ÄndraProjektUppgifter extends javax.swing.JFrame {
     /**
      * Metod för att fylla textfälten med projektets data.
      */
+    //Fyller fält med data
 private void fyllFaltMedData() {
     if (txtProjektnamn != null) {
         txtProjektnamn.setText(listaProjekt.get("projektnamn"));
