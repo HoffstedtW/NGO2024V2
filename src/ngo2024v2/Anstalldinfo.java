@@ -77,6 +77,12 @@ public class Anstalldinfo extends javax.swing.JFrame {
         try {
             String sqlUppdatering = "UPDATE anstalld SET adress = '" + nyAdress + "' WHERE epost = '" + InloggadHandlaggare + "'";
             idb.update(sqlUppdatering);
+            
+            //Validering
+            if(Validering.valideraText(nyAdress)) {
+                return;
+            }
+            
         } catch (Exception ex) {
     }
 }
@@ -94,6 +100,12 @@ public class Anstalldinfo extends javax.swing.JFrame {
             String sqlUppdatering = "UPDATE anstalld SET epost = '" + nyepost + "' WHERE epost = '" + InloggadHandlaggare + "'";
             idb.update(sqlUppdatering);
             InloggadHandlaggare = nyepost;
+            
+            //Validering
+            if(Validering.valideraText(nyepost)) {
+                return;
+            }
+            
         } catch (Exception ex) {
     }
 }
@@ -109,6 +121,11 @@ public class Anstalldinfo extends javax.swing.JFrame {
         try {
             String sqlUppdatering = "UPDATE anstalld SET losenord = '" + nyttlosen + "' WHERE epost = '" + InloggadHandlaggare + "'";
             idb.update(sqlUppdatering);
+            
+            //Validering 
+            if(Validering.valideraText(nyttlosen)) {
+                return;
+            }
         } catch (Exception ex) {
     }
 }
@@ -122,30 +139,46 @@ public class Anstalldinfo extends javax.swing.JFrame {
         try {
             String sqlUppdatering = "UPDATE anstalld SET telefon = '" + nyttnummer + "' WHERE epost = '" + InloggadHandlaggare + "'";
             idb.update(sqlUppdatering);
+        
+          //Validering
+          if(Validering.valideraTelefonnummer(nyttnummer)) {
+              return;
+          }
+            
         } catch (Exception ex) {
     }
 }
     private void fornamnandring() {
-        String nyttnummer = txtFornamn.getText();
-        if (nyttnummer.isEmpty()) {
+        String nyttfornamn = txtFornamn.getText();
+        if (nyttfornamn.isEmpty()) {
             return;
         }
         
         try {
-            String sqlUppdatering = "UPDATE anstalld SET fornamn = '" + nyttnummer + "' WHERE epost = '" + InloggadHandlaggare + "'";
+            String sqlUppdatering = "UPDATE anstalld SET fornamn = '" + nyttfornamn + "' WHERE epost = '" + InloggadHandlaggare + "'";
             idb.update(sqlUppdatering);
+            
+            //Validering 
+            if(Validering.valideraText(nyttfornamn)){
+                return;
+            }
         } catch (Exception ex) {
     }
 }
     private void efternamnandring() {
-        String nyttnummer = txtEfternamn.getText();
-        if (nyttnummer.isEmpty()) {
+        String nyttefternamn = txtEfternamn.getText();
+        if (nyttefternamn.isEmpty()) {
             return;
         }
         
         try {
-            String sqlUppdatering = "UPDATE anstalld SET efternamn = '" + nyttnummer + "' WHERE epost = '" + InloggadHandlaggare + "'";
+            String sqlUppdatering = "UPDATE anstalld SET efternamn = '" + nyttefternamn + "' WHERE epost = '" + InloggadHandlaggare + "'";
             idb.update(sqlUppdatering);
+            
+            //Validering
+            if(Validering.valideraText(nyttefternamn)){
+                return;
+            }
         } catch (Exception ex) {
     }
 }
