@@ -43,6 +43,8 @@ public class HandläggarMeny extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     
+    
+    
 
    private void visaPersonligaUppgifter() {
        try { 
@@ -231,6 +233,7 @@ public class HandläggarMeny extends javax.swing.JFrame {
 
     private void btnÄndraUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÄndraUppgifterActionPerformed
           visaPersonligaUppgifter();
+          dispose();
     }//GEN-LAST:event_btnÄndraUppgifterActionPerformed
 
     private void btnChefsMenyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChefsMenyActionPerformed

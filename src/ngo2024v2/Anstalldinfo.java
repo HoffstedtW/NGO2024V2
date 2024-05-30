@@ -17,6 +17,7 @@ public class Anstalldinfo extends javax.swing.JFrame {
     private InfDB idb;
     private String InloggadHandlaggare;
     private String AnstalldID;
+    private HandläggarMeny handläggarMeny;   
   
   
 
@@ -24,7 +25,12 @@ public class Anstalldinfo extends javax.swing.JFrame {
     initComponents();
     this.idb = idb;
     this.InloggadHandlaggare = InloggadHandlaggare;
+    this.handläggarMeny = handläggarMeny;
      this.setVisible(true);
+     
+     
+     
+     
      
      try { 
          String sqlFraga = "SELECT * from anstalld WHERE epost = '" + InloggadHandlaggare + "'";
@@ -46,6 +52,7 @@ public class Anstalldinfo extends javax.swing.JFrame {
  
 
 }
+    
    
      
     /**
@@ -58,7 +65,7 @@ public class Anstalldinfo extends javax.swing.JFrame {
     private void gatillhandlaggarmeny() {
         this.dispose();
         HandläggarMeny handläggarMeny = new HandläggarMeny(idb, InloggadHandlaggare);
-        handläggarMeny.setVisible(false);
+        handläggarMeny.setVisible(true);
     }
     
     private void adressandring() {
@@ -86,6 +93,7 @@ public class Anstalldinfo extends javax.swing.JFrame {
         try {
             String sqlUppdatering = "UPDATE anstalld SET epost = '" + nyepost + "' WHERE epost = '" + InloggadHandlaggare + "'";
             idb.update(sqlUppdatering);
+            InloggadHandlaggare = nyepost;
         } catch (Exception ex) {
     }
 }
@@ -166,6 +174,7 @@ public class Anstalldinfo extends javax.swing.JFrame {
         txtAvdelning = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         btnGåTillbaka = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -239,6 +248,13 @@ public class Anstalldinfo extends javax.swing.JFrame {
             }
         });
 
+        btnRefresh.setText("Uppdatera");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -280,6 +296,8 @@ public class Anstalldinfo extends javax.swing.JFrame {
                             .addComponent(lblLösenord)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRefresh)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnGåTillbaka)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,7 +339,8 @@ public class Anstalldinfo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(btnGåTillbaka))
+                    .addComponent(btnGåTillbaka)
+                    .addComponent(btnRefresh))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -366,6 +385,10 @@ gatillhandlaggarmeny();
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLosenordActionPerformed
 
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -403,6 +426,7 @@ gatillhandlaggarmeny();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGåTillbaka;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblAdress;
