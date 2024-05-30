@@ -44,7 +44,7 @@ private String InloggadAdmin;
           
           
            // Validera inmatning
-            if (pid.isEmpty() || !Validering.valideraPid(idb, pid)) {
+            if (pid.isEmpty() || !Validering.valideraPid(pid)) {
                 JOptionPane.showMessageDialog(null, "Ogiltigt eller tomt PID!");
                 return;
             }

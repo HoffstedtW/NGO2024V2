@@ -36,55 +36,87 @@ public class LäggtillProjekt extends javax.swing.JFrame {
     }
    
    
-   private void sparaprojekt() {
-    try {
-        String pidStr = txtPID.getText();
-        String projektnamn = txtProjektnamn.getText();
-        String beskrivning = txtBeskrivning.getText();
-        String startdatum = txtStartdatum.getText();
-        String slutdatum = txtSlutdatum.getText();
-        String projektchef = txtProjektChef.getText();
-        String prioritet = txtPrioritet.getText();
-        String land = txtLand.getText();
-        String kostnad = txtKostnad.getText();
-        String status = txtStatus.getText();
- 
-         if (projektnamn.isEmpty() || beskrivning.isEmpty() || startdatum.isEmpty() || slutdatum.isEmpty() || projektchef.isEmpty() || prioritet.isEmpty() || land.isEmpty() || kostnad.isEmpty() || status.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Fyll i alla fält!");
-            return;
-        
-        }
+  private void sparaprojekt() {
+        try {
+            String pidStr = txtPID.getText();
+            String projektnamn = txtProjektnamn.getText();
+            String beskrivning = txtBeskrivning.getText();
+            String startdatum = txtStartdatum.getText();
+            String slutdatum = txtSlutdatum.getText();
+            String projektchef = txtProjektChef.getText();
+            String prioritet = txtPrioritet.getText();
+            String land = txtLand.getText();
+            String kostnad = txtKostnad.getText();
+            String status = txtStatus.getText();
 
-       int pid = Integer.parseInt(pidStr);
+            // Validera att inga fält är tomma
+            if (projektnamn.isEmpty() || beskrivning.isEmpty() || startdatum.isEmpty() || slutdatum.isEmpty() || 
+                projektchef.isEmpty() || prioritet.isEmpty() || land.isEmpty() || kostnad.isEmpty() || status.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Fyll i alla fält!");
+                return;
+            }
 
-      
-        
-
-     String sqlFraga = "INSERT INTO projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, projektchef, prioritet, land, kostnad, status) VALUES ('" + 
-            pid + "', '" +
-            projektnamn + "', '" +
-            beskrivning + "', '" +
-            startdatum + "', '" +
-            slutdatum + "', '" +
-            projektchef + "', '" +
-            prioritet + "', '" +
-            land + "', '" +
-            kostnad + "', '" +
-            status + "')";
-
-
-        idb.insert(sqlFraga);
-        
-        JOptionPane.showMessageDialog(null, "Nytt projekt tillagt!");
-
-    } catch (InfException e) {
-        JOptionPane.showMessageDialog(null, "Ett fel inträffade: " + e.getMessage());
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "Ogiltigt format! " + e.getMessage());
-    }
+        // Validera PID
+           // Validera PID
+if (!Validering.valideraint(pidStr) || !Validering.valideraPid(pidStr)) {
+    JOptionPane.showMessageDialog(null, "Ogiltigt PID!");
+    return;
 }
 
-    /**
+            
+           
+
+            // Validera datum
+            if (!Validering.valideraDatum(startdatum) || !Validering.valideraDatum(slutdatum)) {
+                JOptionPane.showMessageDialog(null, "Ogiltigt datumformat! Använd formatet YYYY-MM-DD.");
+                return;
+            }
+
+            if (!Validering.valideraText(projektnamn) || !Validering.valideraText(beskrivning) || 
+            !Validering.valideraText(startdatum) || !Validering.valideraText(slutdatum) || 
+             !Validering.valideraText(projektchef) || !Validering.valideraText(land) || 
+             !Validering.valideraText(status)) {
+              JOptionPane.showMessageDialog(null, "Ogiltigt textformat i ett av fälten!");
+              return;
+             }
+
+
+            // Validera numeriska fält
+            if (!Validering.valideraint(kostnad)) {
+                JOptionPane.showMessageDialog(null, "Ogiltigt format i ett av de numeriska fälten!");
+                return;
+            }
+
+            // Validera land
+            if (!Validering.valideraLid(land)) {
+                JOptionPane.showMessageDialog(null, "Ogiltigt land ID!");
+                return;
+            }
+
+            String sqlFraga = "INSERT INTO projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, projektchef, prioritet, land, kostnad, status) VALUES (" + 
+                pidStr + ", '" +
+                projektnamn + "', '" +
+                beskrivning + "', '" +
+                startdatum + "', '" +
+                slutdatum + "', '" +
+                projektchef + "', '" +
+                prioritet + "', '" +
+                land + "', '" +
+                kostnad + "', '" +
+                status + "')";
+
+            idb.insert(sqlFraga);
+
+            JOptionPane.showMessageDialog(null, "Nytt projekt tillagt!");
+
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ogiltigt format! " + e.getMessage());
+        }
+    }
+
+    /** 
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.

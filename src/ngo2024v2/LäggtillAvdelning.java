@@ -43,9 +43,22 @@ public class LäggtillAvdelning extends javax.swing.JFrame {
         String stad = txtStad.getText();
         String chef = txtChef.getText();
         String adress = txtAdress.getText();
- 
-        if (namn.isEmpty() || beskrivning.isEmpty() || epost.isEmpty() || stad.isEmpty() || avdidStr.isEmpty() || telefon.isEmpty() || chef.isEmpty() || adress.isEmpty()) {
+
+        // Validera att inget fält är tomt
+        if (avdidStr.isEmpty() || namn.isEmpty() || beskrivning.isEmpty() || epost.isEmpty() || stad.isEmpty() || telefon.isEmpty() || chef.isEmpty() || adress.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Fyll i alla fält!");
+            return;
+        }
+
+         // Validera numeriska fält
+        if (!Validering.valideraint(avdidStr) || !Validering.valideraint(chef) || !Validering.valideraint(telefon)) {
+            JOptionPane.showMessageDialog(null, "Avdelnings-ID, chef och telefonnummer måste vara numeriska värden!");
+            return;
+        }
+
+        // Validera textfält
+        if (!Validering.valideraText(namn) || !Validering.valideraText(beskrivning) ||!Validering.valideraText(adress)) {
+            JOptionPane.showMessageDialog(null, "Ogiltigt format i ett av fälten!");
             return;
         }
 
@@ -64,13 +77,13 @@ public class LäggtillAvdelning extends javax.swing.JFrame {
             "'" + chef + "')";
 
         idb.insert(sqlFraga);
-        
+
         JOptionPane.showMessageDialog(null, "Ny avdelning tillagd!");
 
     } catch (InfException e) {
         JOptionPane.showMessageDialog(null, "Ett fel inträffade: " + e.getMessage());
     } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "Ogiltigt format! " + e.getMessage());
+        JOptionPane.showMessageDialog(null, "Ogiltigt format! Avdelnings-ID måste vara ett numeriskt värde.");
     }
 }
 

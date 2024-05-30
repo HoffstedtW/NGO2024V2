@@ -33,82 +33,69 @@ public class Validering {
     
     
     
-    public static boolean valideraLid(InfDB idb, String Lid) {
-    boolean kontrollLand = false;
-    String fraga = "select lid from land where lid = " + Lid;
-    try {
-        // Anropa fetchSingle för att hämta land-ID från databasen
-        String landID = idb.fetchSingle(fraga);
-        
-        // Om land-ID:t inte är null och det matchar det sökta land-ID:t, sätt kontrollOK till true
-        if (landID != null && landID.equals(Lid)) {
-            kontrollLand = true;
-        }
-    } catch (InfException ex) {
-        // Vid fel, skriv ut felmeddelandet
-        System.out.println(ex.getMessage());
+    public static boolean valideraLid(String Lid) {
+     boolean enLid = false;
+    // Tillåter heltal och decimaler med en punkt
+    String regex = "^(?!0)\\d{1,2}$|^100$";
+    if (Lid.matches(regex)) {
+        enLid = true;
     }
-    return kontrollLand;
+    return enLid;
+    }
+
+
+    
+     public static boolean valideraPid (String Pid){
+         boolean enPid = false;
+    // Tillåter heltal och decimaler med en punkt
+    String regex = "^(?!0)\\d{1,2}$|^100$";
+    if (Pid.matches(regex)) {
+        enPid = true;
+    }
+    return enPid;
+    }
+    
+      public static boolean valideraSid (String Sid){
+           boolean enSid = false;
+    // Tillåter heltal och decimaler med en punkt
+    String regex = "^(?!0)\\d{1,2}$|^100$";
+    if (Sid.matches(regex)) {
+        enSid = true;
+    }
+    return enSid;
+    }
+          
+      
+        
+          
+          
+       public static boolean valideraavdid(String avdid) {
+    boolean enavdid = false;
+    // Tillåter heltal mellan 1 och 100
+    String regex = "^[1-9][0-9]?$|^100$";
+    if (avdid.matches(regex)) {
+        enavdid = true;
+    }
+    return enavdid;
+}
+    
+    
+
+public static boolean valideraTelefonnummer(String telefonnummer) {
+    // Validerar telefonnummer med hjälp av regex för att kontrollera att strängen innehåller 10-15 siffror
+    String regex = "^[0-9]{10,15}$";
+    return telefonnummer != null && telefonnummer.matches(regex);
+}
+    
+  public static boolean valideraText (String enText) {
+    boolean Text = false;
+    String regex = "^[\\p{L}\\d\\s._,'-]+$"; // Lagt till \\d för siffror och _ samt ändrat regexet
+    if (enText.matches(regex)) {
+        Text = true;
+    }        
+    return Text;
 }
 
-
-    
-     public static boolean valideraPid (InfDB idb, String Pid){
-        boolean kontrollPid = false;
-        String fraga = "select pid from partner where pid = " + Pid;
-        try{
-            if(Pid.equals(idb.fetchSingle(fraga))){
-                kontrollPid = true;
-            }
-        }
-        catch (InfException ex){
-            ex.getMessage();
-        }
-        return kontrollPid;
-    }
-    
-      public static boolean valideraSid (InfDB idb, String Sid){
-        boolean kontrollSid = false;
-        String fraga = "select sid from stad where sid = " + Sid;
-        try{
-            if (Sid.equals(idb.fetchSingle(fraga))){
-                kontrollSid = true;
-            }
-        }
-        catch (InfException ex){
-            System.out.println(ex.getMessage());
-        }
-        return kontrollSid;
-    }
-      
-       public static boolean valideraavdid (InfDB idb, String avdid){
-        boolean kontrollavdid = false;
-        String fraga = "select avdid from avdelning where avdid = " + avdid;
-        try{
-            if (avdid.equals(idb.fetchSingle(fraga))){
-                kontrollavdid = true;
-            }
-        }
-        catch (InfException ex){
-            System.out.println(ex.getMessage());
-        }
-        return kontrollavdid;
-    }
-    
-    public static boolean valideraTelefonnummer(String telefonnummer) {
-        // Enkel validering för att kontrollera att strängen endast innehåller siffror
-        return telefonnummer != null && telefonnummer.matches("^\\d+$");
-    }
-    
-    public static boolean valideraText (String enText) {
-        boolean Text = false;
-        String regex = "^[\\p{L}\\s .,'-]+$";
-        if (enText.matches(regex)) {
-            Text = true;
-        }        
-        return Text;
-    }
-    
      public static boolean valideraTextNummer (String TextNmr) {
         boolean textOkej = false;
         String regex = "^[\\p{L}\\d\\s .,'-]+$";
@@ -118,14 +105,15 @@ public class Validering {
         return textOkej;
     }
     
-      public static boolean valideraint (String ettNummer) {
-        boolean Nummer = false;
-        String regex = "^\\d+$";
-        if (ettNummer.matches(regex)) {
-            Nummer = true;
-        }
-        return Nummer;
+     public static boolean valideraint (String ettNummer) {
+    boolean Nummer = false;
+    // Tillåter heltal och decimaler med en punkt
+    String regex = "^\\d+(\\.\\d+)?$";
+    if (ettNummer.matches(regex)) {
+        Nummer = true;
     }
+    return Nummer;
+}
       public static boolean valideraNummerOchPunkt(String text) {
         return text.matches("[0-9.]+");
     }

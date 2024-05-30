@@ -35,6 +35,8 @@ public class ÄndraAvdelning extends javax.swing.JFrame {
             // Visa meddelande till användaren om att valideringen misslyckades
             JOptionPane.showMessageDialog(null, "Ogiltig e-postadress. Kontrollera att alla fält är korrekt ifyllda.");
             return; 
+            
+         
         }   
 
         // Hämta värden från de andra textfälten
@@ -48,6 +50,38 @@ public class ÄndraAvdelning extends javax.swing.JFrame {
         
         // Konvertera avdidStr till ett numeriskt värde
         int avdid = Integer.parseInt(avdidStr);
+        
+        // Validerar inmatningen för namn, beskrivning och adress
+         if (!Validering.valideraText(namn) ||
+         !Validering.valideraText(beskrivning) ||
+          !Validering.valideraText(adress)) {
+         JOptionPane.showMessageDialog(null, "Ogiltigt format i ett av fälten!");
+          return;
+        }
+         
+         
+      // Validerar numeriska fält för  och 
+       if (!Validering.valideraint(stad) ||
+        !Validering.valideraint(chef)) {
+        JOptionPane.showMessageDialog(null, "Ogiltigt format i ett av de numeriska fälten!");
+       return;
+        }
+       
+      
+       
+           // Validerar avdid
+        if (!Validering.valideraint(avdidStr)) {
+            JOptionPane.showMessageDialog(null, "Ogiltigt format för avdid");
+            return;
+        }
+        
+            // Validerar telefonnummer
+        if (!Validering.valideraTelefonnummer(telefon)) {
+            JOptionPane.showMessageDialog(null, "Ogiltigt format för avdid");
+            return;
+        }
+        
+       
 
         // Skapa en StringBuilder för att bygga SQL-frågan dynamiskt
         StringBuilder sqlFraga = new StringBuilder("UPDATE avdelning SET ");

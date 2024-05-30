@@ -46,7 +46,7 @@ public class ÄndraLand extends javax.swing.JFrame {
         String sprak = lblSprak.getText();
         
         // Validera inmatning
-            if (lidStr.isEmpty() || !Validering.valideraLid(idb, lidStr)) {
+            if (lidStr.isEmpty() || !Validering.valideraLid(lidStr)) {
                 JOptionPane.showMessageDialog(null, "Ogiltigt eller tomt LID!");
                 return;
             }

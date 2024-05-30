@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
@@ -68,8 +68,31 @@ public class LäggtillAnställd extends javax.swing.JFrame {
             return;
         }
 
-        // Konvertera aid till int
+        // Konverterar aid till int
         int aid = Integer.parseInt(aidStr);
+        
+        // Validerar inmatningen för förnamn, efternamn, adress och avdelning
+         if (!Validering.valideraText(fornamn) ||
+         !Validering.valideraText(efternamn) ||
+          !Validering.valideraText(adress)) {
+         JOptionPane.showMessageDialog(null, "Ogiltigt format i ett av fälten!");
+          return;
+        }
+
+     // Validerar e-post och lösenordsformat
+        if (!Validering.valideraEpost(epost) ||
+          !Validering.valideraLosenord(lösenord)) {
+        JOptionPane.showMessageDialog(null, "Ogiltigt e-post eller lösenordsformat!");
+        return;
+         }
+
+      // Validerar numeriska fält för AID och telefonnummer
+       if (!Validering.valideraint(aidStr) ||
+        !Validering.valideraTelefonnummer(telefon)) {
+        JOptionPane.showMessageDialog(null, "Ogiltigt format i ett av de numeriska fälten!");
+       return;
+        }
+
 
         // Validera datumformatet
         if (!anstallningsdatum.matches("\\d{4}-\\d{2}-\\d{2}")) {

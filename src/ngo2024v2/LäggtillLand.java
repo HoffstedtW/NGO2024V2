@@ -48,7 +48,25 @@ public class LäggtillLand extends javax.swing.JFrame {
 
         // Konvertera lidStr till ett numeriskt värde om nödvändigt
         int lid = Integer.parseInt(lidStr);
+        
+           // Validerar inmatningen för namn, sprak, ekeonomi, politik och kod
+         if (!Validering.valideraText(namn) ||
+         !Validering.valideraText(sprak) ||
+         !Validering.valideraText(ekonomi) ||
+         !Validering.valideraText(politik) ||          
+         !Validering.valideraText(tid)) {
+         JOptionPane.showMessageDialog(null, "Ogiltigt format i ett av fälten!");
+          return;
+        }
 
+        // Validerar numeriska fält för valutan och lid
+       if (!Validering.valideraint(valuta) ||
+         !Validering.valideraText(lidStr)) {
+        JOptionPane.showMessageDialog(null, "Ogiltigt format i ett av de numeriska fälten!");
+       return;
+        }
+ 
+         
         // Skapa SQL-frågan
         String sqlFraga = "INSERT INTO land (lid, namn, sprak, valuta, tidszon, politisk_struktur, ekonomi) VALUES (" + 
             lid + ", " +

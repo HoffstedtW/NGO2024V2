@@ -7,6 +7,7 @@ package ngo2024v2;
 import java.util.HashMap;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import javax.swing.JOptionPane;
 /**
  *
  * @author jerry
@@ -77,38 +78,70 @@ private void fyllFaltMedData() {
      */
 private void sparaProjekt() {
         try {
-            // Hämtar data från textfälten
             String projektnamn = txtProjektnamn.getText();
-            String startdatum = txtStartdatum.getText();
-            String slutdatum = txtSlutdatum.getText();
-            String beskrivning = txtBeskrivning.getText();
-            String kostnad = txtKostnad.getText();
-            String status = txtStatus.getText();
-            String prioritet = txtPrioritet.getText();
-            String land = txtLand.getText();
-            String projektchef = txtProjektChef.getText();
-            
- // SQL-uppdatering av projektet
-            String sqlUpdate = "UPDATE projekt SET "
-                    + "projektnamn = '" + projektnamn + "', "
-                    + "startdatum = '" + startdatum + "', "
-                    + "slutdatum = '" + slutdatum + "', "
-                    + "beskrivning = '" + beskrivning + "', "
-                    + "kostnad = '" + kostnad + "', "
-                    + "status = '" + status + "', "
-                    + "prioritet = '" + prioritet + "', "
-                    + "land = '" + land + "', "
-                     + "projektchef = '" + projektchef + "' "
-                    + "WHERE pid = " + listaProjekt.get("pid");
-            
-            // Utför SQL-uppdateringen
-            idb.update(sqlUpdate);
-            System.out.println("Projektet har uppdaterats."); // Bekräftelsemeddelande
-            this.dispose(); // Stänger fönstret
-        } catch (InfException ex) {
-            System.out.println("Ett fel inträffade vid uppdatering: " + ex.getMessage());
+        String startdatum = txtStartdatum.getText();
+        String slutdatum = txtSlutdatum.getText();
+        String beskrivning = txtBeskrivning.getText();
+        String kostnad = txtKostnad.getText();
+        String status = txtStatus.getText();
+        String prioritet = txtPrioritet.getText();
+        String land = txtLand.getText();
+        String projektchef = txtProjektChef.getText();
+
+        // Validera att inga fält är tomma
+        if (projektnamn.isEmpty() || beskrivning.isEmpty() || startdatum.isEmpty() || slutdatum.isEmpty() || 
+            projektchef.isEmpty() || prioritet.isEmpty() || land.isEmpty() || kostnad.isEmpty() || status.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Fyll i alla fält!");
+            return;
         }
+
+        // Validera datum
+        if (!Validering.valideraDatum(startdatum) || !Validering.valideraDatum(slutdatum)) {
+            JOptionPane.showMessageDialog(null, "Ogiltigt datumformat! Använd formatet YYYY-MM-DD.");
+            return;
+        }
+
+        // Validera textfält
+        if (!Validering.valideraText(projektnamn) || !Validering.valideraText(beskrivning)) {
+            
+            JOptionPane.showMessageDialog(null, "Ogiltigt textformat i ett av fälten!");
+            return;
+        }
+
+        // Validera numeriska fält
+        if (!Validering.valideraText(prioritet) || !Validering.valideraText(kostnad) || !Validering.valideraText(status) ||
+             !Validering.valideraText(projektchef) || !Validering.valideraText(land)) {
+            JOptionPane.showMessageDialog(null, "Ogiltigt format i ett av de numeriska fälten!");
+            return;
+        }
+
+        // Validera att land finns i databasen
+        if (!Validering.valideraLid(land)) {
+            JOptionPane.showMessageDialog(null, "Ogiltigt land ID!");
+            return;
+        }
+
+        // SQL-uppdatering av projektet
+        String sqlUpdate = "UPDATE projekt SET "
+                + "projektnamn = '" + projektnamn + "', "
+                + "startdatum = '" + startdatum + "', "
+                + "slutdatum = '" + slutdatum + "', "
+                + "beskrivning = '" + beskrivning + "', "
+                + "kostnad = '" + kostnad + "', "
+                + "status = '" + status + "', "
+                + "prioritet = '" + prioritet + "', "
+                + "land = '" + land + "', "
+                + "projektchef = '" + projektchef + "' "
+                + "WHERE pid = " + listaProjekt.get("pid");
+
+        // Utför SQL-uppdateringen
+        idb.update(sqlUpdate);
+        System.out.println("Projektet har uppdaterats."); // Bekräftelsemeddelande
+        this.dispose(); // Stänger fönstret
+    } catch (InfException ex) {
+        System.out.println("Ett fel inträffade vid uppdatering: " + ex.getMessage());
     }
+}
         /**
          * Metod för att gå tillbaka till föregående fönster.
         */
